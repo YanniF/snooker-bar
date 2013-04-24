@@ -131,10 +131,10 @@ public class FormLogin extends javax.swing.JFrame {
         this.setIconImage(new ImageIcon(getClass().getResource("/imagens/icon.png")).getImage());  
         
         try {
-            Conexao.conectar("hr", "hr");
+            Conexao.conectar("snookerbar", "jonatas");
         } 
         catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro: \n" + e.getMessage(), "Erro!", 0);
+            JOptionPane.showMessageDialog(null, "Erro aqui: \n" + e.getMessage(), "Erro!", 0);
         }
     }//GEN-LAST:event_formWindowOpened
 
@@ -148,19 +148,20 @@ public class FormLogin extends javax.swing.JFrame {
         {
             String usuario = txtUsuario.getText();
             String senha = String.valueOf(txtSenha.getPassword());
-            String sql = "SELECT nm_login_usuario, nm_senha FROM usuario WHERE nm_login_usuario = '" + usuario + "'";            
+            String sql = "SELECT nm_login_usuario, nm_senha_usuario, ic_administrador_sim_nao FROM usuario WHERE nm_login_usuario = '" + usuario + "'";            
             boolean login = false;  
-            ResultSet resultado = Conexao.consultar(sql);
             
+            ResultSet resultado = Conexao.consultar(sql);            
+         
             if(Conexao.consultar(sql) == null)
             {
-                JOptionPane.showMessageDialog(null, "Erro", "Erro!", 0);
+                JOptionPane.showMessageDialog(null, "Erro na consulta", "Erro!", 0);
             }
             else
             { 
                 while(resultado.next())
                 {
-                    if(usuario.equals(resultado.getString("nm_login_usuario")) && senha.equals(resultado.getString("nm_senha")))
+                    if(usuario.equals(resultado.getString("nm_login_usuario")) && senha.equals(resultado.getString("nm_senha_usuario")))
                     {
                         login = true;
                         FormInicial fi = new FormInicial();
@@ -178,7 +179,7 @@ public class FormLogin extends javax.swing.JFrame {
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null, "Erro: \n" + e.getMessage(), "Erro!", 0);
+            JOptionPane.showMessageDialog(null, "Erro fuck: \n" + e.getMessage(), "Erro!", 0);
         }
         
     }//GEN-LAST:event_btnLoginActionPerformed
