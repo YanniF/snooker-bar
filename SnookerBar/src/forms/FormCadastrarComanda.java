@@ -10,7 +10,7 @@
  */
 package forms;
 
-import classes.Metodos;
+import classes.Utilitarios;
 
 
 /**
@@ -19,7 +19,7 @@ import classes.Metodos;
  */
 public class FormCadastrarComanda extends javax.swing.JInternalFrame {
 
-    Metodos m = new Metodos();
+    Utilitarios m = new Utilitarios();
     
     /** Creates new form Comanda */
     public FormCadastrarComanda() {
@@ -135,8 +135,8 @@ public class FormCadastrarComanda extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarComandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarComandaActionPerformed
-        Metodos m = new Metodos();
-        m.limpar(this);
+        Utilitarios m = new Utilitarios();
+        m.limparTextFields(this);
         rbtSim.setSelected(true);
     }//GEN-LAST:event_btnCancelarComandaActionPerformed
 

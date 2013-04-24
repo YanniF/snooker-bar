@@ -1,6 +1,6 @@
 package forms;
 
-import classes.Metodos;
+import classes.Utilitarios;
 
 /**
  *
@@ -12,7 +12,7 @@ public class FormCadastrarMesa extends javax.swing.JInternalFrame {
      * Creates new form FormCadastrarMesa
      */
     
-    Metodos m = new Metodos();
+    Utilitarios m = new Utilitarios();
     
     public FormCadastrarMesa() {
         initComponents();
@@ -144,7 +144,7 @@ public class FormCadastrarMesa extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        m.limpar(this);
+        m.limparTextFields(this);
         rbtSim.setSelected(true);
         txtCdMesa.requestFocus();
     }//GEN-LAST:event_btnLimparActionPerformed

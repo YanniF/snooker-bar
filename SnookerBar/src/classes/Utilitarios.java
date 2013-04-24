@@ -8,9 +8,9 @@ import javax.swing.JTextField;
 /**
  * @author Yanni
  */
-public class Metodos extends JFrame{
+public class Utilitarios extends JFrame{
     
-    public void limpar(JFrame frame)
+    public void limparTextFields(JFrame frame)
     {//esse método limpa os JFrames e MDIs
         for(int i = 0; i < frame.getContentPane().getComponentCount(); i++)
         {//percorre todos os componentes
@@ -25,7 +25,7 @@ public class Metodos extends JFrame{
         }
     }
     
-    public void limpar(JInternalFrame frame)
+    public void limparTextFields(JInternalFrame frame)
     {//esse método limpa os InternalFrames
         for(int i = 0; i < frame.getContentPane().getComponentCount(); i++)
         {//percorre todos os componentes

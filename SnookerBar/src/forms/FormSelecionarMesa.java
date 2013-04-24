@@ -1,6 +1,6 @@
 package forms;
 
-import classes.Metodos;
+import classes.Utilitarios;
 
 /**
  *
@@ -8,7 +8,7 @@ import classes.Metodos;
  */
 public class FormSelecionarMesa extends javax.swing.JInternalFrame {
 
-    Metodos m = new Metodos();
+    Utilitarios m = new Utilitarios();
     /**
      * Creates new form FormSelecionarMesa
      */
@@ -201,7 +201,7 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_rbtNmMesaActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        m.limpar(this);
+        m.limparTextFields(this);
         rbtCdMesa.setSelected(true);
         rbtCdMesaActionPerformed(evt);
     }//GEN-LAST:event_btnLimparActionPerformed

@@ -5,7 +5,8 @@
 package forms;
 
 import classes.Conexao;
-import classes.Metodos;
+import classes.Utilitarios;
+import classes.Usuarios;
 import java.sql.ResultSet;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -16,7 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class FormLogin extends javax.swing.JFrame {
 
-    Metodos m = new Metodos();
+    Utilitarios m = new Utilitarios();
     
     /**
      * Creates new form FormLogin
@@ -139,7 +140,7 @@ public class FormLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-       m.limpar(this);
+       m.limparTextFields(this);
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
@@ -167,13 +168,23 @@ public class FormLogin extends javax.swing.JFrame {
                         FormInicial fi = new FormInicial();
                         fi.setVisible(true);
                         this.dispose();
+                        
+                        if(resultado.getString("ic_administrador_sim_nao").equalsIgnoreCase("s"))
+                        {
+                            con.adm = true;
+                        }
+                        else
+                        {
+                            con.adm = false;
+                        }
+                        System.out.println("Sei lá: " + resultado.getString("ic_administrador_sim_nao"));
                     } 
                 } 
                 
                 if(!login)
                 {
                     JOptionPane.showMessageDialog(null, "Usuário ou senha inválido", "Aviso!", 2);
-                    m.limpar(this);
+                    m.limparTextFields(this);
                 }
             }
         }

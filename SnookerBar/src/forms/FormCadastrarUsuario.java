@@ -4,7 +4,7 @@
  */
 package forms;
 
-import classes.Metodos;
+import classes.Utilitarios;
 
 /**
  *
@@ -15,7 +15,7 @@ public class FormCadastrarUsuario extends javax.swing.JInternalFrame {
     /**
      * Creates new form FormCadastrarUsuario
      */
-    Metodos m = new Metodos();
+    Utilitarios m = new Utilitarios();
     
     public FormCadastrarUsuario() {
         initComponents();
@@ -164,7 +164,7 @@ public class FormCadastrarUsuario extends javax.swing.JInternalFrame {
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         
-        m.limpar(this);
+        m.limparTextFields(this);
         txtCdUsuario.requestFocus();
         rbtSim.setSelected(true);
     }//GEN-LAST:event_btnLimparActionPerformed

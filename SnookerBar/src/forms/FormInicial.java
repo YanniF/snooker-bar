@@ -4,6 +4,8 @@
  */
 package forms;
 
+import classes.Conexao;
+import classes.Usuarios;
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 
@@ -13,6 +15,7 @@ import javax.swing.JInternalFrame;
  */
 public class FormInicial extends javax.swing.JFrame {
 
+    //Conexao v = new Conexao();
     /**
      * Creates new form NewMDIApplication
      */
@@ -31,6 +34,7 @@ public class FormInicial extends javax.swing.JFrame {
     private void initComponents() {
 
         desktopPane = new javax.swing.JDesktopPane();
+        lblBemVindo = new javax.swing.JLabel();
         menuPrincipal = new javax.swing.JMenuBar();
         menuComanda = new javax.swing.JMenu();
         menuAbertura = new javax.swing.JMenu();
@@ -78,6 +82,11 @@ public class FormInicial extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
+
+        lblBemVindo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblBemVindo.setForeground(new java.awt.Color(255, 255, 255));
+        lblBemVindo.setBounds(40, 40, 260, 40);
+        desktopPane.add(lblBemVindo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         menuComanda.setText("Comanda");
 
@@ -283,6 +292,16 @@ public class FormInicial extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         this.setIconImage(new ImageIcon(getClass().getResource("/imagens/icon.png")).getImage());   
         setExtendedState(MAXIMIZED_BOTH);  
+        //System.out.println("adm? " + v.adm);
+        
+        if(Conexao.adm)
+        {
+            lblBemVindo.setText("Bem-vindo administrador");
+        }
+        else 
+        {
+            lblBemVindo.setText("Bem-vindo usuário");
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void menuCadastrarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastrarMesaActionPerformed
@@ -365,6 +384,7 @@ public class FormInicial extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JLabel lblBemVindo;
     private javax.swing.JMenu menuAbertura;
     private javax.swing.JMenuItem menuAbrirComanda;
     private javax.swing.JMenuItem menuAlterarAbertura;

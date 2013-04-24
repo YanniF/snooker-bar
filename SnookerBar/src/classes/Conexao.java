@@ -12,6 +12,8 @@ import javax.swing.JOptionPane;
 public class Conexao {
     
     private static Connection conexao;
+    public static boolean adm;
+    //criar um objeto do tipo usuário, onde tem se ele é adm e o nome
     
     public static void conectar(String user, String pass) throws Exception
     {
@@ -23,7 +25,7 @@ public class Conexao {
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null, "Erro: \n" + e.getMessage(), "Erro!", 0);
+            JOptionPane.showMessageDialog(null, "Erro na conexão: \n" + e.getMessage(), "Erro!", 0);
         }
     }
 
@@ -33,7 +35,7 @@ public class Conexao {
             conexao.close();
         }
         catch(SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro: \n" + e.getMessage(), "Erro!", 0);
+            JOptionPane.showMessageDialog(null, "Erro em desconectar: \n" + e.getMessage(), "Erro!", 0);
         }
     }
     
@@ -41,7 +43,7 @@ public class Conexao {
     {
         try
         {
-            return conexao.createStatement().executeQuery(sql);            
+            return conexao.createStatement().executeQuery(sql);       
         }
         catch(SQLException e)
         {

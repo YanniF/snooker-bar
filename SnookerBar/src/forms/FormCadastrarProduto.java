@@ -4,7 +4,7 @@
  */
 package forms;
 
-import classes.Metodos;
+import classes.Utilitarios;
 
 /**
  *
@@ -16,7 +16,7 @@ public class FormCadastrarProduto extends javax.swing.JInternalFrame {
      * Creates new form FormCadastrarServico
      */
     
-    Metodos m = new Metodos();
+    Utilitarios m = new Utilitarios();
     
     public FormCadastrarProduto() {
         initComponents();
@@ -131,7 +131,7 @@ public class FormCadastrarProduto extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        m.limpar(this);
+        m.limparTextFields(this);
         txtCdProduto.requestFocus();
     }//GEN-LAST:event_btnLimparActionPerformed
 

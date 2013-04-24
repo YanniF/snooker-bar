@@ -4,7 +4,7 @@
  */
 package forms;
 
-import classes.Metodos;
+import classes.Utilitarios;
 
 /**
  *
@@ -12,7 +12,7 @@ import classes.Metodos;
  */
 public class FormSelecionarComanda extends javax.swing.JInternalFrame {
 
-    Metodos m = new Metodos();
+    Utilitarios m = new Utilitarios();
     /**
      * Creates new form FormSelecionarComanda
      */
@@ -139,7 +139,7 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        m.limpar(this);
+        m.limparTextFields(this);
         //limpar a tabela
     }//GEN-LAST:event_btnLimparActionPerformed
 
