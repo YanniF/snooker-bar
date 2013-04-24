@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+  <Properties>
+    <Property name="closable" type="boolean" value="true"/>
+    <Property name="iconifiable" type="boolean" value="true"/>
+    <Property name="title" type="java.lang.String" value="Cadastrar Funcion&#xe1;rio"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,43,0,0,1,-113"/>
+    <SyntheticProperty name="formSizePolicy" type="int" value="0"/>
+    <SyntheticProperty name="generateSize" type="boolean" value="true"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="lblCdUsuario" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCdTelefoneFuncionario" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCdCpfFuncionario" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNmFuncionario" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCdFuncionario" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtCdFuncionario" min="-2" pref="92" max="-2" attributes="0"/>
+                          <Component id="txtNmFuncionario" min="-2" pref="300" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="txtCdUsuario" min="-2" pref="133" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnLimpar" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="btnProcurar" min="-2" pref="47" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="txtCdCpfFuncionario" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
+                          <Component id="txtCdTelefoneFuncionario" min="-2" pref="133" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                      <Component id="btnCadastrar" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblCdFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtCdFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblNmFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtNmFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblCdCpfFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtCdCpfFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblCdTelefoneFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtCdTelefoneFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblCdUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtCdUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="btnProcurar" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="26" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnCadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnLimpar" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="lblCdFuncionario">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="C&#xf3;digo:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtCdFuncionario">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Digite o c&#xf3;digo do funcion&#xe1;rio"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNmFuncionario">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nome:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtNmFuncionario">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Digite o nome do funcion&#xe1;rio"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblCdCpfFuncionario">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="CPF:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="txtCdCpfFuncionario">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+          <Format format="###.###.###-##" subtype="-1" type="5"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Digite o CPF do funcion&#xe1;rio"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblCdTelefoneFuncionario">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Telefone:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="txtCdTelefoneFuncionario">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+          <Format format="(##) ####-####" subtype="-1" type="5"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Digite o telefone do funcion&#xe1;rio"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblCdUsuario">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Usu&#xe1;rio:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtCdUsuario">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Digite o c&#xf3;digo de usu&#xe1;rio do funcion&#xe1;rio"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnProcurar">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/imagens/procurar.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Clique aqui para procurar o c&#xf3;digo da abertura da mesa"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnLimpar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Limpar"/>
+        <Property name="toolTipText" type="java.lang.String" value="Clique aqui para limpar os valores"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimparActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnCadastrar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cadastrar"/>
+        <Property name="toolTipText" type="java.lang.String" value="Clique aqui para cadastrar o servi&#xe7;o"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>
