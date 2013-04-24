@@ -29,7 +29,7 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         pesquisarButtonGroup = new javax.swing.ButtonGroup();
-        ativaPanel = new javax.swing.JPanel();
+        pesquisarPanel = new javax.swing.JPanel();
         rbtCdMesa = new javax.swing.JRadioButton();
         rbtNmMesa = new javax.swing.JRadioButton();
         lblTermo = new javax.swing.JLabel();
@@ -45,8 +45,8 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setTitle("Consultar Mesa");
 
-        ativaPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar por:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 0)));
-        ativaPanel.setToolTipText("Pesquisar por código ou identificação (nome) da mesa");
+        pesquisarPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar por:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 0)));
+        pesquisarPanel.setToolTipText("Pesquisar por código ou identificação (nome) da mesa");
 
         pesquisarButtonGroup.add(rbtCdMesa);
         rbtCdMesa.setText("Código");
@@ -64,20 +64,20 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
             }
         });
 
-        javax.swing.GroupLayout ativaPanelLayout = new javax.swing.GroupLayout(ativaPanel);
-        ativaPanel.setLayout(ativaPanelLayout);
-        ativaPanelLayout.setHorizontalGroup(
-            ativaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ativaPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout pesquisarPanelLayout = new javax.swing.GroupLayout(pesquisarPanel);
+        pesquisarPanel.setLayout(pesquisarPanelLayout);
+        pesquisarPanelLayout.setHorizontalGroup(
+            pesquisarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pesquisarPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(ativaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pesquisarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rbtCdMesa)
                     .addComponent(rbtNmMesa))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        ativaPanelLayout.setVerticalGroup(
-            ativaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ativaPanelLayout.createSequentialGroup()
+        pesquisarPanelLayout.setVerticalGroup(
+            pesquisarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pesquisarPanelLayout.createSequentialGroup()
                 .addGap(3, 3, 3)
                 .addComponent(rbtCdMesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -145,7 +145,7 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtTermo))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(ativaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pesquisarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -172,7 +172,7 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
                             .addComponent(btnAlterar)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(ativaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(pesquisarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTermo)
@@ -207,7 +207,6 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel ativaPanel;
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnPesquisar;
@@ -215,6 +214,7 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JLabel lblTermo;
     private javax.swing.ButtonGroup pesquisarButtonGroup;
+    private javax.swing.JPanel pesquisarPanel;
     private javax.swing.JRadioButton rbtCdMesa;
     private javax.swing.JRadioButton rbtNmMesa;
     private javax.swing.JTable tabelaMesa;
