@@ -114,12 +114,12 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtNmMesa">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Digite o c&#xf3;digo da mesa"/>
+        <Property name="toolTipText" type="java.lang.String" value="Digite a identifica&#xe7;&#xe3;o (nome) da mesa"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCdMesa">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Digite a identifica&#xe7;&#xe3;o (nome) da mesa"/>
+        <Property name="toolTipText" type="java.lang.String" value="Digite o c&#xf3;digo da mesa"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="ativaPanel">

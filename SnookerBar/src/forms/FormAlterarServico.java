@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package forms;
 
 import classes.Utilitarios;
@@ -10,7 +6,7 @@ import classes.Utilitarios;
  *
  * @author Yanni
  */
-public class FormCadastrarServico extends javax.swing.JInternalFrame {
+public class FormAlterarServico extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FormCadastrarServico
@@ -18,7 +14,7 @@ public class FormCadastrarServico extends javax.swing.JInternalFrame {
     
     Utilitarios m = new Utilitarios();
     
-    public FormCadastrarServico() {
+    public FormAlterarServico() {
         initComponents();
     }
 
@@ -38,16 +34,16 @@ public class FormCadastrarServico extends javax.swing.JInternalFrame {
         txtNmServico = new javax.swing.JTextField();
         lblVlServico = new javax.swing.JLabel();
         txtVlServico = new javax.swing.JTextField();
-        btnCadastrar = new javax.swing.JButton();
+        btnAlterar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("Cadastrar Serviço");
+        setTitle("Alterar Serviço");
 
         lblCdServico.setText("Código:");
 
-        txtCdServico.setToolTipText("Digite o código do serviço");
+        txtCdServico.setEnabled(false);
 
         lblNmServico.setText("Nome:");
 
@@ -57,8 +53,8 @@ public class FormCadastrarServico extends javax.swing.JInternalFrame {
 
         txtVlServico.setToolTipText("Digite o valor do serviço");
 
-        btnCadastrar.setText("Cadastrar");
-        btnCadastrar.setToolTipText("Clique aqui para cadastrar o serviço");
+        btnAlterar.setToolTipText("Clique aqui para gravar as alterações do serviço");
+        btnAlterar.setLabel("Alterar");
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
@@ -88,10 +84,10 @@ public class FormCadastrarServico extends javax.swing.JInternalFrame {
                             .addComponent(txtCdServico, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNmServico, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCadastrar)
+                        .addComponent(btnAlterar)
                         .addGap(18, 18, 18)
                         .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,7 +106,7 @@ public class FormCadastrarServico extends javax.swing.JInternalFrame {
                     .addComponent(lblVlServico))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCadastrar)
+                    .addComponent(btnAlterar)
                     .addComponent(btnLimpar))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
@@ -125,7 +121,7 @@ public class FormCadastrarServico extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JLabel lblCdServico;
     private javax.swing.JLabel lblNmServico;

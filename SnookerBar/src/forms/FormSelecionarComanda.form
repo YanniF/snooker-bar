@@ -109,7 +109,7 @@
     <Component class="javax.swing.JButton" name="btnLimpar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Limpar"/>
-        <Property name="toolTipText" type="java.lang.String" value="Clique aqui para limpar"/>
+        <Property name="toolTipText" type="java.lang.String" value="Clique aqui para limpar os valores"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimparActionPerformed"/>
@@ -137,8 +137,11 @@
     <Component class="javax.swing.JButton" name="btnAlterar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Alterar"/>
-        <Property name="toolTipText" type="java.lang.String" value="Selecione o linha que ser&#xe1; alterada"/>
+        <Property name="toolTipText" type="java.lang.String" value="Selecione a linha e clique aqui para alterar a comanda"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAlterarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

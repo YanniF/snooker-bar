@@ -10,7 +10,7 @@ import classes.Utilitarios;
  *
  * @author Yanni
  */
-public class FormCadastrarProduto extends javax.swing.JInternalFrame {
+public class FormAlterarProduto extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FormCadastrarServico
@@ -18,7 +18,7 @@ public class FormCadastrarProduto extends javax.swing.JInternalFrame {
     
     Utilitarios m = new Utilitarios();
     
-    public FormCadastrarProduto() {
+    public FormAlterarProduto() {
         initComponents();
     }
 
@@ -38,16 +38,16 @@ public class FormCadastrarProduto extends javax.swing.JInternalFrame {
         txtNmProduto = new javax.swing.JTextField();
         lblVlProduto = new javax.swing.JLabel();
         txtVlProduto = new javax.swing.JTextField();
-        btnCadastrar = new javax.swing.JButton();
+        btnAlterar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("Cadastrar Produto");
+        setTitle("Alterar Produto");
 
         lblCdProduto.setText("Código:");
 
-        txtCdProduto.setToolTipText("Digite o código do produto");
+        txtCdProduto.setEnabled(false);
 
         lblNmProduto.setText("Nome:");
 
@@ -57,8 +57,8 @@ public class FormCadastrarProduto extends javax.swing.JInternalFrame {
 
         txtVlProduto.setToolTipText("Digite o valor do produto");
 
-        btnCadastrar.setText("Cadastrar");
-        btnCadastrar.setToolTipText("Clique aqui para cadastrar o produto");
+        btnAlterar.setText("Alterar");
+        btnAlterar.setToolTipText("Clique aqui para gravar as alterações do produto");
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
@@ -93,10 +93,10 @@ public class FormCadastrarProduto extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtVlProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnCadastrar)
+                                .addComponent(btnAlterar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,7 +115,7 @@ public class FormCadastrarProduto extends javax.swing.JInternalFrame {
                     .addComponent(lblVlProduto))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCadastrar)
+                    .addComponent(btnAlterar)
                     .addComponent(btnLimpar))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
@@ -130,7 +130,7 @@ public class FormCadastrarProduto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JLabel lblCdProduto;
     private javax.swing.JLabel lblNmProduto;

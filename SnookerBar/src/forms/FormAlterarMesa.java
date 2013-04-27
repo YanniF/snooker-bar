@@ -6,7 +6,7 @@ import classes.Utilitarios;
  *
  * @author Yanni
  */
-public class FormCadastrarMesa extends javax.swing.JInternalFrame {
+public class FormAlterarMesa extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FormCadastrarMesa
@@ -14,7 +14,7 @@ public class FormCadastrarMesa extends javax.swing.JInternalFrame {
     
     Utilitarios m = new Utilitarios();
     
-    public FormCadastrarMesa() {
+    public FormAlterarMesa() {
         initComponents();
     }
 
@@ -41,10 +41,10 @@ public class FormCadastrarMesa extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("Cadastrar Mesa");
+        setTitle("Alterar Mesa");
 
-        btnCadastrar.setText("Cadastrar");
-        btnCadastrar.setToolTipText("Clique aqui para cadastrar a mesa");
+        btnCadastrar.setText("Alterar");
+        btnCadastrar.setToolTipText("Clique aqui para gravar as alterações da mesa");
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
@@ -62,7 +62,7 @@ public class FormCadastrarMesa extends javax.swing.JInternalFrame {
 
         txtNmMesa.setToolTipText("Digite a identificação (nome) da mesa");
 
-        txtCdMesa.setToolTipText("Digite o código da mesa");
+        txtCdMesa.setEnabled(false);
 
         ativaPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Ativa?"));
         ativaPanel.setToolTipText("Mesa ativa ou inativa?");
@@ -71,7 +71,6 @@ public class FormCadastrarMesa extends javax.swing.JInternalFrame {
         rbtNao.setText("Não");
 
         ativaButtonGroup.add(rbtSim);
-        rbtSim.setSelected(true);
         rbtSim.setText("Sim");
 
         javax.swing.GroupLayout ativaPanelLayout = new javax.swing.GroupLayout(ativaPanel);
@@ -114,8 +113,8 @@ public class FormCadastrarMesa extends javax.swing.JInternalFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addComponent(btnCadastrar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
@@ -146,7 +145,6 @@ public class FormCadastrarMesa extends javax.swing.JInternalFrame {
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         m.limparTextFields(this);
         rbtSim.setSelected(true);
-        txtCdMesa.requestFocus();
     }//GEN-LAST:event_btnLimparActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

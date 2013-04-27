@@ -5,6 +5,7 @@
 package forms;
 
 import classes.Utilitarios;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -27,7 +28,8 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         lblCdComanda = new javax.swing.JLabel();
         txtCdComanda = new javax.swing.JTextField();
@@ -54,40 +56,56 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
         btnPesquisarTudo.setToolTipText("Clique aqui para pesquisar todas as comandas");
 
         btnLimpar.setText("Limpar");
-        btnLimpar.setToolTipText("Clique aqui para limpar");
-        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnLimpar.setToolTipText("Clique aqui para limpar os valores");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnLimparActionPerformed(evt);
             }
         });
 
         tabelaComanda.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+            new Object [][]
+            {
 
             },
-            new String [] {
+            new String []
+            {
                 "Código", "Ativa ou Inativa"
             }
-        ) {
-            Class[] types = new Class [] {
+        )
+        {
+            Class[] types = new Class []
+            {
                 java.lang.Integer.class, java.lang.Boolean.class
             };
-            boolean[] canEdit = new boolean [] {
+            boolean[] canEdit = new boolean []
+            {
                 false, false
             };
 
-            public Class getColumnClass(int columnIndex) {
+            public Class getColumnClass(int columnIndex)
+            {
                 return types [columnIndex];
             }
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
                 return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(tabelaComanda);
 
         btnAlterar.setText("Alterar");
-        btnAlterar.setToolTipText("Selecione o linha que será alterada");
+        btnAlterar.setToolTipText("Selecione a linha e clique aqui para alterar a comanda");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -142,6 +160,14 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
         m.limparTextFields(this);
         //limpar a tabela
     }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAlterarActionPerformed
+    {//GEN-HEADEREND:event_btnAlterarActionPerformed
+        FormAlterarComanda fac = new FormAlterarComanda();
+        this.getDesktopPane().add(fac);
+        fac.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
+        fac.setVisible(true);
+    }//GEN-LAST:event_btnAlterarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;

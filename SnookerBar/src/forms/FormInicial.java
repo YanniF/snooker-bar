@@ -5,7 +5,6 @@
 package forms;
 
 import classes.Conexao;
-import classes.Usuarios;
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 
@@ -31,7 +30,8 @@ public class FormInicial extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         desktopPane = new javax.swing.JDesktopPane();
         lblBemVindo = new javax.swing.JLabel();
@@ -74,11 +74,14 @@ public class FormInicial extends javax.swing.JFrame {
         menuConsultarFuncionario = new javax.swing.JMenuItem();
         menuAlterarFuncionario = new javax.swing.JMenuItem();
         menuExcluirFuncionario = new javax.swing.JMenuItem();
+        menuLogout = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kuka & Beludo Snooker Bar - Menu Principal");
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
+        addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowOpened(java.awt.event.WindowEvent evt)
+            {
                 formWindowOpened(evt);
             }
         });
@@ -107,24 +110,30 @@ public class FormInicial extends javax.swing.JFrame {
         menuComanda.add(menuAbertura);
 
         menuCadastrarComanda.setText("Cadastrar");
-        menuCadastrarComanda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        menuCadastrarComanda.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 menuCadastrarComandaActionPerformed(evt);
             }
         });
         menuComanda.add(menuCadastrarComanda);
 
         menuConsultarComanda.setText("Consultar");
-        menuConsultarComanda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        menuConsultarComanda.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 menuConsultarComandaActionPerformed(evt);
             }
         });
         menuComanda.add(menuConsultarComanda);
 
         menuAlterarComanda.setText("Alterar");
-        menuAlterarComanda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        menuAlterarComanda.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 menuAlterarComandaActionPerformed(evt);
             }
         });
@@ -151,24 +160,30 @@ public class FormInicial extends javax.swing.JFrame {
         menuMesa.setText("Mesa");
 
         menuCadastrarMesa.setText("Cadastrar");
-        menuCadastrarMesa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        menuCadastrarMesa.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 menuCadastrarMesaActionPerformed(evt);
             }
         });
         menuMesa.add(menuCadastrarMesa);
 
         menuConsultarMesa.setText("Consultar");
-        menuConsultarMesa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        menuConsultarMesa.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 menuConsultarMesaActionPerformed(evt);
             }
         });
         menuMesa.add(menuConsultarMesa);
 
         menuAlterarMesa.setText("Alterar");
-        menuAlterarMesa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        menuAlterarMesa.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 menuAlterarMesaActionPerformed(evt);
             }
         });
@@ -179,20 +194,43 @@ public class FormInicial extends javax.swing.JFrame {
         menuProduto.setText("Produto");
 
         menuCadastrarProduto.setText("Cadastrar");
-        menuCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        menuCadastrarProduto.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 menuCadastrarProdutoActionPerformed(evt);
             }
         });
         menuProduto.add(menuCadastrarProduto);
 
         menuConsultarProduto.setText("Consultar");
+        menuConsultarProduto.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                menuConsultarProdutoActionPerformed(evt);
+            }
+        });
         menuProduto.add(menuConsultarProduto);
 
         menuAlterarProduto.setText("Alterar");
+        menuAlterarProduto.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                menuAlterarProdutoActionPerformed(evt);
+            }
+        });
         menuProduto.add(menuAlterarProduto);
 
         menuExcluirProduto.setText("Excluir");
+        menuExcluirProduto.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                menuExcluirProdutoActionPerformed(evt);
+            }
+        });
         menuProduto.add(menuExcluirProduto);
 
         menuPrincipal.add(menuProduto);
@@ -200,20 +238,43 @@ public class FormInicial extends javax.swing.JFrame {
         menuServico.setText("Serviço");
 
         menuCadastrarServico.setText("Cadastrar");
-        menuCadastrarServico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        menuCadastrarServico.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 menuCadastrarServicoActionPerformed(evt);
             }
         });
         menuServico.add(menuCadastrarServico);
 
         menuConsultarServico.setText("Consultar");
+        menuConsultarServico.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                menuConsultarServicoActionPerformed(evt);
+            }
+        });
         menuServico.add(menuConsultarServico);
 
         menuAlterarServico.setText("Alterar");
+        menuAlterarServico.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                menuAlterarServicoActionPerformed(evt);
+            }
+        });
         menuServico.add(menuAlterarServico);
 
         menuExcluirServico.setText("Excluir");
+        menuExcluirServico.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                menuExcluirServicoActionPerformed(evt);
+            }
+        });
         menuServico.add(menuExcluirServico);
 
         menuPrincipal.add(menuServico);
@@ -222,20 +283,43 @@ public class FormInicial extends javax.swing.JFrame {
 
         menuCadastrarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Add-User.png"))); // NOI18N
         menuCadastrarUsuario.setText("Cadastrar");
-        menuCadastrarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        menuCadastrarUsuario.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 menuCadastrarUsuarioActionPerformed(evt);
             }
         });
         menuUsuario.add(menuCadastrarUsuario);
 
         menuConsultarUsuario.setText("Consultar");
+        menuConsultarUsuario.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                menuConsultarUsuarioActionPerformed(evt);
+            }
+        });
         menuUsuario.add(menuConsultarUsuario);
 
         menuAlterarUsuario.setText("Alterar");
+        menuAlterarUsuario.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                menuAlterarUsuarioActionPerformed(evt);
+            }
+        });
         menuUsuario.add(menuAlterarUsuario);
 
         menuExcluirUsuario.setText("Excluir");
+        menuExcluirUsuario.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                menuExcluirUsuarioActionPerformed(evt);
+            }
+        });
         menuUsuario.add(menuExcluirUsuario);
 
         menuPrincipal.add(menuUsuario);
@@ -243,23 +327,56 @@ public class FormInicial extends javax.swing.JFrame {
         menuFuncionario.setText("Funcionário");
 
         menuCadastrarFuncionario.setText("Cadastrar");
-        menuCadastrarFuncionario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        menuCadastrarFuncionario.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 menuCadastrarFuncionarioActionPerformed(evt);
             }
         });
         menuFuncionario.add(menuCadastrarFuncionario);
 
         menuConsultarFuncionario.setText("Consultar");
+        menuConsultarFuncionario.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                menuConsultarFuncionarioActionPerformed(evt);
+            }
+        });
         menuFuncionario.add(menuConsultarFuncionario);
 
         menuAlterarFuncionario.setText("Alterar");
+        menuAlterarFuncionario.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                menuAlterarFuncionarioActionPerformed(evt);
+            }
+        });
         menuFuncionario.add(menuAlterarFuncionario);
 
         menuExcluirFuncionario.setText("Excluir");
+        menuExcluirFuncionario.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                menuExcluirFuncionarioActionPerformed(evt);
+            }
+        });
         menuFuncionario.add(menuExcluirFuncionario);
 
         menuPrincipal.add(menuFuncionario);
+
+        menuLogout.setText("Logout");
+        menuLogout.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                menuLogoutActionPerformed(evt);
+            }
+        });
+        menuPrincipal.add(menuLogout);
 
         setJMenuBar(menuPrincipal);
 
@@ -292,14 +409,11 @@ public class FormInicial extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         this.setIconImage(new ImageIcon(getClass().getResource("/imagens/icon.png")).getImage());   
         setExtendedState(MAXIMIZED_BOTH);  
-        //System.out.println("adm? " + v.adm);
         
-        if(Conexao.adm)
-        {
+        if(Conexao.adm){
             lblBemVindo.setText("Bem-vindo administrador");
         }
-        else 
-        {
+        else {
             lblBemVindo.setText("Bem-vindo usuário");
         }
     }//GEN-LAST:event_formWindowOpened
@@ -335,7 +449,7 @@ public class FormInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_menuConsultarComandaActionPerformed
 
     private void menuAlterarComandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAlterarComandaActionPerformed
-        //chamando o consultar, porque para alterar ele tem que consultar antes
+        //chamando o consultar, porque para excluir ele tem que consultar antes
         menuConsultarComandaActionPerformed(evt);
     }//GEN-LAST:event_menuAlterarComandaActionPerformed
 
@@ -345,8 +459,78 @@ public class FormInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_menuConsultarMesaActionPerformed
 
     private void menuAlterarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAlterarMesaActionPerformed
-        menuAlterarMesaActionPerformed(evt);
+        menuConsultarMesaActionPerformed(evt);
     }//GEN-LAST:event_menuAlterarMesaActionPerformed
+
+    private void menuConsultarProdutoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_menuConsultarProdutoActionPerformed
+    {//GEN-HEADEREND:event_menuConsultarProdutoActionPerformed
+        FormSelecionarProduto fsp = new FormSelecionarProduto();
+        adicionarJInternalFrame(fsp);
+    }//GEN-LAST:event_menuConsultarProdutoActionPerformed
+
+    private void menuAlterarProdutoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_menuAlterarProdutoActionPerformed
+    {//GEN-HEADEREND:event_menuAlterarProdutoActionPerformed
+        menuConsultarProdutoActionPerformed(evt);
+    }//GEN-LAST:event_menuAlterarProdutoActionPerformed
+
+    private void menuExcluirProdutoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_menuExcluirProdutoActionPerformed
+    {//GEN-HEADEREND:event_menuExcluirProdutoActionPerformed
+        menuConsultarProdutoActionPerformed(evt);
+    }//GEN-LAST:event_menuExcluirProdutoActionPerformed
+
+    private void menuConsultarServicoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_menuConsultarServicoActionPerformed
+    {//GEN-HEADEREND:event_menuConsultarServicoActionPerformed
+        FormSelecionarServico fss = new FormSelecionarServico();
+        adicionarJInternalFrame(fss);
+    }//GEN-LAST:event_menuConsultarServicoActionPerformed
+
+    private void menuAlterarServicoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_menuAlterarServicoActionPerformed
+    {//GEN-HEADEREND:event_menuAlterarServicoActionPerformed
+        menuConsultarServicoActionPerformed(evt);
+    }//GEN-LAST:event_menuAlterarServicoActionPerformed
+
+    private void menuExcluirServicoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_menuExcluirServicoActionPerformed
+    {//GEN-HEADEREND:event_menuExcluirServicoActionPerformed
+        menuConsultarServicoActionPerformed(evt);
+    }//GEN-LAST:event_menuExcluirServicoActionPerformed
+
+    private void menuConsultarUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_menuConsultarUsuarioActionPerformed
+    {//GEN-HEADEREND:event_menuConsultarUsuarioActionPerformed
+        FormSelecionarUsuario fsu = new FormSelecionarUsuario();
+        adicionarJInternalFrame(fsu);
+    }//GEN-LAST:event_menuConsultarUsuarioActionPerformed
+
+    private void menuAlterarUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_menuAlterarUsuarioActionPerformed
+    {//GEN-HEADEREND:event_menuAlterarUsuarioActionPerformed
+        menuConsultarUsuarioActionPerformed(evt);
+    }//GEN-LAST:event_menuAlterarUsuarioActionPerformed
+
+    private void menuExcluirUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_menuExcluirUsuarioActionPerformed
+    {//GEN-HEADEREND:event_menuExcluirUsuarioActionPerformed
+        menuConsultarUsuarioActionPerformed(evt);
+    }//GEN-LAST:event_menuExcluirUsuarioActionPerformed
+
+    private void menuConsultarFuncionarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_menuConsultarFuncionarioActionPerformed
+    {//GEN-HEADEREND:event_menuConsultarFuncionarioActionPerformed
+        FormSelecionarFuncionario fsf = new FormSelecionarFuncionario();
+        adicionarJInternalFrame(fsf);
+    }//GEN-LAST:event_menuConsultarFuncionarioActionPerformed
+
+    private void menuAlterarFuncionarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_menuAlterarFuncionarioActionPerformed
+    {//GEN-HEADEREND:event_menuAlterarFuncionarioActionPerformed
+        menuConsultarFuncionarioActionPerformed(evt);
+    }//GEN-LAST:event_menuAlterarFuncionarioActionPerformed
+
+    private void menuExcluirFuncionarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_menuExcluirFuncionarioActionPerformed
+    {//GEN-HEADEREND:event_menuExcluirFuncionarioActionPerformed
+        menuConsultarFuncionarioActionPerformed(evt);
+    }//GEN-LAST:event_menuExcluirFuncionarioActionPerformed
+
+    private void menuLogoutActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_menuLogoutActionPerformed
+    {//GEN-HEADEREND:event_menuLogoutActionPerformed
+        //voltará para o form de login
+        //limpar o conteúdo das variáveis
+    }//GEN-LAST:event_menuLogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -419,6 +603,7 @@ public class FormInicial extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuFecharAbertura;
     private javax.swing.JMenu menuFuncionario;
     private javax.swing.JMenuItem menuIniciarAtendimento;
+    private javax.swing.JMenu menuLogout;
     private javax.swing.JMenu menuMesa;
     private javax.swing.JMenuBar menuPrincipal;
     private javax.swing.JMenu menuProduto;
