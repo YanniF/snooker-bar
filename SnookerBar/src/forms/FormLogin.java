@@ -132,7 +132,7 @@ public class FormLogin extends javax.swing.JFrame {
         this.setIconImage(new ImageIcon(getClass().getResource("/imagens/icon.png")).getImage());  
         
         try {
-            Conexao.conectar("snookerbar", "jonatas");
+            Conexao.conectar("snooker", "snooker");
         } 
         catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro aqui: \n" + e.getMessage(), "Erro!", 0);
