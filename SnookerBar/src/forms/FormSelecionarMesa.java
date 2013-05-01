@@ -1,7 +1,11 @@
 package forms;
 
+import classes.Conexao;
 import classes.Utilitarios;
+import java.sql.ResultSet;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -10,6 +14,7 @@ import javax.swing.ImageIcon;
 public class FormSelecionarMesa extends javax.swing.JInternalFrame {
 
     Utilitarios u = new Utilitarios();
+    DefaultTableModel modelo;
     /**
      * Creates new form FormSelecionarMesa
      */
@@ -105,7 +110,7 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
         {
             Class[] types = new Class []
             {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean []
             {
@@ -126,9 +131,23 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
 
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.setToolTipText("Clique aqui para pesquisar a mesa");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
 
         btnPesquisarTudo.setText("Pesquisar tudo");
         btnPesquisarTudo.setToolTipText("Clique aqui para pesquisar todas as mesas");
+        btnPesquisarTudo.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnPesquisarTudoActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
@@ -223,18 +242,156 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_rbtNmMesaActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        u.limparTextFields(this);
+        try
+        {
+            for(int c = modelo.getRowCount() - 1; c >= 0; c--)
+            {
+                modelo.removeRow(c);
+            }
+        }
+        catch(NullPointerException e){
+            System.out.println("Não há dados na tabela");
+        }
+        
         rbtCdMesa.setSelected(true);
         rbtCdMesaActionPerformed(evt);
+        u.limparTextFields(this);
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAlterarActionPerformed
     {//GEN-HEADEREND:event_btnAlterarActionPerformed
-        FormAlterarMesa fam = new FormAlterarMesa();
-        this.getDesktopPane().add(fam);
-        fam.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
-        fam.setVisible(true);
+        if(tabelaMesa.getSelectedRow() >= 0)
+        {
+            FormAlterarMesa fam = new FormAlterarMesa();
+            this.getDesktopPane().add(fam);
+            fam.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
+            fam.setVisible(true);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Selecione alguma linha para alterar. \n", "Aviso", 2);
+        }
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnPesquisarTudoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarTudoActionPerformed
+    {//GEN-HEADEREND:event_btnPesquisarTudoActionPerformed
+        modelo = (DefaultTableModel) tabelaMesa.getModel();
+        modelo.setRowCount(0);
+        String ativa;
+        
+        try
+        {            
+            String sql = "SELECT * FROM MESA";                                    
+            ResultSet res = Conexao.consultar(sql);            
+         
+            if(Conexao.consultar(sql) == null){
+                JOptionPane.showMessageDialog(null, "Erro na consulta.", "Erro!", 0);
+            }
+            else
+            { 
+                if(Conexao.consultar(sql).next())
+                {
+                    while(res.next())
+                    {
+                        if(res.getString("ic_ativa_sim_nao").equalsIgnoreCase("s")){
+                            ativa = "Ativa";
+                        }
+                        else{
+                            ativa = "Inativa";
+                        }
+
+                        modelo.addRow(new Object[] {
+                            res.getInt("cd_mesa"),
+                            res.getString("nm_mesa"),
+                            ativa
+                        });
+                    }
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Dados não encontrados.", "Aviso", 1);
+                    btnLimparActionPerformed(evt);
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Erro na consulta. \n" + e.getMessage(), "Erro!", 0);
+        }
+    }//GEN-LAST:event_btnPesquisarTudoActionPerformed
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarActionPerformed
+    {//GEN-HEADEREND:event_btnPesquisarActionPerformed
+        int cod;
+        String nome;
+        String sql = "";
+        boolean erro = false;
+        
+        if(rbtCdMesa.isSelected())
+        {
+            try {
+                cod = Integer.parseInt(txtTermo.getText());
+                sql = "SELECT * FROM MESA WHERE cd_mesa = " + cod;
+                erro = false;            
+            }
+            catch(NumberFormatException e)
+            {
+                JOptionPane.showMessageDialog(null, "Digite somente números.", "Aviso", 2);
+                erro = true;
+                u.limparTextFields(this);
+            }
+        }
+        else if(rbtNmMesa.isSelected())
+        {
+            nome = txtTermo.getText();
+            sql = "SELECT * FROM MESA WHERE nm_mesa = '" + nome + "'";
+        }
+        
+        if(!erro)
+        {
+            String ativa;
+            modelo = (DefaultTableModel) tabelaMesa.getModel();
+            modelo.setRowCount(0);
+
+            try
+            {  
+                ResultSet res = Conexao.consultar(sql);            
+
+                if(Conexao.consultar(sql) == null)
+                {
+                    JOptionPane.showMessageDialog(null, "Não há linhas selecionadas.", "Erro!", 0);
+                }
+                else
+                { 
+                    if(Conexao.consultar(sql).next())
+                    {
+                        while(res.next())
+                        {
+                            if(res.getString("ic_ativa_sim_nao").equalsIgnoreCase("s")){
+                                ativa = "Ativa";
+                            }
+                            else {
+                                ativa = "Inativa";
+                            }
+
+                             modelo.addRow(new Object[] {
+                                res.getInt("cd_mesa"),
+                                res.getString("nm_mesa"),
+                                ativa
+                            });
+                        }
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Dado não encontrado.", "Aviso", 1);
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null, "Erro na consulta. \n" + e.getMessage(), "Erro!", 0);
+            }
+         }
+    }//GEN-LAST:event_btnPesquisarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;

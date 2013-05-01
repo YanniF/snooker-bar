@@ -4,8 +4,12 @@
  */
 package forms;
 
+import classes.Conexao;
 import classes.Utilitarios;
+import java.sql.ResultSet;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,6 +18,7 @@ import javax.swing.ImageIcon;
 public class FormSelecionarServico extends javax.swing.JInternalFrame {
 
     Utilitarios u = new Utilitarios();
+    DefaultTableModel modelo;
     /**
      * Creates new form FormSelecionarServico
      */
@@ -87,6 +92,13 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
 
         btnExcluir.setText("Excluir");
         btnExcluir.setToolTipText("Selecione a linha e clique aqui para excluir o serviço");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         pesquisarPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar por:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 0)));
         pesquisarPanel.setToolTipText("Pesquisar por código ou nome do serviço");
@@ -135,6 +147,13 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
 
         btnPesquisarTudo.setText("Pesquisar tudo");
         btnPesquisarTudo.setToolTipText("Clique aqui para pesquisar todos os serviços");
+        btnPesquisarTudo.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnPesquisarTudoActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
@@ -158,6 +177,13 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
 
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.setToolTipText("Clique aqui para pesquisar o serviço");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -233,6 +259,16 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnLimparActionPerformed
     {//GEN-HEADEREND:event_btnLimparActionPerformed
+        try
+        {
+            for(int c = modelo.getRowCount() - 1; c >= 0; c--)
+            {
+                modelo.removeRow(c);
+            }
+        }
+        catch(NullPointerException e){
+            System.out.println("Não há dados na tabela");
+        }
         u.limparTextFields(this);
         rbtCdServico.setSelected(true);
         rbtCdServicoActionPerformed(evt);
@@ -240,11 +276,149 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAlterarActionPerformed
     {//GEN-HEADEREND:event_btnAlterarActionPerformed
-        FormAlterarServico fas = new FormAlterarServico();
-        this.getDesktopPane().add(fas);
-        fas.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
-        fas.setVisible(true);
+        if(tabelaServico.getSelectedRow() >= 0)
+        {
+            FormAlterarServico fas = new FormAlterarServico();
+            this.getDesktopPane().add(fas);
+            fas.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
+            fas.setVisible(true);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Selecione alguma linha para alterar.", "Aviso", 2);
+        }
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnPesquisarTudoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarTudoActionPerformed
+    {//GEN-HEADEREND:event_btnPesquisarTudoActionPerformed
+        modelo = (DefaultTableModel) tabelaServico.getModel();
+        modelo.setRowCount(0);
+        
+        try
+        {            
+            String sql = "SELECT * FROM SERVICO";                                    
+            ResultSet res = Conexao.consultar(sql);            
+         
+            if(Conexao.consultar(sql) == null){
+                JOptionPane.showMessageDialog(null, "Erro na consulta.", "Erro!", 0);
+            }
+            else
+            { 
+                if(Conexao.consultar(sql).next())
+                {
+                    while(res.next())
+                    {                        
+                        modelo.addRow(new Object[] {
+                            res.getInt("cd_servico"),
+                            res.getString("nm_servico"),
+                            res.getDouble("vl_servico")
+                        });
+                    }
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Dados não encontrados.", "Aviso", 1);
+                    btnLimparActionPerformed(evt);
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Erro na consulta. \n" + e.getMessage(), "Erro!", 0);
+        }
+    }//GEN-LAST:event_btnPesquisarTudoActionPerformed
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarActionPerformed
+    {//GEN-HEADEREND:event_btnPesquisarActionPerformed
+        int cod;
+        String nome;
+        String sql = "";
+        boolean erro = false;
+        
+        if(rbtCdServico.isSelected())
+        {
+            try {
+                cod = Integer.parseInt(txtTermo.getText());
+                sql = "SELECT * FROM SERVICO WHERE cd_servico = " + cod;
+                erro = false;            
+            }
+            catch(NumberFormatException e)
+            {
+                JOptionPane.showMessageDialog(null, "Digite somente números.", "Aviso", 2);
+                erro = true;
+                u.limparTextFields(this);
+            }
+        }
+        else if(rbtNmServico.isSelected())
+        {
+            nome = txtTermo.getText();
+            sql = "SELECT * FROM SERVICO WHERE nm_servico = '" + nome + "'";
+        }
+        
+        if(!erro)
+        {
+            modelo = (DefaultTableModel) tabelaServico.getModel();
+            modelo.setRowCount(0);
+
+            try
+            {  
+                ResultSet res = Conexao.consultar(sql);            
+
+                if(Conexao.consultar(sql) == null)
+                {
+                    JOptionPane.showMessageDialog(null, "Não há linhas selecionadas.", "Erro!", 0);
+                }
+                else
+                { 
+                    if(Conexao.consultar(sql).next())
+                    {
+                        while(res.next())
+                        {
+                           modelo.addRow(new Object[] {
+                                res.getInt("cd_servico"),
+                                res.getString("nm_servico"),
+                                res.getDouble("vl_servico")
+                            });
+                        }
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Dado não encontrado.", "Aviso", 1);
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null, "Erro na consulta. \n" + e.getMessage(), "Erro!", 0);
+            }
+         }
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnExcluirActionPerformed
+    {//GEN-HEADEREND:event_btnExcluirActionPerformed
+        if(tabelaServico.getSelectedRow() >= 0)
+        {
+            String cod = tabelaServico.getValueAt(tabelaServico.getSelectedRow(), 0).toString();         
+            
+            if(JOptionPane.showConfirmDialog(null, "Confirma a exclusão do registro " + cod + "?") == JOptionPane.YES_OPTION)
+            {
+                String sql = "DELETE FROM SERVICO WHERE cd_servico=" + cod;
+                
+                try
+                {
+                    ResultSet res = Conexao.consultar(sql);
+                    btnPesquisarTudoActionPerformed(evt);
+                    u.limparTextFields(this);
+                }
+                catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(null, "O registro não pode ser excluído.", "Erro", 0);
+                }
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Selecione alguma linha para excluir.", "Aviso", 2);
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;

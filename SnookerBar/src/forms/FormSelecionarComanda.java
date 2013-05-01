@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FormSelecionarComanda extends javax.swing.JInternalFrame {
 
-    Utilitarios m = new Utilitarios(); 
+    Utilitarios u = new Utilitarios(); 
     DefaultTableModel modelo;
     
     /**
@@ -188,12 +188,12 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
         {
             System.out.println("Não há dados na tabela");
         }
-        m.limparTextFields(this);
+        u.limparTextFields(this);
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAlterarActionPerformed
     {//GEN-HEADEREND:event_btnAlterarActionPerformed
-        //não permitir clicar no botão Alterar quando nenhum linha estiver selecionada
+        //não permite clicar no botão Alterar se nenhuma linha estiver selecionada
         if(tabelaComanda.getSelectedRow() >= 0)
         {
             FormAlterarComanda fac = new FormAlterarComanda();
@@ -203,7 +203,7 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "Selecione alguma linha para alterar. \n", "Aviso", 1);
+            JOptionPane.showMessageDialog(null, "Selecione alguma linha para alterar. \n", "Aviso", 2);
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
@@ -224,21 +224,29 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
             }
             else
             { 
-                while(res.next())
+                if(Conexao.consultar(sql).next())
+                {//verifica se a consulta não é vazia
+                    while(res.next())
+                    {
+                        if(res.getString("ic_ativa_inativa").equalsIgnoreCase("s"))
+                        {
+                            ativa = "Ativa";
+                        }
+                        else
+                        {
+                            ativa = "Inativa";
+                        }
+
+                         modelo.addRow(new Object[] {
+                            res.getInt("cd_comanda"),
+                            ativa
+                        });
+                    }
+                }
+                else
                 {
-                    if(res.getString("ic_ativa_inativa").equalsIgnoreCase("s"))
-                    {
-                        ativa = "Ativa";
-                    }
-                    else
-                    {
-                        ativa = "Inativa";
-                    }
-                    
-                     modelo.addRow(new Object[] {
-                        res.getInt("cd_comanda"),
-                        ativa
-                    });
+                    JOptionPane.showMessageDialog(null, "Dado não encontrado.", "Aviso", 1);
+                    btnLimparActionPerformed(evt);
                 }
             }
         }
@@ -259,9 +267,9 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
         }
         catch(NumberFormatException e)
         {
-            JOptionPane.showMessageDialog(null, "Digite somente números.", "Aviso", 1);
+            JOptionPane.showMessageDialog(null, "Digite somente números.", "Aviso", 2);
             erro = true;
-            m.limparTextFields(this);
+            u.limparTextFields(this);
         }
         
         if(!erro)
@@ -281,23 +289,30 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
                 }
                 else
                 { 
-                    while(res.next())
+                    if(Conexao.consultar(sql).next())
                     {
-                        if(res.getString("ic_ativa_inativa").equalsIgnoreCase("s"))
+                        while(res.next())
                         {
-                            ativa = "Ativa";
-                        }
-                        else
-                        {
-                            ativa = "Inativa";
-                        }
+                            if(res.getString("ic_ativa_inativa").equalsIgnoreCase("s"))
+                            {
+                                ativa = "Ativa";
+                            }
+                            else
+                            {
+                                ativa = "Inativa";
+                            }
 
-                         modelo.addRow(new Object[] {
-                            res.getInt("cd_comanda"),
-                            ativa
-                         });
-                         //btnLimpar.setEnabled(true);
-                    } 
+                             modelo.addRow(new Object[] {
+                                res.getInt("cd_comanda"),
+                                ativa
+                             });
+                        }
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Dado não encontrado.", "Aviso", 1);
+                        btnLimparActionPerformed(evt);
+                    }
                 }
             }
             catch(Exception e)
