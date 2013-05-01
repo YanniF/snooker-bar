@@ -4,8 +4,12 @@
  */
 package forms;
 
+import classes.Conexao;
 import classes.Utilitarios;
+import java.sql.ResultSet;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,7 +17,9 @@ import javax.swing.ImageIcon;
  */
 public class FormSelecionarComanda extends javax.swing.JInternalFrame {
 
-    Utilitarios m = new Utilitarios();
+    Utilitarios m = new Utilitarios(); 
+    DefaultTableModel modelo;
+    
     /**
      * Creates new form FormSelecionarComanda
      */
@@ -51,9 +57,23 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
 
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.setToolTipText("Clique aqui para pesquisar a comanda pelo código");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
 
         btnPesquisarTudo.setText("Pesquisar tudo");
         btnPesquisarTudo.setToolTipText("Clique aqui para pesquisar todas as comandas");
+        btnPesquisarTudo.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnPesquisarTudoActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
@@ -78,7 +98,7 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
         {
             Class[] types = new Class []
             {
-                java.lang.Integer.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean []
             {
@@ -157,17 +177,135 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        try
+        {
+            for(int c = modelo.getRowCount() - 1; c >= 0; c--)
+            {
+                modelo.removeRow(c);
+            }
+        }
+        catch(NullPointerException e)
+        {
+            System.out.println("Não há dados na tabela");
+        }
         m.limparTextFields(this);
-        //limpar a tabela
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAlterarActionPerformed
     {//GEN-HEADEREND:event_btnAlterarActionPerformed
-        FormAlterarComanda fac = new FormAlterarComanda();
-        this.getDesktopPane().add(fac);
-        fac.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
-        fac.setVisible(true);
+        //não permitir clicar no botão Alterar quando nenhum linha estiver selecionada
+        if(tabelaComanda.getSelectedRow() >= 0)
+        {
+            FormAlterarComanda fac = new FormAlterarComanda();
+            this.getDesktopPane().add(fac);
+            fac.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
+            fac.setVisible(true);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Selecione alguma linha para alterar. \n", "Aviso", 1);
+        }
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnPesquisarTudoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarTudoActionPerformed
+    {//GEN-HEADEREND:event_btnPesquisarTudoActionPerformed
+        modelo = (DefaultTableModel) tabelaComanda.getModel();
+        modelo.setRowCount(0);//para cada vez que executar isso, limpar as linhas da tabela
+        String ativa;
+        
+        try
+        {            
+            String sql = "SELECT * FROM COMANDA";                                    
+            ResultSet res = Conexao.consultar(sql);            
+         
+            if(Conexao.consultar(sql) == null)
+            {
+                JOptionPane.showMessageDialog(null, "Erro na consulta.", "Erro!", 0);
+            }
+            else
+            { 
+                while(res.next())
+                {
+                    if(res.getString("ic_ativa_inativa").equalsIgnoreCase("s"))
+                    {
+                        ativa = "Ativa";
+                    }
+                    else
+                    {
+                        ativa = "Inativa";
+                    }
+                    
+                     modelo.addRow(new Object[] {
+                        res.getInt("cd_comanda"),
+                        ativa
+                    });
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Erro na consulta. \n" + e.getMessage(), "Erro!", 0);
+        }
+    }//GEN-LAST:event_btnPesquisarTudoActionPerformed
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarActionPerformed
+    {//GEN-HEADEREND:event_btnPesquisarActionPerformed
+        int cod = 0;
+        boolean erro;
+        
+        try {
+            cod = Integer.parseInt(txtCdComanda.getText()); 
+            erro = false;            
+        }
+        catch(NumberFormatException e)
+        {
+            JOptionPane.showMessageDialog(null, "Digite somente números.", "Aviso", 1);
+            erro = true;
+            m.limparTextFields(this);
+        }
+        
+        if(!erro)
+        {
+            String ativa;
+            modelo = (DefaultTableModel) tabelaComanda.getModel();
+            modelo.setRowCount(0);
+
+            try
+            {  
+                String sql = "SELECT * FROM COMANDA WHERE \"cd_comanda\" = " + cod;
+                ResultSet res = Conexao.consultar(sql);            
+
+                if(Conexao.consultar(sql) == null)
+                {
+                    JOptionPane.showMessageDialog(null, "Não há linhas selecionadas.", "Erro!", 0);
+                }
+                else
+                { 
+                    while(res.next())
+                    {
+                        if(res.getString("ic_ativa_inativa").equalsIgnoreCase("s"))
+                        {
+                            ativa = "Ativa";
+                        }
+                        else
+                        {
+                            ativa = "Inativa";
+                        }
+
+                         modelo.addRow(new Object[] {
+                            res.getInt("cd_comanda"),
+                            ativa
+                         });
+                         //btnLimpar.setEnabled(true);
+                    } 
+                }
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null, "Erro na consulta. \n" + e.getMessage(), "Erro!", 0);
+            }
+        }
+    }//GEN-LAST:event_btnPesquisarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;

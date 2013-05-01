@@ -6,7 +6,6 @@ package forms;
 
 import classes.Conexao;
 import classes.Utilitarios;
-import classes.Usuarios;
 import java.sql.ResultSet;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -135,7 +134,7 @@ public class FormLogin extends javax.swing.JFrame {
             Conexao.conectar("snooker", "snooker");
         } 
         catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro aqui: \n" + e.getMessage(), "Erro!", 0);
+            JOptionPane.showMessageDialog(null, "Erro: \n" + e.getMessage(), "Erro!", 0);
         }
     }//GEN-LAST:event_formWindowOpened
 
@@ -156,7 +155,7 @@ public class FormLogin extends javax.swing.JFrame {
          
             if(Conexao.consultar(sql) == null)
             {
-                JOptionPane.showMessageDialog(null, "Erro na consulta", "Erro!", 0);
+                JOptionPane.showMessageDialog(null, "Erro na consulta.", "Erro!", 0);
             }
             else
             { 
@@ -171,13 +170,12 @@ public class FormLogin extends javax.swing.JFrame {
                         
                         if(resultado.getString("ic_administrador_sim_nao").equalsIgnoreCase("s"))
                         {
-                            con.adm = true;
+                            Conexao.adm = true;
                         }
                         else
                         {
-                            con.adm = false;
+                            Conexao.adm = false;
                         }
-                        System.out.println("Sei lá: " + resultado.getString("ic_administrador_sim_nao"));
                     } 
                 } 
                 
@@ -190,7 +188,7 @@ public class FormLogin extends javax.swing.JFrame {
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null, "Erro fuck: \n" + e.getMessage(), "Erro!", 0);
+            JOptionPane.showMessageDialog(null, "Erro: \n" + e.getMessage(), "Erro!", 0);
         }
         
     }//GEN-LAST:event_btnLoginActionPerformed
