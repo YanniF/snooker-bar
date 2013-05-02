@@ -4,7 +4,10 @@
  */
 package forms;
 
+import classes.Conexao;
 import classes.Utilitarios;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,7 +19,7 @@ public class FormCadastrarServico extends javax.swing.JInternalFrame {
      * Creates new form FormCadastrarServico
      */
     
-    Utilitarios m = new Utilitarios();
+    Utilitarios u = new Utilitarios();
     
     public FormCadastrarServico() {
         initComponents();
@@ -59,6 +62,13 @@ public class FormCadastrarServico extends javax.swing.JInternalFrame {
 
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.setToolTipText("Clique aqui para cadastrar o serviço");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
@@ -120,9 +130,34 @@ public class FormCadastrarServico extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        m.limparTextFields(this);
+        u.limparTextFields(this);
         txtCdServico.requestFocus();
     }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCadastrarActionPerformed
+    {//GEN-HEADEREND:event_btnCadastrarActionPerformed
+        int cod;
+        String nome;
+        double valor;
+        
+        try
+        {
+            cod = Integer.parseInt(txtCdServico.getText());
+            nome = txtNmServico.getText();
+            valor = Double.parseDouble(txtVlServico.getText());
+            
+            String sql = "INSERT INTO SERVICO VALUES(" + cod + ", UPPER('" + nome + "'), " + valor + ")";
+            
+            ResultSet res = Conexao.consultar(sql); 
+            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
+            btnLimparActionPerformed(evt);
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(this, "Erro: \n" + e.getMessage(), "Erro!", 0);
+            u.limparTextFields(this);
+        }
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;

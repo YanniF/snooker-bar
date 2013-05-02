@@ -295,7 +295,7 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
         
         try
         {            
-            String sql = "SELECT * FROM SERVICO";                                    
+            String sql = "SELECT * FROM SERVICO ORDER BY 1";                                    
             ResultSet res = Conexao.consultar(sql);            
          
             if(Conexao.consultar(sql) == null){
@@ -350,7 +350,7 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
         }
         else if(rbtNmServico.isSelected())
         {
-            nome = txtTermo.getText();
+            nome = txtTermo.getText().toUpperCase();
             sql = "SELECT * FROM SERVICO WHERE nm_servico = '" + nome + "'";
         }
         

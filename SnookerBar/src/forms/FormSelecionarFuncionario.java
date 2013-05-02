@@ -290,7 +290,7 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
         
         try
         {            
-            String sql = "SELECT * FROM FUNCIONARIO";                                    
+            String sql = "SELECT * FROM FUNCIONARIO ORDER BY 1";                                    
             ResultSet res = Conexao.consultar(sql);            
          
             if(Conexao.consultar(sql) == null){
@@ -348,7 +348,7 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
         }
         else if(rbtNmFuncionario.isSelected())
         {
-            nome = txtTermo.getText();
+            nome = txtTermo.getText().toUpperCase();
             sql = "SELECT * FROM FUNCIONARIO WHERE nm_funcionario = '" + nome + "'";
         }
         

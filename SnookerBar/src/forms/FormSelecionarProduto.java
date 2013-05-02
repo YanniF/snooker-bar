@@ -290,7 +290,7 @@ public class FormSelecionarProduto extends javax.swing.JInternalFrame {
         
         try
         {            
-            String sql = "SELECT * FROM PRODUTO";                                    
+            String sql = "SELECT * FROM PRODUTO ORDER BY 1";                                    
             ResultSet res = Conexao.consultar(sql);            
          
             if(Conexao.consultar(sql) == null){
@@ -345,7 +345,7 @@ public class FormSelecionarProduto extends javax.swing.JInternalFrame {
         }
         else if(rbtNmProduto.isSelected())
         {
-            nome = txtTermo.getText();
+            nome = txtTermo.getText().toUpperCase();
             sql = "SELECT * FROM PRODUTO WHERE nm_produto = '" + nome + "'";
         }
         

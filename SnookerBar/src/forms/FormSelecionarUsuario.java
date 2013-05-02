@@ -298,7 +298,7 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
         
         try
         {            
-            String sql = "SELECT * FROM USUARIO";                                    
+            String sql = "SELECT * FROM USUARIO ORDER BY 1";                                    
             ResultSet res = Conexao.consultar(sql);            
          
             if(Conexao.consultar(sql) == null){
@@ -360,7 +360,7 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
         }
         else if(rbtNmUsuario.isSelected())
         {
-            nome = txtTermo.getText();
+            nome = txtTermo.getText().toLowerCase();
             sql = "SELECT * FROM USUARIO WHERE nm_login_usuario = '" + nome + "'";
         }
         

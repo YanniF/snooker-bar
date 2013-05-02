@@ -215,7 +215,7 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
         
         try
         {            
-            String sql = "SELECT * FROM COMANDA";                                    
+            String sql = "SELECT * FROM COMANDA ORDER BY 1";                                    
             ResultSet res = Conexao.consultar(sql);            
          
             if(Conexao.consultar(sql) == null)

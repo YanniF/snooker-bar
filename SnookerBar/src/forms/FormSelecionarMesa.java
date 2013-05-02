@@ -280,7 +280,7 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
         
         try
         {            
-            String sql = "SELECT * FROM MESA";                                    
+            String sql = "SELECT * FROM MESA ORDER BY 1";                                    
             ResultSet res = Conexao.consultar(sql);            
          
             if(Conexao.consultar(sql) == null){
@@ -342,7 +342,7 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
         }
         else if(rbtNmMesa.isSelected())
         {
-            nome = txtTermo.getText();
+            nome = txtTermo.getText().toUpperCase();
             sql = "SELECT * FROM MESA WHERE nm_mesa = '" + nome + "'";
         }
         

@@ -4,18 +4,21 @@
  */
 package forms;
 
+import classes.Conexao;
 import classes.Utilitarios;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author cpid
+ * @author Yanni
  */
 public class FormCadastrarUsuario extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FormCadastrarUsuario
      */
-    Utilitarios m = new Utilitarios();
+    Utilitarios u = new Utilitarios();
     
     public FormCadastrarUsuario() {
         initComponents();
@@ -93,6 +96,13 @@ public class FormCadastrarUsuario extends javax.swing.JInternalFrame {
 
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.setToolTipText("Clique aqui para cadastrar o usuário");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
@@ -164,10 +174,43 @@ public class FormCadastrarUsuario extends javax.swing.JInternalFrame {
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         
-        m.limparTextFields(this);
+        u.limparTextFields(this);
         txtCdUsuario.requestFocus();
         rbtSim.setSelected(true);
     }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCadastrarActionPerformed
+    {//GEN-HEADEREND:event_btnCadastrarActionPerformed
+        int cod;
+        String nome;
+        String senha;
+        char admin = ' ';        
+        
+        try
+        {
+            cod = Integer.parseInt(txtCdUsuario.getText());
+            nome = txtNmLoginUsuario.getText();
+            senha = txtNmSenhaUsuario.getPassword().toString();
+            
+            if(rbtSim.isSelected()) {
+                admin = 's';
+            }
+            else if(rbtNao.isSelected()) {
+                admin = 'n';
+            }
+            
+            String sql = "INSERT INTO USUARIO VALUES(" + cod + ", LOWER('" + nome + "'), '" + senha + "', UPPER('" + admin + "'))";
+            ResultSet res = Conexao.consultar(sql); 
+            
+            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
+            btnLimparActionPerformed(evt);
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(this, "Erro: \n" + e.getMessage(), "Erro!", 0);
+            u.limparTextFields(this);
+        }
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel administradorPanel;

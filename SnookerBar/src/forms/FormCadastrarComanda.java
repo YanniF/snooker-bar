@@ -10,7 +10,10 @@
  */
 package forms;
 
+import classes.Conexao;
 import classes.Utilitarios;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -85,6 +88,13 @@ public class FormCadastrarComanda extends javax.swing.JInternalFrame {
 
         btnCadastrarComanda.setText("Cadastrar");
         btnCadastrarComanda.setToolTipText("Clique aqui para cadastrar a comanda");
+        btnCadastrarComanda.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnCadastrarComandaActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
@@ -141,6 +151,32 @@ public class FormCadastrarComanda extends javax.swing.JInternalFrame {
         u.limparTextFields(this);
         rbtSim.setSelected(true);
     }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void btnCadastrarComandaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCadastrarComandaActionPerformed
+    {//GEN-HEADEREND:event_btnCadastrarComandaActionPerformed
+        int cod;
+        char ativa = ' ';        
+        
+        try
+        {
+            cod = Integer.parseInt(txtCdComanda.getText());
+            if(rbtSim.isSelected()) {
+                ativa = 's';
+            }
+            else if(rbtNao.isSelected()) {
+                ativa = 'n';
+            }
+            //não permitir que cadastre um item com o mesmo código (banco)
+            String sql = "INSERT INTO COMANDA VALUES(" + cod + ", UPPER('" + ativa + "'))";
+            ResultSet res = Conexao.consultar(sql); 
+            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(this, "Erro: \n" + e.getMessage(), "Erro!", 0);
+            u.limparTextFields(this);
+        }
+    }//GEN-LAST:event_btnCadastrarComandaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup ativaButtonGroup;

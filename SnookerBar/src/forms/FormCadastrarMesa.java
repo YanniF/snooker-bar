@@ -1,6 +1,9 @@
 package forms;
 
+import classes.Conexao;
 import classes.Utilitarios;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,7 +15,7 @@ public class FormCadastrarMesa extends javax.swing.JInternalFrame {
      * Creates new form FormCadastrarMesa
      */
     
-    Utilitarios m = new Utilitarios();
+    Utilitarios u = new Utilitarios();
     
     public FormCadastrarMesa() {
         initComponents();
@@ -45,6 +48,13 @@ public class FormCadastrarMesa extends javax.swing.JInternalFrame {
 
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.setToolTipText("Clique aqui para cadastrar a mesa");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
@@ -144,10 +154,40 @@ public class FormCadastrarMesa extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        m.limparTextFields(this);
+        u.limparTextFields(this);
         rbtSim.setSelected(true);
         txtCdMesa.requestFocus();
     }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCadastrarActionPerformed
+    {//GEN-HEADEREND:event_btnCadastrarActionPerformed
+        int cod;
+        String nome;
+        char ativa = ' ';        
+        
+        try
+        {
+            cod = Integer.parseInt(txtCdMesa.getText());
+            nome = txtNmMesa.getText();
+            
+            if(rbtSim.isSelected()) {
+                ativa = 's';
+            }
+            else if(rbtNao.isSelected()) {
+                ativa = 'n';
+            }
+            
+            String sql = "INSERT INTO MESA VALUES(" + cod + ", UPPER('" + nome + "'),UPPER('" + ativa + "'))";
+            ResultSet res = Conexao.consultar(sql); 
+            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
+            btnLimparActionPerformed(evt);
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(this, "Erro: \n" + e.getMessage(), "Erro!", 0);
+            u.limparTextFields(this);
+        }
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup ativaButtonGroup;

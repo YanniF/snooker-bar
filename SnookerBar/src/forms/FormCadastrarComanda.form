@@ -145,6 +145,9 @@
         <Property name="text" type="java.lang.String" value="Cadastrar"/>
         <Property name="toolTipText" type="java.lang.String" value="Clique aqui para cadastrar a comanda"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarComandaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnLimpar">
       <Properties>
