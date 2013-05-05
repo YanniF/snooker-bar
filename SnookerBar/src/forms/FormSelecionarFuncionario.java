@@ -3,6 +3,7 @@ package forms;
 import classes.Conexao;
 import classes.Utilitarios;
 import java.sql.ResultSet;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -10,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Yanni
  */
+
 public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
 
     Utilitarios u = new Utilitarios();
@@ -273,10 +275,10 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
     {//GEN-HEADEREND:event_btnAlterarActionPerformed
         if(tabelaFuncionario.getSelectedRow() >= 0)
         {
-            /*FormAlterarFuncionario faf = new FormAlterarFuncionario();
+            FormAlterarFuncionario faf = new FormAlterarFuncionario();
             this.getDesktopPane().add(faf);
             faf.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
-            faf.setVisible(true);*/
+            faf.setVisible(true);
         }
         else {
             JOptionPane.showMessageDialog(null, "Selecione alguma linha para alterar.", "Aviso", 2);

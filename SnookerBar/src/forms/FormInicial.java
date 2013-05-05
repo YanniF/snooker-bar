@@ -33,11 +33,11 @@ public class FormInicial extends javax.swing.JFrame {
         btnSair = new javax.swing.JButton();
         menuPrincipal = new javax.swing.JMenuBar();
         menuComanda = new javax.swing.JMenu();
-        menuAbertura = new javax.swing.JMenu();
+        menuAberturaComanda = new javax.swing.JMenu();
         menuAbrirComanda = new javax.swing.JMenuItem();
-        menuConsultarAbertura = new javax.swing.JMenuItem();
-        menuAlterarAbertura = new javax.swing.JMenuItem();
-        menuFecharAbertura = new javax.swing.JMenuItem();
+        menuConsultarAberturaComanda = new javax.swing.JMenuItem();
+        menuAlterarAberturaComanda = new javax.swing.JMenuItem();
+        menuFecharAberturaComanda = new javax.swing.JMenuItem();
         menuCadastrarComanda = new javax.swing.JMenuItem();
         menuConsultarComanda = new javax.swing.JMenuItem();
         menuAlterarComanda = new javax.swing.JMenuItem();
@@ -47,6 +47,11 @@ public class FormInicial extends javax.swing.JFrame {
         menuAlterarAtendimento = new javax.swing.JMenuItem();
         menuExcluirAtendimento = new javax.swing.JMenuItem();
         menuMesa = new javax.swing.JMenu();
+        menuAberturaMesa = new javax.swing.JMenu();
+        menuAbrirMesa = new javax.swing.JMenuItem();
+        menuConsultarAberturaMesa = new javax.swing.JMenuItem();
+        menuAlterarAberturaMesa = new javax.swing.JMenuItem();
+        menuFecharAberturaMesa = new javax.swing.JMenuItem();
         menuCadastrarMesa = new javax.swing.JMenuItem();
         menuConsultarMesa = new javax.swing.JMenuItem();
         menuAlterarMesa = new javax.swing.JMenuItem();
@@ -99,21 +104,21 @@ public class FormInicial extends javax.swing.JFrame {
 
         menuComanda.setText("Comanda");
 
-        menuAbertura.setText("Abertura");
+        menuAberturaComanda.setText("Abertura");
 
         menuAbrirComanda.setText("Abrir");
-        menuAbertura.add(menuAbrirComanda);
+        menuAberturaComanda.add(menuAbrirComanda);
 
-        menuConsultarAbertura.setText("Consultar");
-        menuAbertura.add(menuConsultarAbertura);
+        menuConsultarAberturaComanda.setText("Consultar");
+        menuAberturaComanda.add(menuConsultarAberturaComanda);
 
-        menuAlterarAbertura.setText("Alterar");
-        menuAbertura.add(menuAlterarAbertura);
+        menuAlterarAberturaComanda.setText("Alterar");
+        menuAberturaComanda.add(menuAlterarAberturaComanda);
 
-        menuFecharAbertura.setText("Fechar");
-        menuAbertura.add(menuFecharAbertura);
+        menuFecharAberturaComanda.setText("Fechar");
+        menuAberturaComanda.add(menuFecharAberturaComanda);
 
-        menuComanda.add(menuAbertura);
+        menuComanda.add(menuAberturaComanda);
 
         menuCadastrarComanda.setText("Cadastrar");
         menuCadastrarComanda.addActionListener(new java.awt.event.ActionListener()
@@ -164,6 +169,22 @@ public class FormInicial extends javax.swing.JFrame {
         menuPrincipal.add(menuAtendimento);
 
         menuMesa.setText("Mesa");
+
+        menuAberturaMesa.setText("Abertura");
+
+        menuAbrirMesa.setText("Abrir");
+        menuAberturaMesa.add(menuAbrirMesa);
+
+        menuConsultarAberturaMesa.setText("Consultar");
+        menuAberturaMesa.add(menuConsultarAberturaMesa);
+
+        menuAlterarAberturaMesa.setText("Alterar");
+        menuAberturaMesa.add(menuAlterarAberturaMesa);
+
+        menuFecharAberturaMesa.setText("Fechar");
+        menuAberturaMesa.add(menuFecharAberturaMesa);
+
+        menuMesa.add(menuAberturaMesa);
 
         menuCadastrarMesa.setText("Cadastrar");
         menuCadastrarMesa.addActionListener(new java.awt.event.ActionListener()
@@ -556,9 +577,12 @@ public class FormInicial extends javax.swing.JFrame {
     private javax.swing.JButton btnSair;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JLabel lblBemVindo;
-    private javax.swing.JMenu menuAbertura;
+    private javax.swing.JMenu menuAberturaComanda;
+    private javax.swing.JMenu menuAberturaMesa;
     private javax.swing.JMenuItem menuAbrirComanda;
-    private javax.swing.JMenuItem menuAlterarAbertura;
+    private javax.swing.JMenuItem menuAbrirMesa;
+    private javax.swing.JMenuItem menuAlterarAberturaComanda;
+    private javax.swing.JMenuItem menuAlterarAberturaMesa;
     private javax.swing.JMenuItem menuAlterarAtendimento;
     private javax.swing.JMenuItem menuAlterarComanda;
     private javax.swing.JMenuItem menuAlterarFuncionario;
@@ -574,7 +598,8 @@ public class FormInicial extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuCadastrarServico;
     private javax.swing.JMenuItem menuCadastrarUsuario;
     private javax.swing.JMenu menuComanda;
-    private javax.swing.JMenuItem menuConsultarAbertura;
+    private javax.swing.JMenuItem menuConsultarAberturaComanda;
+    private javax.swing.JMenuItem menuConsultarAberturaMesa;
     private javax.swing.JMenuItem menuConsultarAtendimento;
     private javax.swing.JMenuItem menuConsultarComanda;
     private javax.swing.JMenuItem menuConsultarFuncionario;
@@ -587,7 +612,8 @@ public class FormInicial extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuExcluirProduto;
     private javax.swing.JMenuItem menuExcluirServico;
     private javax.swing.JMenuItem menuExcluirUsuario;
-    private javax.swing.JMenuItem menuFecharAbertura;
+    private javax.swing.JMenuItem menuFecharAberturaComanda;
+    private javax.swing.JMenuItem menuFecharAberturaMesa;
     private javax.swing.JMenu menuFuncionario;
     private javax.swing.JMenuItem menuIniciarAtendimento;
     private javax.swing.JMenu menuMesa;

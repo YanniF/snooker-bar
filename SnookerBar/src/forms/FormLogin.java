@@ -59,6 +59,7 @@ public class FormLogin extends javax.swing.JFrame {
 
         lblSenha.setText("Senha:");
 
+        txtUsuario.setText("admin");
         txtUsuario.setToolTipText("Digite o usuário");
 
         btnLogin.setText("Login");
@@ -81,6 +82,7 @@ public class FormLogin extends javax.swing.JFrame {
             }
         });
 
+        txtSenha.setText("admin");
         txtSenha.setToolTipText("Digite a senha");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -144,7 +146,6 @@ public class FormLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        
         try
         {
             String usuario = txtUsuario.getText();
@@ -184,11 +185,13 @@ public class FormLogin extends javax.swing.JFrame {
                         
                         while(res.next())
                         {
-                            System.out.println("Nome: "+ res.getString("nm_funcionario"));
                             nome = res.getString("nm_funcionario");
                         }
                         String [] aux  = nome.split(" ");
                         Usuarios.nome = aux[0];
+                        
+                        if(Usuarios.nome == null)
+                            Usuarios.nome = "";
                     } 
                 } 
                 

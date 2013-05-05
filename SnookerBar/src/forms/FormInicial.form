@@ -9,7 +9,7 @@
             <Property name="text" type="java.lang.String" value="Comanda"/>
           </Properties>
           <SubComponents>
-            <Menu class="javax.swing.JMenu" name="menuAbertura">
+            <Menu class="javax.swing.JMenu" name="menuAberturaComanda">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Abertura"/>
               </Properties>
@@ -19,17 +19,17 @@
                     <Property name="text" type="java.lang.String" value="Abrir"/>
                   </Properties>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="menuConsultarAbertura">
+                <MenuItem class="javax.swing.JMenuItem" name="menuConsultarAberturaComanda">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Consultar"/>
                   </Properties>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="menuAlterarAbertura">
+                <MenuItem class="javax.swing.JMenuItem" name="menuAlterarAberturaComanda">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Alterar"/>
                   </Properties>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="menuFecharAbertura">
+                <MenuItem class="javax.swing.JMenuItem" name="menuFecharAberturaComanda">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Fechar"/>
                   </Properties>
@@ -94,6 +94,33 @@
             <Property name="text" type="java.lang.String" value="Mesa"/>
           </Properties>
           <SubComponents>
+            <Menu class="javax.swing.JMenu" name="menuAberturaMesa">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Abertura"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="menuAbrirMesa">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Abrir"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="menuConsultarAberturaMesa">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Consultar"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="menuAlterarAberturaMesa">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Alterar"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="menuFecharAberturaMesa">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Fechar"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
             <MenuItem class="javax.swing.JMenuItem" name="menuCadastrarMesa">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cadastrar"/>

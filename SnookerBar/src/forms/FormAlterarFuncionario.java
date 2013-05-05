@@ -6,7 +6,7 @@ import classes.Utilitarios;
  *
  * @author Yanni
  */
-public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
+public class FormAlterarFuncionario extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FormCadastrarFuncionario
@@ -14,7 +14,7 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
     
     Utilitarios m = new Utilitarios();
     
-    public FormCadastrarFuncionario() {
+    public FormAlterarFuncionario() {
         initComponents();
     }
 
@@ -33,20 +33,20 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
         lblNmFuncionario = new javax.swing.JLabel();
         txtNmFuncionario = new javax.swing.JTextField();
         lblCdCpfFuncionario = new javax.swing.JLabel();
-        txtCdCpfFuncionario = new javax.swing.JFormattedTextField();
         lblCdTelefoneFuncionario = new javax.swing.JLabel();
-        txtCdTelefoneFuncionario = new javax.swing.JFormattedTextField();
         lblCdUsuario = new javax.swing.JLabel();
         txtCdUsuario = new javax.swing.JTextField();
         btnLimpar = new javax.swing.JButton();
-        btnCadastrar = new javax.swing.JButton();
+        btnAlterar = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
         txtNmCargo = new javax.swing.JTextField();
         lblNmCargo = new javax.swing.JLabel();
+        txtCdCpfFuncionario = new javax.swing.JFormattedTextField();
+        txtCdTelefoneFuncionario = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("Cadastrar Funcionário");
+        setTitle("Alterar Funcionário");
 
         lblCdFuncionario.setText("Código:");
 
@@ -58,25 +58,7 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
 
         lblCdCpfFuncionario.setText("CPF:");
 
-        try
-        {
-            txtCdCpfFuncionario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex)
-        {
-            ex.printStackTrace();
-        }
-        txtCdCpfFuncionario.setToolTipText("Digite o CPF do funcionário");
-
         lblCdTelefoneFuncionario.setText("Telefone:");
-
-        try
-        {
-            txtCdTelefoneFuncionario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
-        } catch (java.text.ParseException ex)
-        {
-            ex.printStackTrace();
-        }
-        txtCdTelefoneFuncionario.setToolTipText("Digite o telefone do funcionário");
 
         lblCdUsuario.setText("Usuário:");
 
@@ -92,8 +74,8 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
             }
         });
 
-        btnCadastrar.setText("Cadastrar");
-        btnCadastrar.setToolTipText("Clique aqui para cadastrar o funcionário");
+        btnAlterar.setText("Alterar");
+        btnAlterar.setToolTipText("Clique aqui para alterar o funcionário");
 
         btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/procurar.png"))); // NOI18N
         btnPesquisar.setToolTipText("Clique aqui para pesquisar o usuário");
@@ -102,12 +84,33 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
 
         lblNmCargo.setText("Cargo:");
 
+        try
+        {
+            txtCdCpfFuncionario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex)
+        {
+            ex.printStackTrace();
+        }
+
+        try
+        {
+            txtCdTelefoneFuncionario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
+        } catch (java.text.ParseException ex)
+        {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblNmCargo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNmCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -122,23 +125,19 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtCdFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtNmFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCdCpfFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCdTelefoneFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtCdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txtCdTelefoneFuncionario, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtCdCpfFuncionario, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtCdUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE))
                                         .addGap(26, 26, 26)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(65, 65, 65)
-                                .addComponent(btnCadastrar)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(lblNmCargo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNmCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -156,11 +155,11 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNmCargo)
                     .addComponent(txtNmCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCdCpfFuncionario)
                     .addComponent(txtCdCpfFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCdTelefoneFuncionario)
                     .addComponent(txtCdTelefoneFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -172,13 +171,13 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
                         .addComponent(txtCdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCadastrar)
+                    .addComponent(btnAlterar)
                     .addComponent(btnLimpar))
                 .addGap(47, 47, 47))
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-399)/2, (screenSize.height-344)/2, 399, 344);
+        setBounds((screenSize.width-399)/2, (screenSize.height-353)/2, 399, 353);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
@@ -189,7 +188,7 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JLabel lblCdCpfFuncionario;

@@ -279,10 +279,10 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
     {//GEN-HEADEREND:event_btnAlterarActionPerformed
         if(tabelaUsuario.getSelectedRow() >= 0)
         {
-            /*FormAlterarUsuario fau = new FormAlterarUsuario();
+            FormAlterarUsuario fau = new FormAlterarUsuario();
             this.getDesktopPane().add(fau);
             fau.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
-            fau.setVisible(true);*/
+            fau.setVisible(true);
         }
         else {
             JOptionPane.showMessageDialog(null, "Selecione alguma linha para alterar.", "Aviso", 2);
@@ -421,18 +421,34 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
             //Confirma a operação
             if(JOptionPane.showConfirmDialog(null, "Confirma a exclusão do registro " + cod + "?") == JOptionPane.YES_OPTION)
             {
-                String sql = "DELETE FROM USUARIO WHERE cd_usuario=" + cod;
+                String sql = "SELECT cd_usuario FROM USUARIO WHERE UPPER(ic_administrador_sim_nao) = 'S'";
                 
                 try
                 {
                     ResultSet res = Conexao.consultar(sql);
-                    btnPesquisarTudoActionPerformed(evt);
-                    u.limparTextFields(this);
+                    int qtd = 0;
+                    
+                    while(res.next())
+                    { //não queria ter feito assim :/
+                        qtd++;
+                    }
+                    
+                    if(qtd < 2) {
+                        JOptionPane.showMessageDialog(null, "Não é possível excluir todos os administradores.", "Aviso", 2);
+                    }
+                    else
+                    {
+                        sql = "DELETE FROM USUARIO WHERE cd_usuario=" + cod;
+                
+                        Conexao.consultar(sql);
+                        btnPesquisarTudoActionPerformed(evt);
+                        u.limparTextFields(this);                        
+                    }
                 }
-                catch(Exception e)
+                catch (Exception ex)
                 {
                     JOptionPane.showMessageDialog(null, "O registro não pode ser excluído.", "Erro", 0);
-                }
+                }                
             }
         }
         else {
