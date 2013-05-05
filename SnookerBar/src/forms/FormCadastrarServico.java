@@ -149,8 +149,17 @@ public class FormCadastrarServico extends javax.swing.JInternalFrame {
             String sql = "INSERT INTO SERVICO VALUES(" + cod + ", UPPER('" + nome + "'), " + valor + ")";
             
             ResultSet res = Conexao.consultar(sql); 
-            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
-            btnLimparActionPerformed(evt);
+            
+            if(res == null)
+            {
+                JOptionPane.showMessageDialog(null, "Registro já existente.", "Cadastro", 0);
+                btnLimparActionPerformed(evt);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
+                btnLimparActionPerformed(evt);  
+            }
         }
         catch(Exception e)
         {

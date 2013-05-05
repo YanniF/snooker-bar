@@ -166,10 +166,20 @@ public class FormCadastrarComanda extends javax.swing.JInternalFrame {
             else if(rbtNao.isSelected()) {
                 ativa = 'n';
             }
-            //não permitir que cadastre um item com o mesmo código (banco)
+            
             String sql = "INSERT INTO COMANDA VALUES(" + cod + ", UPPER('" + ativa + "'))";
             ResultSet res = Conexao.consultar(sql); 
-            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
+            
+            if(res == null)
+            {
+                JOptionPane.showMessageDialog(null, "Registro já existente.", "Cadastro", 0);
+                btnLimparActionPerformed(evt);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
+                btnLimparActionPerformed(evt);  
+            }
         }
         catch(Exception e)
         {

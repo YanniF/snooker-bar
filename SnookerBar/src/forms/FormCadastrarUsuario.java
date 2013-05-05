@@ -202,8 +202,16 @@ public class FormCadastrarUsuario extends javax.swing.JInternalFrame {
             String sql = "INSERT INTO USUARIO VALUES(" + cod + ", LOWER('" + nome + "'), '" + senha + "', UPPER('" + admin + "'))";
             ResultSet res = Conexao.consultar(sql); 
             
-            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
-            btnLimparActionPerformed(evt);
+            if(res == null)
+            {
+                JOptionPane.showMessageDialog(null, "Registro já existente.", "Cadastro", 0);
+                btnLimparActionPerformed(evt);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
+                btnLimparActionPerformed(evt);  
+            }
         }
         catch(Exception e)
         {

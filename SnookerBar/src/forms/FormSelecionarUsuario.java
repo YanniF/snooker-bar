@@ -376,7 +376,7 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
 
                 if(Conexao.consultar(sql) == null)
                 {
-                    JOptionPane.showMessageDialog(null, "Não há linhas selecionadas.", "Erro!", 0);
+                    JOptionPane.showMessageDialog(null, "Dados não encontrados.", "Erro!", 0);
                 }
                 else
                 { 
