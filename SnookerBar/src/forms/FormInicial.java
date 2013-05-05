@@ -1,6 +1,6 @@
 package forms;
 
-import classes.Conexao;
+import classes.Usuarios;
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 
@@ -10,7 +10,6 @@ import javax.swing.JInternalFrame;
  */
 public class FormInicial extends javax.swing.JFrame {
 
-    //Conexao v = new Conexao();
     /**
      * Creates new form NewMDIApplication
      */
@@ -31,6 +30,7 @@ public class FormInicial extends javax.swing.JFrame {
 
         desktopPane = new javax.swing.JDesktopPane();
         lblBemVindo = new javax.swing.JLabel();
+        btnSair = new javax.swing.JButton();
         menuPrincipal = new javax.swing.JMenuBar();
         menuComanda = new javax.swing.JMenu();
         menuAbertura = new javax.swing.JMenu();
@@ -70,7 +70,6 @@ public class FormInicial extends javax.swing.JFrame {
         menuConsultarFuncionario = new javax.swing.JMenuItem();
         menuAlterarFuncionario = new javax.swing.JMenuItem();
         menuExcluirFuncionario = new javax.swing.JMenuItem();
-        menuLogout = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kuka & Beludo Snooker Bar - Menu Principal");
@@ -86,6 +85,17 @@ public class FormInicial extends javax.swing.JFrame {
         lblBemVindo.setForeground(new java.awt.Color(255, 255, 255));
         lblBemVindo.setBounds(40, 40, 260, 40);
         desktopPane.add(lblBemVindo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnSairActionPerformed(evt);
+            }
+        });
+        btnSair.setBounds(500, 20, 70, 23);
+        desktopPane.add(btnSair, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         menuComanda.setText("Comanda");
 
@@ -364,16 +374,6 @@ public class FormInicial extends javax.swing.JFrame {
 
         menuPrincipal.add(menuFuncionario);
 
-        menuLogout.setText("Logout");
-        menuLogout.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                menuLogoutActionPerformed(evt);
-            }
-        });
-        menuPrincipal.add(menuLogout);
-
         setJMenuBar(menuPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -406,12 +406,28 @@ public class FormInicial extends javax.swing.JFrame {
         this.setIconImage(new ImageIcon(getClass().getResource("/imagens/icon.png")).getImage());   
         setExtendedState(MAXIMIZED_BOTH);  
         
-        if(Conexao.adm){
-            lblBemVindo.setText("Bem-vindo administrador");
-        }
-        else {
+        if(!Usuarios.adm){
             lblBemVindo.setText("Bem-vindo usuário");
+            menuCadastrarComanda.setEnabled(false);
+            menuAlterarComanda.setEnabled(false);
+            menuExcluirAtendimento.setEnabled(false);
+            menuCadastrarMesa.setEnabled(false);
+            menuAlterarMesa.setEnabled(false);
+            menuCadastrarProduto.setEnabled(false);
+            menuAlterarProduto.setEnabled(false);
+            menuExcluirProduto.setEnabled(false);
+            menuCadastrarServico.setEnabled(false);
+            menuAlterarServico.setEnabled(false);
+            menuExcluirServico.setEnabled(false);
+            menuCadastrarUsuario.setEnabled(false);
+            menuAlterarUsuario.setEnabled(false);
+            menuExcluirUsuario.setEnabled(false);
+            menuCadastrarFuncionario.setEnabled(false);
+            menuAlterarFuncionario.setEnabled(false);
+            menuExcluirFuncionario.setEnabled(false);
         }
+        
+        lblBemVindo.setText("Bem-vindo(a) " + Usuarios.nome + "!");            
     }//GEN-LAST:event_formWindowOpened
 
     private void menuCadastrarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastrarMesaActionPerformed
@@ -522,17 +538,22 @@ public class FormInicial extends javax.swing.JFrame {
         menuConsultarFuncionarioActionPerformed(evt);
     }//GEN-LAST:event_menuExcluirFuncionarioActionPerformed
 
-    private void menuLogoutActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_menuLogoutActionPerformed
-    {//GEN-HEADEREND:event_menuLogoutActionPerformed
-        //voltará para o form de login
-        //limpar o conteúdo das variáveis
-    }//GEN-LAST:event_menuLogoutActionPerformed
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnSairActionPerformed
+    {//GEN-HEADEREND:event_btnSairActionPerformed
+        this.dispose();
+        Usuarios.adm = false;
+        Usuarios.nome = null;
+        
+        FormLogin fl = new FormLogin();
+        fl.setVisible(true);
+    }//GEN-LAST:event_btnSairActionPerformed
 
     /**
      * @param args the command line arguments
      */
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSair;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JLabel lblBemVindo;
     private javax.swing.JMenu menuAbertura;
@@ -569,7 +590,6 @@ public class FormInicial extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuFecharAbertura;
     private javax.swing.JMenu menuFuncionario;
     private javax.swing.JMenuItem menuIniciarAtendimento;
-    private javax.swing.JMenu menuLogout;
     private javax.swing.JMenu menuMesa;
     private javax.swing.JMenuBar menuPrincipal;
     private javax.swing.JMenu menuProduto;

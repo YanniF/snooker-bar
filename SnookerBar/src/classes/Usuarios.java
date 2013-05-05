@@ -2,9 +2,10 @@ package classes;
 
 /**
  *
- * @author Maria
+ * @author Yanni
  */
 public class Usuarios {
     
-    public boolean adm;
+    public static boolean adm;
+    public static String nome;
 }

@@ -5,6 +5,7 @@
 package forms;
 
 import classes.Conexao;
+import classes.Usuarios;
 import classes.Utilitarios;
 import java.sql.ResultSet;
 import javax.swing.ImageIcon;
@@ -16,7 +17,8 @@ import javax.swing.JOptionPane;
  */
 public class FormLogin extends javax.swing.JFrame {
 
-    Utilitarios m = new Utilitarios();
+    Utilitarios u = new Utilitarios();
+    Conexao con = new Conexao();
     
     /**
      * Creates new form FormLogin
@@ -25,7 +27,6 @@ public class FormLogin extends javax.swing.JFrame {
         initComponents();
     }
     
-    Conexao con = new Conexao();
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -102,7 +103,7 @@ public class FormLogin extends javax.swing.JFrame {
                         .addComponent(btnLogin)
                         .addGap(35, 35, 35)
                         .addComponent(btnLimpar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +140,7 @@ public class FormLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-       m.limparTextFields(this);
+        u.limparTextFields(this);
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
@@ -168,21 +169,33 @@ public class FormLogin extends javax.swing.JFrame {
                         fi.setVisible(true);
                         this.dispose();
                         
-                        if(resultado.getString("ic_administrador_sim_nao").equalsIgnoreCase("s"))
-                        {
-                            Conexao.adm = true;
+                        if(resultado.getString("ic_administrador_sim_nao").equalsIgnoreCase("s")) {
+                            Usuarios.adm = true;
                         }
-                        else
-                        {
-                            Conexao.adm = false;
+                        else {
+                            Usuarios.adm = false;
                         }
+                        
+                        String sql2 = "SELECT f.nm_funcionario FROM funcionario f, usuario u "
+                                + "WHERE f.cd_usuario = u.cd_usuario AND u.nm_login_usuario='" + usuario + "'";
+                        
+                        ResultSet res = Conexao.consultar(sql2);
+                        String nome = "";
+                        
+                        while(res.next())
+                        {
+                            System.out.println("Nome: "+ res.getString("nm_funcionario"));
+                            nome = res.getString("nm_funcionario");
+                        }
+                        String [] aux  = nome.split(" ");
+                        Usuarios.nome = aux[0];
                     } 
                 } 
                 
                 if(!login)
                 {
                     JOptionPane.showMessageDialog(null, "Usuário ou senha inválido", "Aviso!", 2);
-                    m.limparTextFields(this);
+                    u.limparTextFields(this);
                 }
             }
         }

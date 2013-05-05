@@ -12,8 +12,7 @@ import javax.swing.JOptionPane;
 public class Conexao {
     
     private static Connection conexao;
-    public static boolean adm;
-    //criar um objeto do tipo usuário, onde tem se ele é adm e o nome
+    //criar um objeto do tipo usuário, onde tem se ele é adm e o nome 
     
     public static void conectar(String user, String pass) throws Exception
     {
