@@ -54,7 +54,7 @@
                   <Component id="jLabelComanda" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jComboBoxComanda" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="38" max="32767" attributes="0"/>
+              <EmptySpace pref="42" max="32767" attributes="0"/>
               <Component id="jButtonAbrir" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
           </Group>
