@@ -42,11 +42,23 @@ public class Conexao {
     {
         try
         {
-            return conexao.createStatement().executeQuery(sql);       
+            return conexao.createStatement().executeQuery(sql);      
         }
         catch(SQLException e)
         {
             return null;
+        }
+    }
+    
+    public static int atualizar(String sql) throws SQLException
+    {
+        try
+        {
+            return conexao.createStatement().executeUpdate(sql);
+        }
+        catch(SQLException e)
+        {
+            return -1;
         }
     }
 }
