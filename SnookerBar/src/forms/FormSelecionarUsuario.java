@@ -7,6 +7,7 @@ package forms;
 import classes.Conexao;
 import classes.Utilitarios;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -19,14 +20,14 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
 
     Utilitarios u = new Utilitarios();
     DefaultTableModel modelo;
-    
+
     /**
      * Creates new form FormSelecionarUsuario
      */
     public FormSelecionarUsuario()
     {
         initComponents();
-        
+
         lblTermo.setVisible(false);
         txtTermo.setVisible(false);
     }
@@ -262,12 +263,13 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
     {//GEN-HEADEREND:event_btnLimparActionPerformed
         try
         {
-            for(int c = modelo.getRowCount() - 1; c >= 0; c--)
+            for (int c = modelo.getRowCount() - 1; c >= 0; c--)
             {
                 modelo.removeRow(c);
             }
         }
-        catch(NullPointerException e){
+        catch (NullPointerException e)
+        {
             System.out.println("Não há dados na tabela");
         }
         u.limparTextFields(this);
@@ -277,17 +279,18 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAlterarActionPerformed
     {//GEN-HEADEREND:event_btnAlterarActionPerformed
-        if(tabelaUsuario.getSelectedRow() >= 0)
+        if (tabelaUsuario.getSelectedRow() >= 0)
         {
             FormAlterarUsuario fau = new FormAlterarUsuario();
             this.getDesktopPane().add(fau);
             fau.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
             fau.setVisible(true);
         }
-        else {
+        else
+        {
             JOptionPane.showMessageDialog(null, "Selecione alguma linha para alterar.", "Aviso", 2);
         }
-        
+
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnPesquisarTudoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarTudoActionPerformed
@@ -295,33 +298,37 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
         modelo = (DefaultTableModel) tabelaUsuario.getModel();
         modelo.setRowCount(0);
         String admin;
-        
+
         try
-        {            
-            String sql = "SELECT * FROM USUARIO ORDER BY 1";                                    
-            ResultSet res = Conexao.consultar(sql);            
-         
-            if(Conexao.consultar(sql) == null){
+        {
+            String sql = "SELECT * FROM USUARIO ORDER BY 1";
+            ResultSet res = Conexao.consultar(sql);
+
+            if (Conexao.consultar(sql) == null)
+            {
                 JOptionPane.showMessageDialog(null, "Erro na consulta.", "Erro!", 0);
             }
             else
-            { 
-                if(Conexao.consultar(sql).next())
+            {
+                if (Conexao.consultar(sql).next())
                 {
-                    while(res.next())
+                    while (res.next())
                     {
-                        if(res.getString("ic_administrador_sim_nao").equalsIgnoreCase("s")){
+                        if (res.getString("ic_administrador_sim_nao").equalsIgnoreCase("s"))
+                        {
                             admin = "Sim";
                         }
-                        else{
+                        else
+                        {
                             admin = "Não";
                         }
 
-                        modelo.addRow(new Object[] {
-                            res.getInt("cd_usuario"),
-                            res.getString("nm_login_usuario"),
-                            admin
-                        });
+                        modelo.addRow(new Object[]
+                                {
+                                    res.getInt("cd_usuario"),
+                                    res.getString("nm_login_usuario"),
+                                    admin
+                                });
                     }
                 }
                 else
@@ -331,7 +338,7 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
                 }
             }
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             JOptionPane.showMessageDialog(null, "Erro na consulta. \n" + e.getMessage(), "Erro!", 0);
         }
@@ -343,59 +350,63 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
         String nome;
         String sql = "";
         boolean erro = false;
-        
-        if(rbtCdUsuario.isSelected())
+
+        if (rbtCdUsuario.isSelected())
         {
-            try {
+            try
+            {
                 cod = Integer.parseInt(txtTermo.getText());
                 sql = "SELECT * FROM USUARIO WHERE cd_usuario = " + cod;
-                erro = false;            
+                erro = false;
             }
-            catch(NumberFormatException e)
+            catch (NumberFormatException e)
             {
                 JOptionPane.showMessageDialog(null, "Digite somente números.", "Aviso", 2);
                 erro = true;
                 u.limparTextFields(this);
             }
         }
-        else if(rbtNmUsuario.isSelected())
+        else if (rbtNmUsuario.isSelected())
         {
             nome = txtTermo.getText().toLowerCase();
             sql = "SELECT * FROM USUARIO WHERE nm_login_usuario = '" + nome + "'";
         }
-        
-        if(!erro)
+
+        if (!erro)
         {
             String admin;
             modelo = (DefaultTableModel) tabelaUsuario.getModel();
             modelo.setRowCount(0);
 
             try
-            {  
-                ResultSet res = Conexao.consultar(sql);            
+            {
+                ResultSet res = Conexao.consultar(sql);
 
-                if(Conexao.consultar(sql) == null)
+                if (Conexao.consultar(sql) == null)
                 {
                     JOptionPane.showMessageDialog(null, "Dados não encontrados.", "Erro!", 0);
                 }
                 else
-                { 
-                    if(Conexao.consultar(sql).next())
+                {
+                    if (Conexao.consultar(sql).next())
                     {
-                        while(res.next())
+                        while (res.next())
                         {
-                            if(res.getString("ic_administrador_sim_nao").equalsIgnoreCase("s")){
+                            if (res.getString("ic_administrador_sim_nao").equalsIgnoreCase("s"))
+                            {
                                 admin = "Sim";
                             }
-                            else{
+                            else
+                            {
                                 admin = "Não";
                             }
 
-                             modelo.addRow(new Object[] {
-                                res.getInt("cd_usuario"),
-                                res.getString("nm_login_usuario"),
-                                admin
-                            });
+                            modelo.addRow(new Object[]
+                                    {
+                                        res.getInt("cd_usuario"),
+                                        res.getString("nm_login_usuario"),
+                                        admin
+                                    });
                         }
                     }
                     else
@@ -404,58 +415,80 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
                     }
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 JOptionPane.showMessageDialog(null, "Erro na consulta. \n" + e.getMessage(), "Erro!", 0);
             }
-         }
+        }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnExcluirActionPerformed
     {//GEN-HEADEREND:event_btnExcluirActionPerformed
         //não permitir que todos os administradores sejam apagados
-        if(tabelaUsuario.getSelectedRow() >= 0)
+        if (tabelaUsuario.getSelectedRow() >= 0)
         {
-            String cod = tabelaUsuario.getValueAt(tabelaUsuario.getSelectedRow(), 0).toString();         
+            String cod = tabelaUsuario.getValueAt(tabelaUsuario.getSelectedRow(), 0).toString();
+            String sql;
             
             //Confirma a operação
-            if(JOptionPane.showConfirmDialog(null, "Confirma a exclusão do registro " + cod + "?") == JOptionPane.YES_OPTION)
+            if (JOptionPane.showConfirmDialog(null, "Confirma a exclusão do registro " + cod + "?") == JOptionPane.YES_OPTION)
             {
-                String sql = "SELECT cd_usuario FROM USUARIO WHERE UPPER(ic_administrador_sim_nao) = 'S'";
-                
-                try
+                if (tabelaUsuario.getValueAt(tabelaUsuario.getSelectedRow(), 2).toString().equalsIgnoreCase("sim"))
                 {
-                    ResultSet res = Conexao.consultar(sql);
-                    int qtd = 0;
-                    
-                    while(res.next())
-                    { //não queria ter feito assim :/
-                        qtd++;
-                    }
-                    
-                    if(qtd < 2) {
-                        JOptionPane.showMessageDialog(null, "Não é possível excluir todos os administradores.", "Aviso", 2);
-                    }
-                    else
+                    sql = "SELECT cd_usuario FROM USUARIO WHERE UPPER(ic_administrador_sim_nao) = 'S'";
+
+                    try
                     {
-                        sql = "DELETE FROM USUARIO WHERE cd_usuario=" + cod;
-                
-                        Conexao.consultar(sql);
-                        btnPesquisarTudoActionPerformed(evt);
-                        u.limparTextFields(this);                        
+                        ResultSet res = Conexao.consultar(sql);
+                        int qtd = 0;
+
+                        while (res.next())
+                        { //não queria ter feito assim :/
+                            qtd++;
+                        }
+
+                        if (qtd <= 1)
+                        {
+                            JOptionPane.showMessageDialog(null, "Não é possível excluir todos os administradores.", "Aviso", 2);
+                        }
+                        else
+                        {
+                            sql = "DELETE FROM USUARIO WHERE cd_usuario=" + cod;
+
+                            Conexao.atualizar(sql);
+                            btnPesquisarTudoActionPerformed(evt);
+                            u.limparTextFields(this);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        JOptionPane.showMessageDialog(null, "O registro não pode ser excluído.\n" + ex.getMessage(), "Erro", 0);
                     }
                 }
-                catch (Exception ex)
-                {
-                    JOptionPane.showMessageDialog(null, "O registro não pode ser excluído.", "Erro", 0);
-                }                
-            }
+                else
+                { 
+                    try
+                    {
+                        sql = "DELETE FROM USUARIO WHERE cd_usuario=" + cod;
+                        Conexao.atualizar(sql);
+                    }
+                    catch (SQLException ex)
+                    {
+                        JOptionPane.showMessageDialog(null, "O registro não pode ser excluído.\n" + ex.getMessage(), "Erro", 0);
+                    }
+                    finally
+                    {
+                        btnPesquisarTudoActionPerformed(evt);
+                        u.limparTextFields(this);
+                    }
+                }
+            }//if de confirmação de exclusão
         }
-        else {
+        else
+        {
             JOptionPane.showMessageDialog(null, "Selecione alguma linha para excluir.", "Aviso", 2);
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnExcluir;

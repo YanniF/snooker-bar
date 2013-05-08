@@ -6,7 +6,6 @@ package forms;
 
 import classes.Conexao;
 import classes.Utilitarios;
-import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -152,11 +151,10 @@ public class FormCadastrarProduto extends javax.swing.JInternalFrame {
             valor = Double.parseDouble(txtVlProduto.getText());
             
             String sql = "INSERT INTO PRODUTO VALUES(" + cod + ", UPPER('" + nome + "'), " + valor + ")";
-            ResultSet res = Conexao.consultar(sql);
-            
-            if(res == null)
+                        
+            if(Conexao.atualizar(sql).equals(""))
             {
-                JOptionPane.showMessageDialog(null, "Registro já existente.", "Cadastro", 0);
+                JOptionPane.showMessageDialog(null, "O registro não pode ser inserido.", "Cadastro", 0);
                 btnLimparActionPerformed(evt);
             }
             else

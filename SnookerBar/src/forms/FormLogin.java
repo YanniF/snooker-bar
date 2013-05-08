@@ -163,7 +163,7 @@ public class FormLogin extends javax.swing.JFrame {
             { 
                 while(resultado.next())
                 {
-                    if(usuario.equals(resultado.getString("nm_login_usuario")) && senha.equals(resultado.getString("nm_senha_usuario")))
+                    if(usuario.equals(resultado.getString("nm_login_usuario")) && Utilitarios.md5Java(senha).equals(resultado.getString("nm_senha_usuario")))
                     {
                         login = true;
                         FormInicial fi = new FormInicial();

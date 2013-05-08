@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * Comanda.java
  *
  * Created on 03/04/2013, 17:34:15
@@ -12,7 +7,6 @@ package forms;
 
 import classes.Conexao;
 import classes.Utilitarios;
-import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 
@@ -169,11 +163,10 @@ public class FormCadastrarComanda extends javax.swing.JInternalFrame {
             }
             
             String sql = "INSERT INTO COMANDA VALUES(" + cod + ", UPPER('" + ativa + "'))";
-            ResultSet res = Conexao.consultar(sql); 
-            
-            if(res == null)
+                        
+            if(Conexao.atualizar(sql).equals(""))
             {
-                JOptionPane.showMessageDialog(null, "Registro já existente.", "Cadastro", 0);
+                JOptionPane.showMessageDialog(null, "O registro não pode ser inserido.", "Cadastro", 0);
                 btnLimparActionPerformed(evt);
             }
             else

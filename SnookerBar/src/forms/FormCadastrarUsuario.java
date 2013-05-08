@@ -6,6 +6,7 @@ package forms;
 
 import classes.Conexao;
 import classes.Utilitarios;
+import java.security.MessageDigest;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
@@ -190,7 +191,8 @@ public class FormCadastrarUsuario extends javax.swing.JInternalFrame {
         {
             cod = Integer.parseInt(txtCdUsuario.getText());
             nome = txtNmLoginUsuario.getText();
-            senha = txtNmSenhaUsuario.getPassword().toString();
+            senha = String.valueOf(txtNmSenhaUsuario.getPassword());
+            
             
             if(rbtSim.isSelected()) {
                 admin = 's';
@@ -199,10 +201,10 @@ public class FormCadastrarUsuario extends javax.swing.JInternalFrame {
                 admin = 'n';
             }
             
-            String sql = "INSERT INTO USUARIO VALUES(" + cod + ", LOWER('" + nome + "'), '" + senha + "', UPPER('" + admin + "'))";
-            ResultSet res = Conexao.consultar(sql); 
+            String sql = "INSERT INTO USUARIO VALUES(" + cod + ", LOWER('" + nome + "'), '" + Utilitarios.md5Java(senha) + "', UPPER('" + admin + "'))";
+            //ResultSet res = ; 
             
-            if(res == null)
+            if(Conexao.atualizar(sql).equals(""))
             {
                 JOptionPane.showMessageDialog(null, "Registro já existente.", "Cadastro", 0);
                 btnLimparActionPerformed(evt);

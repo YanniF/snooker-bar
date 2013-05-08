@@ -178,11 +178,10 @@ public class FormCadastrarMesa extends javax.swing.JInternalFrame {
             }
             
             String sql = "INSERT INTO MESA VALUES(" + cod + ", UPPER('" + nome + "'),UPPER('" + ativa + "'))";
-            ResultSet res = Conexao.consultar(sql); 
-            
-            if(res == null)
+                        
+            if(Conexao.atualizar(sql).equals(""))
             {
-                JOptionPane.showMessageDialog(null, "Registro já existente.", "Cadastro", 0);
+                JOptionPane.showMessageDialog(null, "O registro não pode ser inserido.", "Cadastro", 0);
                 btnLimparActionPerformed(evt);
             }
             else

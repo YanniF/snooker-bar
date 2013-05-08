@@ -410,7 +410,7 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
                 
                 try
                 {
-                    ResultSet res = Conexao.consultar(sql);
+                    Conexao.atualizar(sql);
                     btnPesquisarTudoActionPerformed(evt);
                     u.limparTextFields(this);
                 }

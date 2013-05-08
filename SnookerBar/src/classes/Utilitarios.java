@@ -56,7 +56,7 @@ public class Utilitarios extends JFrame{
            digest = sb.toString();
           
         } catch (Exception ex) {
-            System.out.println("erro " + ex.getMessage());        
+            System.out.println("Erro: " + ex.getMessage());        
         }
         return digest;
     }
