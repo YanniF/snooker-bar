@@ -280,7 +280,7 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
 
             try
             {  
-                String sql = "SELECT * FROM COMANDA WHERE cd_comanda = " + cod;
+                String sql = "SELECT * FROM COMANDA WHERE \"cd_comanda\" = " + cod;               
                 ResultSet res = Conexao.consultar(sql);            
 
                 if(Conexao.consultar(sql) == null)
