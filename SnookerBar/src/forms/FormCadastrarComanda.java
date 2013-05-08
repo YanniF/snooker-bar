@@ -36,7 +36,8 @@ public class FormCadastrarComanda extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         ativaButtonGroup = new javax.swing.ButtonGroup();
         lblCdComanda = new javax.swing.JLabel();
@@ -52,7 +53,8 @@ public class FormCadastrarComanda extends javax.swing.JInternalFrame {
         setTitle("Cadastrar Comanda");
         setName("frmComanda"); // NOI18N
 
-        lblCdComanda.setText("Número:");
+        lblCdComanda.setText("Código:");
+        lblCdComanda.setToolTipText("");
 
         txtCdComanda.setToolTipText("Digite o código da comanda");
 
@@ -87,16 +89,20 @@ public class FormCadastrarComanda extends javax.swing.JInternalFrame {
 
         btnCadastrarComanda.setText("Cadastrar");
         btnCadastrarComanda.setToolTipText("Clique aqui para cadastrar a comanda");
-        btnCadastrarComanda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCadastrarComanda.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnCadastrarComandaActionPerformed(evt);
             }
         });
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
-        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnLimpar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnLimparActionPerformed(evt);
             }
         });
@@ -119,7 +125,7 @@ public class FormCadastrarComanda extends javax.swing.JInternalFrame {
                                 .addComponent(lblCdComanda)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtCdComanda, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 28, Short.MAX_VALUE)))
+                        .addGap(0, 32, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -149,12 +155,12 @@ public class FormCadastrarComanda extends javax.swing.JInternalFrame {
 
     private void btnCadastrarComandaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCadastrarComandaActionPerformed
     {//GEN-HEADEREND:event_btnCadastrarComandaActionPerformed
-        int numero;
+        int cod;
         char ativa = ' ';        
         
         try
         {
-            numero = Integer.parseInt(txtCdComanda.getText());
+            cod = Integer.parseInt(txtCdComanda.getText());
             if(rbtSim.isSelected()) {
                 ativa = 's';
             }
@@ -162,7 +168,7 @@ public class FormCadastrarComanda extends javax.swing.JInternalFrame {
                 ativa = 'n';
             }
             
-            String sql = "INSERT INTO COMANDA VALUES(" + numero + ", UPPER('" + ativa + "'))";
+            String sql = "INSERT INTO COMANDA VALUES(" + cod + ", UPPER('" + ativa + "'))";
             ResultSet res = Conexao.consultar(sql); 
             
             if(res == null)
