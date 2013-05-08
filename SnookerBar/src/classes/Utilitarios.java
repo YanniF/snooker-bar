@@ -48,7 +48,7 @@ public class Utilitarios extends JFrame{
             byte[] hash = md.digest(message.getBytes("UTF-8"));
            
             //converting byte array to Hexadecimal String
-           StringBuilder sb = new StringBuilder(2*hash.length);
+           StringBuilder sb = new StringBuilder(2 * hash.length);
            for(byte b : hash){
                sb.append(String.format("%02x", b&0xff));
            }
@@ -56,11 +56,8 @@ public class Utilitarios extends JFrame{
            digest = sb.toString();
           
         } catch (Exception ex) {
-            System.out.println("erro " + ex.getMessage());
-        
+            System.out.println("erro " + ex.getMessage());        
         }
         return digest;
     }
-
-
 }
