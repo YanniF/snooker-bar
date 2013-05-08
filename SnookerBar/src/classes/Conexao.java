@@ -50,15 +50,16 @@ public class Conexao {
         }
     }
     
-    public static int atualizar(String sql) throws SQLException
+    public static String atualizar(String sql) throws SQLException
     {
         try
         {
-            return conexao.createStatement().executeUpdate(sql);
+            conexao.createStatement().executeUpdate(sql);
+            return "";
         }
         catch(SQLException e)
         {
-            return -1;
+            return e.getMessage();
         }
     }
 }
