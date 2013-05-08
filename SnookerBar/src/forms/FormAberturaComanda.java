@@ -27,12 +27,7 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
     public FormAberturaComanda() {
         initComponents();
     }
-    
-    public void atualizar() throws SQLException{
-        String sql = "SELECT nm_comanda FROM 'comanda' WHERE ic_ativa_inativa='S'";
         
-    }
-    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -43,25 +38,25 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabelComanda = new javax.swing.JLabel();
-        jComboBoxComanda = new javax.swing.JComboBox();
         jButtonAbrir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jTextFieldComanda = new javax.swing.JTextField();
 
         setClosable(true);
         setTitle("Abertura de Comanda");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosed(evt);
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
             public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameClosed(evt);
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameOpened(evt);
@@ -70,13 +65,6 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
 
         jLabelComanda.setText("Comanda:");
 
-        jComboBoxComanda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "20" }));
-        jComboBoxComanda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxComandaActionPerformed(evt);
-            }
-        });
-
         jButtonAbrir.setText("ABRIR");
         jButtonAbrir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,68 +72,69 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setText("SELECIONE A COMANDA QUE SERÁ ABERTA");
+        jLabel1.setText("DIGITE A COMANDA");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(71, 71, 71))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(51, 51, 51)
                         .addComponent(jLabelComanda)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxComanda, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldComanda, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jButtonAbrir)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addGap(81, 81, 81)
+                        .addComponent(jButtonAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(7, 7, 7)
+                .addGap(14, 14, 14)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelComanda)
-                    .addComponent(jComboBoxComanda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(jButtonAbrir)
-                .addGap(35, 35, 35))
+                    .addComponent(jTextFieldComanda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonAbrir, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbrirActionPerformed
-        //Pega o item que esta selecionado no comboBox e converte para string
-        String c = jComboBoxComanda.getSelectedItem().toString();
+        //Pega o numero da comanda e converte para int
+        int c = Integer.parseInt(jTextFieldComanda.getText());
         //Pega a hora do sistema para inserir no banco
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");  
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");  
         System.out.println(sdf.format(new Date()));  
         try
         {
-            String sql = "INSERT INTO abertura_comanda (dt_hora_abertura) VALUES ("+sdf+")";// WHERE comanda='"+c+"'";
-            //Baixa a comanda disponível ela não aparecerá enquanto ela não for fechada
-            jComboBoxComanda.removeItem(c);
+            String sql = "INSERT INTO snooker.\"abertura_comanda\" VALUES (abertura_comanda_seq.nextval,to_date('"+sdf.format(new Date())+"','dd/MM/yyyy HH24:MI'),null,null,"+c+")";
             //não permitir que cadastre um item com o mesmo código (banco)
-            ResultSet res = Conexao.consultar(sql); 
-            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
+             
+            if(Conexao.atualizar(sql)!=-1) {
+                JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
+            }else{
+                JOptionPane.showMessageDialog(null, Conexao.getErro(), "Cadastro", 1);
+            }
+            //limpa o campo da comanda
+            jTextFieldComanda.setText("");
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(this, "Erro: \n" + e.getMessage(), "Erro!", 0);
+            JOptionPane.showMessageDialog(this, "Erro na Exceção\n" + e.getMessage(), "Erro!", 0);
         }
     }//GEN-LAST:event_jButtonAbrirActionPerformed
-
-    private void jComboBoxComandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxComandaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxComandaActionPerformed
     
     //Executa essas instruções ao abrir o internalFrame
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
@@ -175,8 +164,8 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAbrir;
-    private javax.swing.JComboBox jComboBoxComanda;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelComanda;
+    private javax.swing.JTextField jTextFieldComanda;
     // End of variables declaration//GEN-END:variables
 }
