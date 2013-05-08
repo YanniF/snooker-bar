@@ -12,6 +12,7 @@ package forms;
 
 import classes.Conexao;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -26,7 +27,12 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
     public FormAberturaComanda() {
         initComponents();
     }
-
+    
+    public void atualizar() throws SQLException{
+        String sql = "SELECT nm_comanda FROM 'comanda' WHERE ic_ativa_inativa='S'";
+        
+    }
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -43,6 +49,24 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle("Abertura de Comanda");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosed(evt);
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
 
         jLabelComanda.setText("Comanda:");
 
@@ -60,7 +84,7 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setText("INSERIR Cód para carregar o combo quando abrir o frame e fechar o banco respectivamente");
+        jLabel1.setText("SELECIONE A COMANDA QUE SERÁ ABERTA");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,7 +103,7 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(jButtonAbrir)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,7 +114,7 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelComanda)
                     .addComponent(jComboBoxComanda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jButtonAbrir)
                 .addGap(35, 35, 35))
         );
@@ -108,7 +132,7 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
         {
             String sql = "INSERT INTO abertura_comanda (dt_hora_abertura) VALUES ("+sdf+")";// WHERE comanda='"+c+"'";
             //Baixa a comanda disponível ela não aparecerá enquanto ela não for fechada
-            jComboBoxComanda.remove(this);
+            jComboBoxComanda.removeItem(c);
             //não permitir que cadastre um item com o mesmo código (banco)
             ResultSet res = Conexao.consultar(sql); 
             JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
@@ -122,6 +146,32 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
     private void jComboBoxComandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxComandaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxComandaActionPerformed
+    
+    //Executa essas instruções ao abrir o internalFrame
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        //Conecta com o Banco
+        try {
+            Conexao.conectar("snooker", "snooker"); 
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "Erro ao tentar conectar "+e.getMessage(),
+                    "Erro",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_formInternalFrameOpened
+
+    //Executa essas instruções ao fechar o internalFrame
+    private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
+        //Desconecta com o Banco
+        try {
+            Conexao.desconectar();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "Erro ao tentar desconectar "+e.getMessage(),
+                    "Erro",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_formInternalFrameClosed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAbrir;
