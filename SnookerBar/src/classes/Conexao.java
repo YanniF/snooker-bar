@@ -11,6 +11,11 @@ import javax.swing.JOptionPane;
  */
 public class Conexao {
     
+    private static String erro;    
+    public static String getErro(){
+        return  erro;
+    }
+    
     private static Connection conexao;
     //criar um objeto do tipo usuário, onde tem se ele é adm e o nome 
     
@@ -50,16 +55,18 @@ public class Conexao {
         }
     }
     
-    public static String atualizar(String sql) throws SQLException
+    public static int atualizar(String sql) throws SQLException
     {
         try
         {
-            conexao.createStatement().executeUpdate(sql);
-            return "";
+            int qtde = conexao.createStatement().executeUpdate(sql);
+            erro = "";
+            return qtde;
         }
         catch(SQLException e)
         {
-            return e.getMessage();
+            erro = e.getMessage();
+            return -1;
         }
     }
 }
