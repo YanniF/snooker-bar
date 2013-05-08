@@ -164,7 +164,7 @@ public class FormCadastrarComanda extends javax.swing.JInternalFrame {
             
             String sql = "INSERT INTO COMANDA VALUES(" + cod + ", UPPER('" + ativa + "'))";
                         
-            if(Conexao.atualizar(sql).equals(""))
+            if(Conexao.atualizar(sql) == -1)
             {
                 JOptionPane.showMessageDialog(null, "O registro não pode ser inserido.", "Cadastro", 0);
                 btnLimparActionPerformed(evt);

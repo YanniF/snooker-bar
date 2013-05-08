@@ -152,7 +152,7 @@ public class FormCadastrarProduto extends javax.swing.JInternalFrame {
             
             String sql = "INSERT INTO PRODUTO VALUES(" + cod + ", UPPER('" + nome + "'), " + valor + ")";
                         
-            if(Conexao.atualizar(sql).equals(""))
+            if(Conexao.atualizar(sql) == -1)
             {
                 JOptionPane.showMessageDialog(null, "O registro não pode ser inserido.", "Cadastro", 0);
                 btnLimparActionPerformed(evt);
