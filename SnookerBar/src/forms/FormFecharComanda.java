@@ -121,7 +121,9 @@ public class FormFecharComanda extends javax.swing.JInternalFrame {
         sdf.format(new Date());  
         try
         {
-            String sql = "UPDATE snooker.\"ABERTURA_COMANDA\" SET dt_hora_fechar=(to_date('"+sdf.format(new Date())+"','dd/MM/yyyy HH24:MI')) where cd_abertura_comanda="+cac+"";
+            
+            String sql = "INSERT INTO snooker.\"ABERTURA_COMANDA\" VALUES (abertura_comanda_seq.nextval,null,to_date('"+sdf.format(new Date())+"','dd/MM/yyyy HH24:MI'),null,"+cac+")";
+            
              
             if(Conexao.atualizar(sql)!=-1) {
                 JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
