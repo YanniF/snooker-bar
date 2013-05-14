@@ -119,7 +119,7 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
         System.out.println(sdf.format(new Date()));  
         try
         {
-            String sql = "INSERT INTO snooker.\"abertura_comanda\" VALUES (abertura_comanda_seq.nextval,to_date('"+sdf.format(new Date())+"','dd/MM/yyyy HH24:MI'),null,null,"+c+")";
+            String sql = "INSERT INTO snooker.\"abertura_comanda\" VALUES (abertura_comanda_seq.nextval,null,to_date('"+sdf.format(new Date())+"','dd/MM/yyyy HH24:MI'),null,"+c+")";
             //não permitir que cadastre um item com o mesmo código (banco)
              
             if(Conexao.atualizar(sql)!=-1) {

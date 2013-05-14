@@ -115,14 +115,13 @@ public class FormFecharComanda extends javax.swing.JInternalFrame {
 
     private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
         //Pega o numero da comanda e converte para int
-        int c = Integer.parseInt(jTextFieldComanda.getText());
+        int cac = Integer.parseInt(jTextFieldComanda.getText());
         //Pega a hora do sistema para inserir no banco
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");  
         sdf.format(new Date());  
         try
         {
-            String sql = "INSERT INTO snooker.\"abertura_comanda\" VALUES (abertura_comanda_seq.nextval,null,to_date('"+sdf.format(new Date())+"','dd/MM/yyyy HH24:MI'),null,"+c+")";
-            //não permitir que cadastre um item com o mesmo código (banco)
+            String sql = "UPDATE snooker.\"ABERTURA_COMANDA\" SET dt_hora_fechar=(to_date('"+sdf.format(new Date())+"','dd/MM/yyyy HH24:MI')) where cd_abertura_comanda="+cac+"";
              
             if(Conexao.atualizar(sql)!=-1) {
                 JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);

@@ -113,9 +113,19 @@ public class FormInicial extends javax.swing.JFrame {
         menuAberturaComanda.add(menuConsultarAberturaComanda);
 
         menuAlterarAberturaComanda.setText("Alterar");
+        menuAlterarAberturaComanda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAlterarAberturaComandaActionPerformed(evt);
+            }
+        });
         menuAberturaComanda.add(menuAlterarAberturaComanda);
 
         menuFecharAberturaComanda.setText("Fechar");
+        menuFecharAberturaComanda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuFecharAberturaComandaActionPerformed(evt);
+            }
+        });
         menuAberturaComanda.add(menuFecharAberturaComanda);
 
         menuComanda.add(menuAberturaComanda);
@@ -529,6 +539,16 @@ public class FormInicial extends javax.swing.JFrame {
         FormAberturaComanda fac = new FormAberturaComanda();
         adicionarJInternalFrame(fac);
     }//GEN-LAST:event_menuAbrirComandaActionPerformed
+
+    private void menuFecharAberturaComandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFecharAberturaComandaActionPerformed
+        FormFecharComanda ffc = new FormFecharComanda();
+        adicionarJInternalFrame(ffc);
+    }//GEN-LAST:event_menuFecharAberturaComandaActionPerformed
+
+    private void menuAlterarAberturaComandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAlterarAberturaComandaActionPerformed
+        FormAlterarComanda fac = new FormAlterarComanda();
+        adicionarJInternalFrame(fac);
+    }//GEN-LAST:event_menuAlterarAberturaComandaActionPerformed
 
     /**
      * @param args the command line arguments

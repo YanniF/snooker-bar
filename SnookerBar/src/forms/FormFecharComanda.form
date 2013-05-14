@@ -64,7 +64,7 @@
                   <Component id="jTextFieldComanda" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
-              <Component id="jButtonFechar" pref="43" max="32767" attributes="0"/>
+              <Component id="jButtonFechar" pref="47" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
