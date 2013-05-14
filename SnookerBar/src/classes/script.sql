@@ -32,8 +32,8 @@ CREATE TABLE  "ATENDIMENTO"
 
 CREATE TABLE  "ABERTURA_COMANDA" 
    (    "cd_abertura_comanda" NUMBER(10,0) NOT NULL ENABLE, 
-    "dt_hora_abertura" DATE ENABLE, 
-    "dt_hora_fechar" DATE ENABLE, 
+    "dt_hora_abertura" DATE, 
+    "dt_hora_fechar" DATE, 
     "cd_atendimento" NUMBER(10,0), 
     "cd_comanda" NUMBER(10,0) NOT NULL ENABLE, 
      CONSTRAINT "abertura_comanda_PK" PRIMARY KEY ("cd_abertura_comanda") ENABLE
