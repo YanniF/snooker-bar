@@ -8,12 +8,12 @@ package forms;
  *
  * @author Rafael
  */
-public class FormIniciartendimento extends javax.swing.JInternalFrame {
+public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FormIniciartendimento
      */
-    public FormIniciartendimento() {
+    public FormIniciarAtendimento() {
         initComponents();
     }
 
