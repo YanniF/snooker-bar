@@ -19,12 +19,15 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
 
     Utilitarios u = new Utilitarios(); 
     DefaultTableModel modelo;
+      
     
     /**
      * Creates new form FormSelecionarComanda
      */
     public FormSelecionarComanda() {
         initComponents();
+        
+        btnPesquisarTudoActionPerformed(null);
     }
 
     /**
@@ -34,84 +37,70 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         lblCdComanda = new javax.swing.JLabel();
-        txtCdComanda = new javax.swing.JTextField();
+        txtTermoComanda = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         btnPesquisarTudo = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaComanda = new javax.swing.JTable();
         btnAlterar = new javax.swing.JButton();
+        btnCadastrar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
         setTitle("Consultar Comanda");
 
-        lblCdComanda.setText("Código:");
-        lblCdComanda.setToolTipText("");
+        lblCdComanda.setText("Pesquisar:");
 
-        txtCdComanda.setToolTipText("Digite o código da comanda para pesquisar");
+        txtTermoComanda.setToolTipText("Digite o código ou o estado da comanda para pesquisar");
 
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.setToolTipText("Clique aqui para pesquisar a comanda pelo código");
-        btnPesquisar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
             }
         });
 
         btnPesquisarTudo.setText("Pesquisar tudo");
         btnPesquisarTudo.setToolTipText("Clique aqui para pesquisar todas as comandas");
-        btnPesquisarTudo.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnPesquisarTudo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarTudoActionPerformed(evt);
             }
         });
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
-        btnLimpar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparActionPerformed(evt);
             }
         });
 
         tabelaComanda.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
+            new Object [][] {
 
             },
-            new String []
-            {
+            new String [] {
                 "Código", "Ativa ou Inativa"
             }
-        )
-        {
-            Class[] types = new Class []
-            {
+        ) {
+            Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean []
-            {
+            boolean[] canEdit = new boolean [] {
                 false, false
             };
 
-            public Class getColumnClass(int columnIndex)
-            {
+            public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
 
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
@@ -119,11 +108,16 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
 
         btnAlterar.setText("Alterar");
         btnAlterar.setToolTipText("Selecione a linha e clique aqui para alterar a comanda");
-        btnAlterar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarActionPerformed(evt);
+            }
+        });
+
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
             }
         });
 
@@ -131,26 +125,31 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblCdComanda)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtCdComanda, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnPesquisarTudo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(20, 20, 20)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(2, 2, 2)
-                                    .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(10, 10, 10))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(10, 10, 10))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblCdComanda)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTermoComanda)
+                        .addGap(22, 22, 22))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnPesquisar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAlterar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnPesquisarTudo)
+                                .addContainerGap(21, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(22, 22, 22))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,22 +157,26 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCdComanda)
-                    .addComponent(txtCdComanda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPesquisarTudo)
-                    .addComponent(btnPesquisar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAlterar)
-                    .addComponent(btnLimpar))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                    .addComponent(txtTermoComanda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnPesquisarTudo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCadastrar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnPesquisar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnLimpar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAlterar)))
+                .addGap(11, 11, 11)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-268)/2, (screenSize.height-472)/2, 268, 472);
+        setBounds((screenSize.width-296)/2, (screenSize.height-472)/2, 296, 472);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
@@ -258,16 +261,38 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarActionPerformed
     {//GEN-HEADEREND:event_btnPesquisarActionPerformed
-        int cod = 0;
+        String termo = "";
+        String sql = "";
         boolean erro;
         
         try {
-            cod = Integer.parseInt(txtCdComanda.getText()); 
+            termo = txtTermoComanda.getText().toUpperCase(); 
+            
+            if(Utilitarios.isNumeric(termo)) {
+                sql = "SELECT * FROM COMANDA WHERE \"cd_comanda\" = " + termo;       
+            }
+            else
+            {
+                if(termo.equalsIgnoreCase("ativa")) {
+                    termo = "S";
+                    sql = "SELECT * FROM COMANDA WHERE \"ic_ativa_inativa\" = '" + termo + "'";
+                }
+
+                else if(termo.equalsIgnoreCase("inativa")) {
+                    termo = "N";      
+                    sql = "SELECT * FROM COMANDA WHERE \"ic_ativa_inativa\" = '" + termo + "'";
+                }
+                
+                else {
+                    sql = "";
+                    txtTermoComanda.setText("");
+                }
+            }    
             erro = false;            
         }
-        catch(NumberFormatException e)
+        catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null, "Digite somente números.", "Aviso", 2);
+            JOptionPane.showMessageDialog(null, "Erro.\n" + e.getMessage(), "Aviso", 2);
             erro = true;
             u.limparTextFields(this);
         }
@@ -280,7 +305,6 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
 
             try
             {  
-                String sql = "SELECT * FROM COMANDA WHERE \"cd_comanda\" = " + cod;               
                 ResultSet res = Conexao.consultar(sql);            
 
                 if(Conexao.consultar(sql) == null)
@@ -322,14 +346,22 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        FormCadastrarComanda fcc = new FormCadastrarComanda();
+        this.getDesktopPane().add(fcc);
+        fcc.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
+        fcc.setVisible(true);
+    }//GEN-LAST:event_btnCadastrarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
+    private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnPesquisarTudo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCdComanda;
     private javax.swing.JTable tabelaComanda;
-    private javax.swing.JTextField txtCdComanda;
+    private javax.swing.JTextField txtTermoComanda;
     // End of variables declaration//GEN-END:variables
 }

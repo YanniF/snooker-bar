@@ -60,4 +60,15 @@ public class Utilitarios extends JFrame{
         }
         return digest;
     }
+     
+    public static boolean isNumeric (String s) {  
+        try 
+        {  
+            Integer.parseInt (s);   
+            return true;  
+        } 
+        catch (NumberFormatException ex) {  
+            return false;  
+        }  
+    } 
 }
