@@ -1,6 +1,7 @@
 package forms;
 
 import classes.Conexao;
+import classes.Usuarios;
 import classes.Utilitarios;
 import java.sql.ResultSet;
 import javax.swing.ImageIcon;
@@ -14,15 +15,23 @@ import javax.swing.table.DefaultTableModel;
 public class FormSelecionarMesa extends javax.swing.JInternalFrame {
 
     Utilitarios u = new Utilitarios();
-    DefaultTableModel modelo;
+    DefaultTableModel modelo;    
+    public int first = 0;  
+    
     /**
      * Creates new form FormSelecionarMesa
      */
     public FormSelecionarMesa() {
         initComponents();
         
-        lblTermo.setVisible(false);
-        txtTermo.setVisible(false);
+        btnPesquisarTudoActionPerformed(null);
+        
+        if(!Usuarios.adm){
+            btnCadastrar.setEnabled(false);
+            btnCadastrar.setToolTipText(null);
+            btnAlterar.setEnabled(false);
+            btnAlterar.setToolTipText(null);
+        }
     }
 
     /**
@@ -35,67 +44,19 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
     private void initComponents()
     {
 
-        pesquisarButtonGroup = new javax.swing.ButtonGroup();
-        pesquisarPanel = new javax.swing.JPanel();
-        rbtCdMesa = new javax.swing.JRadioButton();
-        rbtNmMesa = new javax.swing.JRadioButton();
-        lblTermo = new javax.swing.JLabel();
-        txtTermo = new javax.swing.JTextField();
         jScrollPane = new javax.swing.JScrollPane();
         tabelaMesa = new javax.swing.JTable();
         btnPesquisar = new javax.swing.JButton();
         btnPesquisarTudo = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
+        btnCadastrar = new javax.swing.JButton();
+        lblTermoMesa = new javax.swing.JLabel();
+        txtTermoMesa = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
         setTitle("Consultar Mesa");
-
-        pesquisarPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar por:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 0)));
-        pesquisarPanel.setToolTipText("Pesquisar por código ou identificação (nome) da mesa");
-
-        pesquisarButtonGroup.add(rbtCdMesa);
-        rbtCdMesa.setText("Código");
-        rbtCdMesa.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                rbtCdMesaActionPerformed(evt);
-            }
-        });
-
-        pesquisarButtonGroup.add(rbtNmMesa);
-        rbtNmMesa.setText("Identificação");
-        rbtNmMesa.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                rbtNmMesaActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pesquisarPanelLayout = new javax.swing.GroupLayout(pesquisarPanel);
-        pesquisarPanel.setLayout(pesquisarPanelLayout);
-        pesquisarPanelLayout.setHorizontalGroup(
-            pesquisarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pesquisarPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pesquisarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rbtCdMesa)
-                    .addComponent(rbtNmMesa))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pesquisarPanelLayout.setVerticalGroup(
-            pesquisarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pesquisarPanelLayout.createSequentialGroup()
-                .addGap(3, 3, 3)
-                .addComponent(rbtCdMesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbtNmMesa))
-        );
-
-        lblTermo.setText("Termo:");
 
         tabelaMesa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
@@ -130,7 +91,7 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
         jScrollPane.setViewportView(tabelaMesa);
 
         btnPesquisar.setText("Pesquisar");
-        btnPesquisar.setToolTipText("Clique aqui para pesquisar a mesa");
+        btnPesquisar.setToolTipText("Clique aqui para pesquisar por código, identificação ou estado da mesa");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -169,77 +130,70 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
             }
         });
 
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.setToolTipText("Clique aqui para cadastrar uma mesa");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
+
+        lblTermoMesa.setText("Pesquisar:");
+
+        txtTermoMesa.setToolTipText("Digite o código, identificação ou o estado da mesa para pesquisar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addComponent(lblTermoMesa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTermoMesa, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblTermo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTermo))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(pesquisarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnPesquisarTudo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(0, 46, Short.MAX_VALUE)))))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnPesquisarTudo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnPesquisar)
-                            .addComponent(btnPesquisarTudo))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnLimpar)
-                            .addComponent(btnAlterar)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(pesquisarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTermo)
-                    .addComponent(txtTermo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblTermoMesa)
+                    .addComponent(txtTermoMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPesquisar)
+                    .addComponent(btnPesquisarTudo)
+                    .addComponent(btnLimpar))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCadastrar)
+                    .addComponent(btnAlterar))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
         setBounds((screenSize.width-399)/2, (screenSize.height-476)/2, 399, 476);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void rbtCdMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtCdMesaActionPerformed
-        lblTermo.setVisible(true);
-        txtTermo.setVisible(true);
-        lblTermo.setText("Código:");
-        txtTermo.setToolTipText("Digite o código para pesquisar");
-    }//GEN-LAST:event_rbtCdMesaActionPerformed
-
-    private void rbtNmMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtNmMesaActionPerformed
-        lblTermo.setVisible(true);
-        txtTermo.setVisible(true);
-        lblTermo.setText("Identificação:");
-        txtTermo.setToolTipText("Digite a identificação para pesquisar");
-    }//GEN-LAST:event_rbtNmMesaActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         try
@@ -251,10 +205,7 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
         }
         catch(NullPointerException e){
             System.out.println("Não há dados na tabela");
-        }
-        
-        rbtCdMesa.setSelected(true);
-        rbtCdMesaActionPerformed(evt);
+        }        
         u.limparTextFields(this);
     }//GEN-LAST:event_btnLimparActionPerformed
 
@@ -277,6 +228,7 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
         modelo = (DefaultTableModel) tabelaMesa.getModel();
         modelo.setRowCount(0);
         String ativa;
+        first++;
         
         try
         {            
@@ -308,8 +260,11 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(null, "Dados não encontrados.", "Aviso", 1);
-                    btnLimparActionPerformed(evt);
+                    if(first > 1)
+                    {
+                        JOptionPane.showMessageDialog(null, "Não há dados para serem exibidos.", "Aviso", 1);
+                        btnLimparActionPerformed(evt);
+                    }   
                 }
             }
         }
@@ -321,29 +276,49 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarActionPerformed
     {//GEN-HEADEREND:event_btnPesquisarActionPerformed
-        int cod;
-        String nome;
+        String termo;
         String sql = "";
-        boolean erro = false;
+        boolean erro;
         
-        if(rbtCdMesa.isSelected())
+        try 
         {
-            try {
-                cod = Integer.parseInt(txtTermo.getText());
-                sql = "SELECT * FROM MESA WHERE cd_mesa = " + cod;
-                erro = false;            
-            }
-            catch(NumberFormatException e)
+            if(txtTermoMesa.getText().equals(""))
             {
-                JOptionPane.showMessageDialog(null, "Digite somente números.", "Aviso", 2);
+                JOptionPane.showMessageDialog(null, "Digite algum valor para fazer a pesquisa.", "Aviso", 2);
                 erro = true;
-                u.limparTextFields(this);
+            }
+            else
+            {
+                termo = txtTermoMesa.getText().toUpperCase(); 
+
+                if(Utilitarios.isNumeric(termo)) {
+                    sql = "SELECT * FROM mesa WHERE cd_mesa = " + termo;   
+                }
+                else
+                {
+                    if(termo.equalsIgnoreCase("ativa")) {
+                        termo = "S";
+                        sql = "SELECT * FROM mesa WHERE ic_ativa_sim_nao = '" + termo + "' OR nm_mesa LIKE '%" + termo + "%'";
+                    }
+
+                    else if(termo.equalsIgnoreCase("inativa")) {
+                        termo = "N";      
+                        sql = "SELECT * FROM mesa WHERE ic_ativa_sim_nao = '" + termo + "' OR nm_mesa LIKE '%" + termo + "%'";
+                    }
+
+                    else {
+                        sql = "SELECT * FROM mesa WHERE ic_ativa_sim_nao = '" + termo + "' OR nm_mesa LIKE '%" + termo + "%'";
+                        txtTermoMesa.setText("");
+                    }
+                }    
+                erro = false;   
             }
         }
-        else if(rbtNmMesa.isSelected())
+        catch(Exception e)
         {
-            nome = txtTermo.getText().toUpperCase();
-            sql = "SELECT * FROM MESA WHERE nm_mesa = '" + nome + "'";
+            JOptionPane.showMessageDialog(null, "Erro.\n" + e.getMessage(), "Aviso", 2);
+            erro = true;
+            u.limparTextFields(this);
         }
         
         if(!erro)
@@ -393,18 +368,23 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
          }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCadastrarActionPerformed
+    {//GEN-HEADEREND:event_btnCadastrarActionPerformed
+        FormCadastrarMesa fcm = new FormCadastrarMesa();
+        this.getDesktopPane().add(fcm);
+        fcm.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
+        fcm.setVisible(true);
+    }//GEN-LAST:event_btnCadastrarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
+    private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnPesquisarTudo;
     private javax.swing.JScrollPane jScrollPane;
-    private javax.swing.JLabel lblTermo;
-    private javax.swing.ButtonGroup pesquisarButtonGroup;
-    private javax.swing.JPanel pesquisarPanel;
-    private javax.swing.JRadioButton rbtCdMesa;
-    private javax.swing.JRadioButton rbtNmMesa;
+    private javax.swing.JLabel lblTermoMesa;
     private javax.swing.JTable tabelaMesa;
-    private javax.swing.JTextField txtTermo;
+    private javax.swing.JTextField txtTermoMesa;
     // End of variables declaration//GEN-END:variables
 }

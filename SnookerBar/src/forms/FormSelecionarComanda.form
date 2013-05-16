@@ -35,7 +35,7 @@
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="lblCdComanda" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblTermoComanda" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtTermoComanda" max="32767" attributes="0"/>
                       <EmptySpace min="22" pref="22" max="-2" attributes="0"/>
@@ -68,7 +68,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblCdComanda" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTermoComanda" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtTermoComanda" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="13" max="32767" attributes="0"/>
@@ -94,7 +94,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="lblCdComanda">
+    <Component class="javax.swing.JLabel" name="lblTermoComanda">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pesquisar:"/>
       </Properties>
@@ -107,7 +107,7 @@
     <Component class="javax.swing.JButton" name="btnPesquisar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pesquisar"/>
-        <Property name="toolTipText" type="java.lang.String" value="Clique aqui para pesquisar a comanda pelo c&#xf3;digo"/>
+        <Property name="toolTipText" type="java.lang.String" value="Clique aqui para pesquisar por c&#xf3;digo ou estado da comanda"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPesquisarActionPerformed"/>
@@ -179,6 +179,7 @@
     <Component class="javax.swing.JButton" name="btnCadastrar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cadastrar"/>
+        <Property name="toolTipText" type="java.lang.String" value="Clique aqui para cadastrar uma comanda"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarActionPerformed"/>

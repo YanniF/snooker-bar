@@ -243,11 +243,6 @@ public class FormInicial extends javax.swing.JFrame {
         this.setIconImage(new ImageIcon(getClass().getResource("/imagens/icon.png")).getImage());   
         setExtendedState(MAXIMIZED_BOTH);  
         
-        if(!Usuarios.adm){
-            lblBemVindo.setText("Bem-vindo usuário");
-            menuExcluirAtendimento.setEnabled(false);
-        }
-        
         lblBemVindo.setText("Bem-vindo(a) " + Usuarios.nome + "!");            
     }//GEN-LAST:event_formWindowOpened
 

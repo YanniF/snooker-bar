@@ -7,6 +7,7 @@ package forms;
 
 import classes.Conexao;
 import classes.Utilitarios;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 
@@ -20,9 +21,8 @@ public class FormCadastrarComanda extends javax.swing.JInternalFrame {
     
     /** Creates new form Comanda */
     public FormCadastrarComanda() {
-        initComponents();        
+        initComponents();   
     }
-
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is

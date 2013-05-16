@@ -64,7 +64,7 @@ public class Utilitarios extends JFrame{
     public static boolean isNumeric (String s) {  
         try 
         {  
-            Integer.parseInt (s);   
+            Double.parseDouble (s);   
             return true;  
         } 
         catch (NumberFormatException ex) {  

@@ -5,6 +5,7 @@
 package forms;
 
 import classes.Conexao;
+import classes.Usuarios;
 import classes.Utilitarios;
 import java.sql.ResultSet;
 import javax.swing.ImageIcon;
@@ -19,15 +20,22 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
 
     Utilitarios u = new Utilitarios(); 
     DefaultTableModel modelo;
-      
+    public int first = 0;  
     
     /**
      * Creates new form FormSelecionarComanda
      */
     public FormSelecionarComanda() {
         initComponents();
-        
+                
         btnPesquisarTudoActionPerformed(null);
+        
+        if(!Usuarios.adm){
+            btnCadastrar.setEnabled(false);
+            btnCadastrar.setToolTipText(null);
+            btnAlterar.setEnabled(false);
+            btnAlterar.setToolTipText(null);
+        }
     }
 
     /**
@@ -37,9 +45,10 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
-        lblCdComanda = new javax.swing.JLabel();
+        lblTermoComanda = new javax.swing.JLabel();
         txtTermoComanda = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         btnPesquisarTudo = new javax.swing.JButton();
@@ -53,54 +62,67 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setTitle("Consultar Comanda");
 
-        lblCdComanda.setText("Pesquisar:");
+        lblTermoComanda.setText("Pesquisar:");
 
         txtTermoComanda.setToolTipText("Digite o código ou o estado da comanda para pesquisar");
 
         btnPesquisar.setText("Pesquisar");
-        btnPesquisar.setToolTipText("Clique aqui para pesquisar a comanda pelo código");
-        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnPesquisar.setToolTipText("Clique aqui para pesquisar por código ou estado da comanda");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnPesquisarActionPerformed(evt);
             }
         });
 
         btnPesquisarTudo.setText("Pesquisar tudo");
         btnPesquisarTudo.setToolTipText("Clique aqui para pesquisar todas as comandas");
-        btnPesquisarTudo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnPesquisarTudo.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnPesquisarTudoActionPerformed(evt);
             }
         });
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
-        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnLimpar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnLimparActionPerformed(evt);
             }
         });
 
         tabelaComanda.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+            new Object [][]
+            {
 
             },
-            new String [] {
+            new String []
+            {
                 "Código", "Ativa ou Inativa"
             }
-        ) {
-            Class[] types = new Class [] {
+        )
+        {
+            Class[] types = new Class []
+            {
                 java.lang.Integer.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
+            boolean[] canEdit = new boolean []
+            {
                 false, false
             };
 
-            public Class getColumnClass(int columnIndex) {
+            public Class getColumnClass(int columnIndex)
+            {
                 return types [columnIndex];
             }
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
                 return canEdit [columnIndex];
             }
         });
@@ -108,15 +130,20 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
 
         btnAlterar.setText("Alterar");
         btnAlterar.setToolTipText("Selecione a linha e clique aqui para alterar a comanda");
-        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAlterar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnAlterarActionPerformed(evt);
             }
         });
 
         btnCadastrar.setText("Cadastrar");
-        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCadastrar.setToolTipText("Clique aqui para cadastrar uma comanda");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnCadastrarActionPerformed(evt);
             }
         });
@@ -132,7 +159,7 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addGap(10, 10, 10))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblCdComanda)
+                        .addComponent(lblTermoComanda)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTermoComanda)
                         .addGap(22, 22, 22))
@@ -156,7 +183,7 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCdComanda)
+                    .addComponent(lblTermoComanda)
                     .addComponent(txtTermoComanda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,6 +242,7 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
         modelo = (DefaultTableModel) tabelaComanda.getModel();
         modelo.setRowCount(0);//para cada vez que executar isso, limpar as linhas da tabela
         String ativa;
+        first++;
         
         try
         {            
@@ -248,8 +276,11 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(null, "Dado não encontrado.", "Aviso", 1);
-                    btnLimparActionPerformed(evt);
+                    if(first > 1)
+                    {
+                        JOptionPane.showMessageDialog(null, "Não há dados para serem exibidos.", "Aviso", 1);
+                        btnLimparActionPerformed(evt);
+                    }                    
                 }
             }
         }
@@ -261,11 +292,12 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarActionPerformed
     {//GEN-HEADEREND:event_btnPesquisarActionPerformed
-        String termo = "";
+        String termo;
         String sql = "";
         boolean erro;
         
-        try {
+        try 
+        {
             termo = txtTermoComanda.getText().toUpperCase(); 
             
             if(Utilitarios.isNumeric(termo)) {
@@ -360,7 +392,7 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnPesquisarTudo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblCdComanda;
+    private javax.swing.JLabel lblTermoComanda;
     private javax.swing.JTable tabelaComanda;
     private javax.swing.JTextField txtTermoComanda;
     // End of variables declaration//GEN-END:variables

@@ -1,6 +1,7 @@
 package forms;
 
 import classes.Conexao;
+import classes.Usuarios;
 import classes.Utilitarios;
 import java.sql.ResultSet;
 import javax.swing.ImageIcon;
@@ -13,7 +14,9 @@ import javax.swing.table.DefaultTableModel;
 public class FormSelecionarProduto extends javax.swing.JInternalFrame {
 
     Utilitarios u = new Utilitarios();
-    DefaultTableModel modelo;
+    DefaultTableModel modelo;      
+    public int first = 0;  
+    
     /**
      * Creates new form FormSelecionarProduto
      */
@@ -21,8 +24,16 @@ public class FormSelecionarProduto extends javax.swing.JInternalFrame {
     {
         initComponents();
         
-        lblTermo.setVisible(false);
-        txtTermo.setVisible(false);
+        btnPesquisarTudoActionPerformed(null);
+        
+        if(!Usuarios.adm){
+            btnCadastrar.setEnabled(false);
+            btnCadastrar.setToolTipText(null);
+            btnAlterar.setEnabled(false);
+            btnAlterar.setToolTipText(null);
+            btnExcluir.setEnabled(false);
+            btnExcluir.setToolTipText(null);
+        }
     }
 
     /**
@@ -35,12 +46,6 @@ public class FormSelecionarProduto extends javax.swing.JInternalFrame {
     private void initComponents()
     {
 
-        pesquisarButtonGroup = new javax.swing.ButtonGroup();
-        txtTermo = new javax.swing.JTextField();
-        lblTermo = new javax.swing.JLabel();
-        pesquisarPanel = new javax.swing.JPanel();
-        rbtCdProduto = new javax.swing.JRadioButton();
-        rbtNmProduto = new javax.swing.JRadioButton();
         btnAlterar = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
         btnPesquisarTudo = new javax.swing.JButton();
@@ -48,55 +53,13 @@ public class FormSelecionarProduto extends javax.swing.JInternalFrame {
         jScrollPane = new javax.swing.JScrollPane();
         tabelaProduto = new javax.swing.JTable();
         btnExcluir = new javax.swing.JButton();
+        txtTermoProduto = new javax.swing.JTextField();
+        lblTermoProduto = new javax.swing.JLabel();
+        btnCadastrar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
         setTitle("Consultar Produto");
-
-        lblTermo.setText("Termo:");
-
-        pesquisarPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar por:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 0)));
-        pesquisarPanel.setToolTipText("Pesquisar por código ou nome do produto");
-
-        pesquisarButtonGroup.add(rbtCdProduto);
-        rbtCdProduto.setText("Código");
-        rbtCdProduto.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                rbtCdProdutoActionPerformed(evt);
-            }
-        });
-
-        pesquisarButtonGroup.add(rbtNmProduto);
-        rbtNmProduto.setText("Nome");
-        rbtNmProduto.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                rbtNmProdutoActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pesquisarPanelLayout = new javax.swing.GroupLayout(pesquisarPanel);
-        pesquisarPanel.setLayout(pesquisarPanelLayout);
-        pesquisarPanelLayout.setHorizontalGroup(
-            pesquisarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pesquisarPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pesquisarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rbtCdProduto)
-                    .addComponent(rbtNmProduto))
-                .addContainerGap(35, Short.MAX_VALUE))
-        );
-        pesquisarPanelLayout.setVerticalGroup(
-            pesquisarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pesquisarPanelLayout.createSequentialGroup()
-                .addGap(3, 3, 3)
-                .addComponent(rbtCdProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbtNmProduto))
-        );
 
         btnAlterar.setText("Alterar");
         btnAlterar.setToolTipText("Selecione a linha e clique aqui para alterar o produto");
@@ -109,7 +72,7 @@ public class FormSelecionarProduto extends javax.swing.JInternalFrame {
         });
 
         btnPesquisar.setText("Pesquisar");
-        btnPesquisar.setToolTipText("Clique aqui para pesquisar o produto");
+        btnPesquisar.setToolTipText("Clique aqui para pesquisar por código, nome ou o preço do produto");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -180,77 +143,74 @@ public class FormSelecionarProduto extends javax.swing.JInternalFrame {
             }
         });
 
+        txtTermoProduto.setToolTipText("Digite o código, nome ou o preço do produto para pesquisar");
+
+        lblTermoProduto.setText("Pesquisar:");
+
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.setToolTipText("Clique aqui para cadastrar um produto");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblTermo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTermo, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(pesquisarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnPesquisarTudo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnPesquisarTudo))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTermoProduto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTermoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnPesquisar)
-                            .addComponent(btnPesquisarTudo)
-                            .addComponent(btnExcluir))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnLimpar)
-                            .addComponent(btnAlterar)))
-                    .addComponent(pesquisarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTermo)
-                    .addComponent(txtTermo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTermoProduto)
+                    .addComponent(txtTermoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPesquisar)
+                    .addComponent(btnPesquisarTudo)
+                    .addComponent(btnLimpar))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCadastrar)
+                    .addComponent(btnAlterar)
+                    .addComponent(btnExcluir))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-461)/2, (screenSize.height-456)/2, 461, 456);
+        setBounds((screenSize.width-451)/2, (screenSize.height-456)/2, 451, 456);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void rbtCdProdutoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rbtCdProdutoActionPerformed
-    {//GEN-HEADEREND:event_rbtCdProdutoActionPerformed
-        lblTermo.setVisible(true);
-        txtTermo.setVisible(true);
-        lblTermo.setText("Código:");
-        txtTermo.setToolTipText("Digite o código do produto para pesquisar");
-    }//GEN-LAST:event_rbtCdProdutoActionPerformed
-
-    private void rbtNmProdutoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rbtNmProdutoActionPerformed
-    {//GEN-HEADEREND:event_rbtNmProdutoActionPerformed
-        lblTermo.setVisible(true);
-        txtTermo.setVisible(true);
-        lblTermo.setText("Nome:");
-        txtTermo.setToolTipText("Digite o nome do produto para pesquisar");
-    }//GEN-LAST:event_rbtNmProdutoActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnLimparActionPerformed
     {//GEN-HEADEREND:event_btnLimparActionPerformed
@@ -265,8 +225,6 @@ public class FormSelecionarProduto extends javax.swing.JInternalFrame {
             System.out.println("Não há dados na tabela");
         }
         u.limparTextFields(this);
-        rbtCdProduto.setSelected(true);
-        rbtCdProdutoActionPerformed(evt);
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAlterarActionPerformed
@@ -287,6 +245,7 @@ public class FormSelecionarProduto extends javax.swing.JInternalFrame {
     {//GEN-HEADEREND:event_btnPesquisarTudoActionPerformed
         modelo = (DefaultTableModel) tabelaProduto.getModel();
         modelo.setRowCount(0);
+        first++;
         
         try
         {            
@@ -311,8 +270,11 @@ public class FormSelecionarProduto extends javax.swing.JInternalFrame {
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(null, "Dados não encontrados.", "Aviso", 1);
-                    btnLimparActionPerformed(evt);
+                    if(first > 1)
+                    {
+                        JOptionPane.showMessageDialog(null, "Não há dados para serem exibidos.", "Aviso", 1);
+                        btnLimparActionPerformed(evt);
+                    } 
                 }
             }
         }
@@ -324,29 +286,35 @@ public class FormSelecionarProduto extends javax.swing.JInternalFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarActionPerformed
     {//GEN-HEADEREND:event_btnPesquisarActionPerformed
-        int cod;
-        String nome;
+        String termo;
         String sql = "";
-        boolean erro = false;
+        boolean erro;
         
-        if(rbtCdProduto.isSelected())
+        try 
         {
-            try {
-                cod = Integer.parseInt(txtTermo.getText());
-                sql = "SELECT * FROM PRODUTO WHERE cd_produto = " + cod;
-                erro = false;            
-            }
-            catch(NumberFormatException e)
+            if(txtTermoProduto.getText().equals(""))
             {
-                JOptionPane.showMessageDialog(null, "Digite somente números.", "Aviso", 2);
+                JOptionPane.showMessageDialog(null, "Digite algum valor para fazer a pesquisa.", "Aviso", 2);
                 erro = true;
-                u.limparTextFields(this);
+            }
+            else
+            {
+                termo = txtTermoProduto.getText().toUpperCase(); 
+
+                if(Utilitarios.isNumeric(termo)) {
+                    sql = "SELECT * FROM produto WHERE cd_produto = " + termo + " OR vl_produto = " + termo;   
+                }
+                else {
+                    sql = "SELECT * FROM produto WHERE nm_produto LIKE '%" + termo + "%'";                
+                }    
+                erro = false;  
             }
         }
-        else if(rbtNmProduto.isSelected())
+        catch(Exception e)
         {
-            nome = txtTermo.getText().toUpperCase();
-            sql = "SELECT * FROM PRODUTO WHERE nm_produto = '" + nome + "'";
+            JOptionPane.showMessageDialog(null, "Erro.\n" + e.getMessage(), "Aviso", 2);
+            erro = true;
+            u.limparTextFields(this);
         }
         
         if(!erro)
@@ -415,19 +383,24 @@ public class FormSelecionarProduto extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCadastrarActionPerformed
+    {//GEN-HEADEREND:event_btnCadastrarActionPerformed
+        FormCadastrarProduto fcp = new FormCadastrarProduto();
+        this.getDesktopPane().add(fcp);
+        fcp.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
+        fcp.setVisible(true);
+    }//GEN-LAST:event_btnCadastrarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
+    private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnPesquisarTudo;
     private javax.swing.JScrollPane jScrollPane;
-    private javax.swing.JLabel lblTermo;
-    private javax.swing.ButtonGroup pesquisarButtonGroup;
-    private javax.swing.JPanel pesquisarPanel;
-    private javax.swing.JRadioButton rbtCdProduto;
-    private javax.swing.JRadioButton rbtNmProduto;
+    private javax.swing.JLabel lblTermoProduto;
     private javax.swing.JTable tabelaProduto;
-    private javax.swing.JTextField txtTermo;
+    private javax.swing.JTextField txtTermoProduto;
     // End of variables declaration//GEN-END:variables
 }

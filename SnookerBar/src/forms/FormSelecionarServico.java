@@ -5,6 +5,7 @@
 package forms;
 
 import classes.Conexao;
+import classes.Usuarios;
 import classes.Utilitarios;
 import java.sql.ResultSet;
 import javax.swing.ImageIcon;
@@ -18,7 +19,8 @@ import javax.swing.table.DefaultTableModel;
 public class FormSelecionarServico extends javax.swing.JInternalFrame {
 
     Utilitarios u = new Utilitarios();
-    DefaultTableModel modelo;
+    DefaultTableModel modelo;    
+    public int first = 0;  
     /**
      * Creates new form FormSelecionarServico
      */
@@ -26,8 +28,16 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
     {
         initComponents();
         
-        lblTermo.setVisible(false);
-        txtTermo.setVisible(false);
+        btnPesquisarTudoActionPerformed(null);
+        
+        if(!Usuarios.adm){
+            btnCadastrar.setEnabled(false);
+            btnCadastrar.setToolTipText(null);
+            btnAlterar.setEnabled(false);
+            btnAlterar.setToolTipText(null);
+            btnExcluir.setEnabled(false);
+            btnExcluir.setToolTipText(null);
+        }
     }
 
     /**
@@ -40,19 +50,16 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
     private void initComponents()
     {
 
-        pesquisarButtonGroup = new javax.swing.ButtonGroup();
         jScrollPane = new javax.swing.JScrollPane();
         tabelaServico = new javax.swing.JTable();
         btnExcluir = new javax.swing.JButton();
-        pesquisarPanel = new javax.swing.JPanel();
-        rbtCdServico = new javax.swing.JRadioButton();
-        rbtNmServico = new javax.swing.JRadioButton();
-        lblTermo = new javax.swing.JLabel();
-        txtTermo = new javax.swing.JTextField();
         btnPesquisarTudo = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
+        lblTermoServico = new javax.swing.JLabel();
+        txtTermoServico = new javax.swing.JTextField();
+        btnCadastrar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -100,51 +107,6 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
             }
         });
 
-        pesquisarPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar por:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 0)));
-        pesquisarPanel.setToolTipText("Pesquisar por código ou nome do serviço");
-
-        pesquisarButtonGroup.add(rbtCdServico);
-        rbtCdServico.setText("Código");
-        rbtCdServico.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                rbtCdServicoActionPerformed(evt);
-            }
-        });
-
-        pesquisarButtonGroup.add(rbtNmServico);
-        rbtNmServico.setText("Nome");
-        rbtNmServico.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                rbtNmServicoActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pesquisarPanelLayout = new javax.swing.GroupLayout(pesquisarPanel);
-        pesquisarPanel.setLayout(pesquisarPanelLayout);
-        pesquisarPanelLayout.setHorizontalGroup(
-            pesquisarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pesquisarPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pesquisarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rbtCdServico)
-                    .addComponent(rbtNmServico))
-                .addContainerGap(35, Short.MAX_VALUE))
-        );
-        pesquisarPanelLayout.setVerticalGroup(
-            pesquisarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pesquisarPanelLayout.createSequentialGroup()
-                .addGap(3, 3, 3)
-                .addComponent(rbtCdServico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbtNmServico))
-        );
-
-        lblTermo.setText("Termo:");
-
         btnPesquisarTudo.setText("Pesquisar tudo");
         btnPesquisarTudo.setToolTipText("Clique aqui para pesquisar todos os serviços");
         btnPesquisarTudo.addActionListener(new java.awt.event.ActionListener()
@@ -176,12 +138,26 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
         });
 
         btnPesquisar.setText("Pesquisar");
-        btnPesquisar.setToolTipText("Clique aqui para pesquisar o serviço");
+        btnPesquisar.setToolTipText("Clique aqui para pesquisar por código, nome ou o preço do serviço");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
                 btnPesquisarActionPerformed(evt);
+            }
+        });
+
+        lblTermoServico.setText("Pesquisar:");
+
+        txtTermoServico.setToolTipText("Digite o código, nome ou o preço do serviço para pesquisar");
+
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.setToolTipText("Clique aqui para cadastrar um produto");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnCadastrarActionPerformed(evt);
             }
         });
 
@@ -192,70 +168,51 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblTermo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTermo, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(pesquisarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnPesquisarTudo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnPesquisarTudo))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblTermoServico)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtTermoServico, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnPesquisar)
-                            .addComponent(btnPesquisarTudo)
-                            .addComponent(btnExcluir))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnLimpar)
-                            .addComponent(btnAlterar)))
-                    .addComponent(pesquisarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTermo)
-                    .addComponent(txtTermo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblTermoServico)
+                    .addComponent(txtTermoServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPesquisar)
+                    .addComponent(btnPesquisarTudo)
+                    .addComponent(btnLimpar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCadastrar)
+                    .addComponent(btnAlterar)
+                    .addComponent(btnExcluir))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-454)/2, (screenSize.height-449)/2, 454, 449);
+        setBounds((screenSize.width-423)/2, (screenSize.height-449)/2, 423, 449);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void rbtCdServicoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rbtCdServicoActionPerformed
-    {//GEN-HEADEREND:event_rbtCdServicoActionPerformed
-        lblTermo.setVisible(true);
-        txtTermo.setVisible(true);
-        lblTermo.setText("Código:");
-        txtTermo.setToolTipText("Digite o código do serviço para pesquisar");
-    }//GEN-LAST:event_rbtCdServicoActionPerformed
-
-    private void rbtNmServicoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rbtNmServicoActionPerformed
-    {//GEN-HEADEREND:event_rbtNmServicoActionPerformed
-        lblTermo.setVisible(true);
-        txtTermo.setVisible(true);
-        lblTermo.setText("Nome:");
-        txtTermo.setToolTipText("Digite o nome do serviço para pesquisar");
-    }//GEN-LAST:event_rbtNmServicoActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnLimparActionPerformed
     {//GEN-HEADEREND:event_btnLimparActionPerformed
@@ -270,8 +227,6 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
             System.out.println("Não há dados na tabela");
         }
         u.limparTextFields(this);
-        rbtCdServico.setSelected(true);
-        rbtCdServicoActionPerformed(evt);
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAlterarActionPerformed
@@ -292,6 +247,7 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
     {//GEN-HEADEREND:event_btnPesquisarTudoActionPerformed
         modelo = (DefaultTableModel) tabelaServico.getModel();
         modelo.setRowCount(0);
+        first++;
         
         try
         {            
@@ -316,8 +272,11 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(null, "Dados não encontrados.", "Aviso", 1);
-                    btnLimparActionPerformed(evt);
+                    if(first > 1)
+                    {
+                        JOptionPane.showMessageDialog(null, "Não há dados para serem exibidos.", "Aviso", 1);
+                        btnLimparActionPerformed(evt);
+                    } 
                 }
             }
         }
@@ -329,29 +288,35 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarActionPerformed
     {//GEN-HEADEREND:event_btnPesquisarActionPerformed
-        int cod;
-        String nome;
+        String termo;
         String sql = "";
-        boolean erro = false;
+        boolean erro;
         
-        if(rbtCdServico.isSelected())
+        try 
         {
-            try {
-                cod = Integer.parseInt(txtTermo.getText());
-                sql = "SELECT * FROM SERVICO WHERE cd_servico = " + cod;
-                erro = false;            
-            }
-            catch(NumberFormatException e)
+            if(txtTermoServico.getText().equals(""))
             {
-                JOptionPane.showMessageDialog(null, "Digite somente números.", "Aviso", 2);
+                JOptionPane.showMessageDialog(null, "Digite algum valor para fazer a pesquisa.", "Aviso", 2);
                 erro = true;
-                u.limparTextFields(this);
+            }
+            else
+            {
+                termo = txtTermoServico.getText().toUpperCase(); 
+
+                if(Utilitarios.isNumeric(termo)) {
+                    sql = "SELECT * FROM servico WHERE cd_servico = " + termo + " OR vl_servico = " + termo;   
+                }
+                else {
+                    sql = "SELECT * FROM servico WHERE nm_servico LIKE '%" + termo + "%'";                
+                }    
+                erro = false;  
             }
         }
-        else if(rbtNmServico.isSelected())
+        catch(Exception e)
         {
-            nome = txtTermo.getText().toUpperCase();
-            sql = "SELECT * FROM SERVICO WHERE nm_servico = '" + nome + "'";
+            JOptionPane.showMessageDialog(null, "Erro.\n" + e.getMessage(), "Aviso", 2);
+            erro = true;
+            u.limparTextFields(this);
         }
         
         if(!erro)
@@ -420,19 +385,24 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCadastrarActionPerformed
+    {//GEN-HEADEREND:event_btnCadastrarActionPerformed
+        FormCadastrarServico fcs = new FormCadastrarServico();
+        this.getDesktopPane().add(fcs);
+        fcs.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
+        fcs.setVisible(true);
+    }//GEN-LAST:event_btnCadastrarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
+    private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnPesquisarTudo;
     private javax.swing.JScrollPane jScrollPane;
-    private javax.swing.JLabel lblTermo;
-    private javax.swing.ButtonGroup pesquisarButtonGroup;
-    private javax.swing.JPanel pesquisarPanel;
-    private javax.swing.JRadioButton rbtCdServico;
-    private javax.swing.JRadioButton rbtNmServico;
+    private javax.swing.JLabel lblTermoServico;
     private javax.swing.JTable tabelaServico;
-    private javax.swing.JTextField txtTermo;
+    private javax.swing.JTextField txtTermoServico;
     // End of variables declaration//GEN-END:variables
 }
