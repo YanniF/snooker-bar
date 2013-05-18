@@ -375,7 +375,9 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
                 
                 try
                 {
-                    Conexao.atualizar(sql);
+                    if(Conexao.atualizar(sql) == -1) {
+                        JOptionPane.showMessageDialog(null, "O registro não pode ser excluído.\n" + Conexao.getErro(), "Erro", 0);
+                    }
                     btnPesquisarTudoActionPerformed(evt);
                     u.limparTextFields(this);
                 }

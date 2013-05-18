@@ -52,7 +52,6 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
     private void initComponents()
     {
 
-        pesquisarButtonGroup = new javax.swing.ButtonGroup();
         btnPesquisarTudo = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
@@ -445,7 +444,9 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
                         {
                             sql = "DELETE FROM USUARIO WHERE cd_usuario=" + cod;
 
-                            Conexao.atualizar(sql);
+                            if(Conexao.atualizar(sql) == -1) {
+                                JOptionPane.showMessageDialog(null, "O registro não pode ser excluído.\n" + Conexao.getErro(), "Erro", 0);
+                            }
                             btnPesquisarTudoActionPerformed(evt);
                             u.limparTextFields(this);
                         }
@@ -460,7 +461,10 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
                     try
                     {
                         sql = "DELETE FROM USUARIO WHERE cd_usuario=" + cod;
-                        Conexao.atualizar(sql);
+                        
+                        if(Conexao.atualizar(sql) == -1) {
+                            JOptionPane.showMessageDialog(null, "O registro não pode ser excluído.\n" + Conexao.getErro(), "Erro", 0);
+                        }
                     }
                     catch (SQLException ex)
                     {
@@ -497,7 +501,6 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnPesquisarTudo;
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JLabel lblTermoUsuario;
-    private javax.swing.ButtonGroup pesquisarButtonGroup;
     private javax.swing.JTable tabelaUsuario;
     private javax.swing.JTextField txtTermoUsuario;
     // End of variables declaration//GEN-END:variables

@@ -146,7 +146,7 @@ public class FormSelecionarProduto extends javax.swing.JInternalFrame {
 
         txtTermoProduto.setToolTipText("Digite o código, nome ou o preço do produto para pesquisar");
 
-        lblTermoProduto.setText("Pesquisar:$");
+        lblTermoProduto.setText("Pesquisar:");
 
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.setToolTipText("Clique aqui para cadastrar um produto");
@@ -377,7 +377,9 @@ public class FormSelecionarProduto extends javax.swing.JInternalFrame {
                 
                 try
                 {
-                    Conexao.atualizar(sql);
+                    if(Conexao.atualizar(sql) == -1) {
+                        JOptionPane.showMessageDialog(null, "O registro não pode ser excluído.\n" + Conexao.getErro(), "Erro", 0);
+                    }
                     btnPesquisarTudoActionPerformed(evt);
                     u.limparTextFields(this);
                 }

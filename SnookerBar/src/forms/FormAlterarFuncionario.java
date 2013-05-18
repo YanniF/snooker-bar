@@ -64,7 +64,6 @@ public class FormAlterarFuncionario extends javax.swing.JInternalFrame {
 
         lblCdUsuario.setText("Usuário:");
 
-        txtCdUsuario.setToolTipText("Digite o código de usuário do funcionário (não obrigatório)");
         txtCdUsuario.setEnabled(false);
 
         btnLimpar.setText("Limpar");
