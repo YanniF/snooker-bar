@@ -117,6 +117,9 @@
         <Property name="toolTipText" type="java.lang.String" value="Clique aqui para gravar as altera&#xe7;&#xf5;es do servi&#xe7;o"/>
         <Property name="label" type="java.lang.String" value="Alterar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAlterarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnLimpar">
       <Properties>

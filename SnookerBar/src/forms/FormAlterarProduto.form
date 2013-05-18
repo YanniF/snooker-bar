@@ -51,7 +51,7 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="btnAlterar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnLimpar" min="-2" pref="72" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -125,6 +125,9 @@
         <Property name="text" type="java.lang.String" value="Alterar"/>
         <Property name="toolTipText" type="java.lang.String" value="Clique aqui para gravar as altera&#xe7;&#xf5;es do produto"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAlterarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnLimpar">
       <Properties>

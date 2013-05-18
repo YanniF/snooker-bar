@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package forms;
 
 import classes.Conexao;
@@ -234,7 +230,15 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
     {//GEN-HEADEREND:event_btnAlterarActionPerformed
         if(tabelaServico.getSelectedRow() >= 0)
         {
+            String aux = tabelaServico.getValueAt(tabelaServico.getSelectedRow(), 2).toString();
+            aux = aux.replaceAll("R", "").replace("$", "").replaceAll(",", ".");//tirando a formatação
+                        
+            int cod = Integer.parseInt(tabelaServico.getValueAt(tabelaServico.getSelectedRow(), 0).toString());
+            String nome = tabelaServico.getValueAt(tabelaServico.getSelectedRow(), 1).toString();
+            double valor = Double.parseDouble(aux);
+            
             FormAlterarServico fas = new FormAlterarServico();
+            fas.passarValoresServico(cod, nome, valor);
             this.getDesktopPane().add(fas);
             fas.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
             fas.setVisible(true);

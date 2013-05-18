@@ -1,9 +1,10 @@
 package forms;
 
+import classes.Conexao;
 import classes.Utilitarios;
+import javax.swing.JOptionPane;
 
 /**
- *
  * @author Yanni
  */
 public class FormAlterarServico extends javax.swing.JInternalFrame {
@@ -12,7 +13,7 @@ public class FormAlterarServico extends javax.swing.JInternalFrame {
      * Creates new form FormCadastrarServico
      */
     
-    Utilitarios m = new Utilitarios();
+    Utilitarios u = new Utilitarios();
     
     public FormAlterarServico() {
         initComponents();
@@ -55,6 +56,13 @@ public class FormAlterarServico extends javax.swing.JInternalFrame {
 
         btnAlterar.setToolTipText("Clique aqui para gravar as alterações do serviço");
         btnAlterar.setLabel("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
@@ -116,10 +124,47 @@ public class FormAlterarServico extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        m.limparTextFields(this);
-        txtCdServico.requestFocus();
+        int cod = Integer.parseInt(txtCdServico.getText());
+        u.limparTextFields(this);
+        txtCdServico.setText(Integer.toString(cod));
+        txtNmServico.requestFocus();
     }//GEN-LAST:event_btnLimparActionPerformed
 
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAlterarActionPerformed
+    {//GEN-HEADEREND:event_btnAlterarActionPerformed
+        try
+        {
+            int cod = Integer.parseInt(txtCdServico.getText());
+            String nome = txtNmServico.getText();
+            double valor = Double.parseDouble(txtVlServico.getText());
+                        
+            String sql = "UPDATE servico SET nm_servico = UPPER('" + nome + "'), vl_servico = " + valor + " WHERE cd_servico = " + cod;
+            
+            if(Conexao.atualizar(sql) == -1)
+            {
+                JOptionPane.showMessageDialog(null, "O registro não pode ser alterado:\n" + Conexao.getErro(), "Erro", 0);
+                this.dispose();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Registro alterado com sucesso.", "Aviso", 1);
+                this.dispose();
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Erro: \n" + e.getMessage(), "Erro!", 0);
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    public void passarValoresServico(int cod, String nome, Double valor) 
+    {
+        txtCdServico.setText(Integer.toString(cod));
+        txtNmServico.setText(nome);
+        txtVlServico.setText(Double.toString(valor));
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnLimpar;

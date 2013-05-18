@@ -146,7 +146,7 @@ public class FormSelecionarProduto extends javax.swing.JInternalFrame {
 
         txtTermoProduto.setToolTipText("Digite o código, nome ou o preço do produto para pesquisar");
 
-        lblTermoProduto.setText("Pesquisar:");
+        lblTermoProduto.setText("Pesquisar:$");
 
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.setToolTipText("Clique aqui para cadastrar um produto");
@@ -232,7 +232,15 @@ public class FormSelecionarProduto extends javax.swing.JInternalFrame {
     {//GEN-HEADEREND:event_btnAlterarActionPerformed
         if(tabelaProduto.getSelectedRow() >= 0)
         {
+            String aux = tabelaProduto.getValueAt(tabelaProduto.getSelectedRow(), 2).toString();
+            aux = aux.replaceAll("R", "").replace("$", "").replaceAll(",", ".");//tirando a formatação
+                        
+            int cod = Integer.parseInt(tabelaProduto.getValueAt(tabelaProduto.getSelectedRow(), 0).toString());
+            String nome = tabelaProduto.getValueAt(tabelaProduto.getSelectedRow(), 1).toString();
+            double valor = Double.parseDouble(aux);
+            
             FormAlterarProduto fap = new FormAlterarProduto();
+            fap.passarValoresProduto(cod, nome, valor);
             this.getDesktopPane().add(fap);
             fap.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
             fap.setVisible(true);

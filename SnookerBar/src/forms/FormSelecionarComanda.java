@@ -226,7 +226,11 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
         //não permite clicar no botão Alterar se nenhuma linha estiver selecionada
         if(tabelaComanda.getSelectedRow() >= 0)
         {
+            int cod = Integer.parseInt(tabelaComanda.getValueAt(tabelaComanda.getSelectedRow(), 0).toString());
+            String ativa = tabelaComanda.getValueAt(tabelaComanda.getSelectedRow(), 1).toString();
+            
             FormAlterarComanda fac = new FormAlterarComanda();
+            fac.passarValoresComanda(cod, ativa);//passa os valores para o FormAlterarComanda
             this.getDesktopPane().add(fac);
             fac.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
             fac.setVisible(true);

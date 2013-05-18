@@ -213,7 +213,12 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
     {//GEN-HEADEREND:event_btnAlterarActionPerformed
         if(tabelaMesa.getSelectedRow() >= 0)
         {
+            int cod = Integer.parseInt(tabelaMesa.getValueAt(tabelaMesa.getSelectedRow(), 0).toString());
+            String nome = tabelaMesa.getValueAt(tabelaMesa.getSelectedRow(), 1).toString();
+            String ativa = tabelaMesa.getValueAt(tabelaMesa.getSelectedRow(), 2).toString();
+            
             FormAlterarMesa fam = new FormAlterarMesa();
+            fam.passarValoresMesa(cod, nome, ativa);
             this.getDesktopPane().add(fam);
             fam.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
             fam.setVisible(true);

@@ -1,12 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package forms;
 
 import classes.Conexao;
 import classes.Utilitarios;
-import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -50,7 +45,6 @@ public class FormAlterarUsuario extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Alterar Usuário");
-        setToolTipText("");
 
         lblCdUsuario.setText("Código:");
 
@@ -175,45 +169,62 @@ public class FormAlterarUsuario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        
-        u.limparTextFields(this);
-        txtCdUsuario.requestFocus();
+        txtNmSenhaUsuario.setText("");
+        txtNmSenhaUsuario.requestFocus();
         rbtSim.setSelected(true);
+        rbtNao.setSelected(true);
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAlterarActionPerformed
     {//GEN-HEADEREND:event_btnAlterarActionPerformed
-        int cod;
-        String nome;
-        String senha;
-        char admin = ' ';        
-        
         try
         {
-            cod = Integer.parseInt(txtCdUsuario.getText());
-            nome = txtNmLoginUsuario.getText();
-            senha = txtNmSenhaUsuario.getPassword().toString();
+            int cod = Integer.parseInt(txtCdUsuario.getText());
+            String nome = txtNmLoginUsuario.getText();
+            String senha = String.valueOf(txtNmSenhaUsuario.getPassword());
+            char admin = ' '; 
             
             if(rbtSim.isSelected()) {
-                admin = 's';
+                admin = 'S';
             }
             else if(rbtNao.isSelected()) {
-                admin = 'n';
+                admin = 'N';
             }
             
-            String sql = "INSERT INTO USUARIO VALUES(" + cod + ", LOWER('" + nome + "'), '" + senha + "', UPPER('" + admin + "'))";
-            ResultSet res = Conexao.consultar(sql); 
-            
-            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
-            btnLimparActionPerformed(evt);
+            String sql = "UPDATE usuario SET nm_login_usuario = LOWER('" + nome + "'), nm_senha_usuario = '" + 
+                    Utilitarios.md5Java(senha) + "', ic_administrador_sim_nao = '" + admin + "' WHERE cd_usuario = " + cod;
+            System.out.println(sql);
+            if(Conexao.atualizar(sql) == -1)
+            {
+                JOptionPane.showMessageDialog(null, "O registro não pode ser alterado:\n" + Conexao.getErro(), "Erro", 0);
+                this.dispose();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Registro alterado com sucesso.", "Aviso", 1);
+                this.dispose();
+            }
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(this, "Erro: \n" + e.getMessage(), "Erro!", 0);
-            u.limparTextFields(this);
+            JOptionPane.showMessageDialog(null, "Erro: \n" + e.getMessage(), "Erro!", 0);
+            this.dispose();
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
+    public void passarValoresUsuario(int cod, String usuario, String adm) 
+    {
+        txtCdUsuario.setText(Integer.toString(cod));
+        txtNmLoginUsuario.setText(usuario);
+        
+        if(adm.equalsIgnoreCase("sim")) {
+            rbtSim.setSelected(true);
+        }
+        else if(adm.equalsIgnoreCase("não")) {
+            rbtNao.setSelected(true);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel administradorPanel;
     private javax.swing.ButtonGroup administradorbuttonGroup;

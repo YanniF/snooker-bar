@@ -1,10 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package forms;
 
+import classes.Conexao;
 import classes.Utilitarios;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,7 +34,7 @@ public class FormAlterarComanda extends javax.swing.JInternalFrame {
         rbtNao = new javax.swing.JRadioButton();
         rbtSim = new javax.swing.JRadioButton();
         btnAlterarComanda = new javax.swing.JButton();
-        btnLimparComanda = new javax.swing.JButton();
+        btnLimpar = new javax.swing.JButton();
         lblCdComanda = new javax.swing.JLabel();
         txtCdComanda = new javax.swing.JTextField();
 
@@ -74,14 +72,21 @@ public class FormAlterarComanda extends javax.swing.JInternalFrame {
 
         btnAlterarComanda.setText("Alterar");
         btnAlterarComanda.setToolTipText("Clique aqui para gravar as alterações da comanda");
-
-        btnLimparComanda.setText("Limpar");
-        btnLimparComanda.setToolTipText("Clique aqui para limpar os valores");
-        btnLimparComanda.addActionListener(new java.awt.event.ActionListener()
+        btnAlterarComanda.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                btnLimparComandaActionPerformed(evt);
+                btnAlterarComandaActionPerformed(evt);
+            }
+        });
+
+        btnLimpar.setText("Limpar");
+        btnLimpar.setToolTipText("Clique aqui para limpar os valores");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnLimparActionPerformed(evt);
             }
         });
 
@@ -99,7 +104,7 @@ public class FormAlterarComanda extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAlterarComanda, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnLimparComanda, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(ativaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -121,7 +126,7 @@ public class FormAlterarComanda extends javax.swing.JInternalFrame {
                 .addComponent(ativaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnLimparComanda)
+                    .addComponent(btnLimpar)
                     .addComponent(btnAlterarComanda))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
@@ -130,16 +135,63 @@ public class FormAlterarComanda extends javax.swing.JInternalFrame {
         setBounds((screenSize.width-218)/2, (screenSize.height-228)/2, 218, 228);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLimparComandaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnLimparComandaActionPerformed
-    {//GEN-HEADEREND:event_btnLimparComandaActionPerformed
-        rbtSim.setSelected(true);
-    }//GEN-LAST:event_btnLimparComandaActionPerformed
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnLimparActionPerformed
+    {//GEN-HEADEREND:event_btnLimparActionPerformed
+        rbtSim.setSelected(false);
+        rbtNao.setSelected(false);
+    }//GEN-LAST:event_btnLimparActionPerformed
 
+    private void btnAlterarComandaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAlterarComandaActionPerformed
+    {//GEN-HEADEREND:event_btnAlterarComandaActionPerformed
+        try
+        {
+            int cod = Integer.parseInt(txtCdComanda.getText());
+            char ativa = ' ';
+            
+            if(rbtSim.isSelected()) {
+                ativa = 'S';
+            }
+            else if(rbtNao.isSelected()) {
+                ativa = 'N';
+            }
+            
+            String sql = "UPDATE comanda SET \"ic_ativa_inativa\" = '" + ativa + "' WHERE \"cd_comanda\" = " + cod;
+                        
+            if(Conexao.atualizar(sql) == -1)
+            {
+                JOptionPane.showMessageDialog(null, "O registro não pode ser alterado:\n" + Conexao.getErro(), "Erro", 0);
+                this.dispose();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Registro alterado com sucesso.", "Aviso", 1);
+                this.dispose();
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Erro: \n" + e.getMessage(), "Erro!", 0);
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnAlterarComandaActionPerformed
+
+    public void passarValoresComanda(int cod, String ativa) 
+    {
+        txtCdComanda.setText(Integer.toString(cod));
+        
+        if(ativa.equalsIgnoreCase("ativa")) {
+            rbtSim.setSelected(true);
+        }
+        else if(ativa.equalsIgnoreCase("inativa")) {
+            rbtNao.setSelected(true);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup ativaButtonGroup;
     private javax.swing.JPanel ativaPanel;
     private javax.swing.JButton btnAlterarComanda;
-    private javax.swing.JButton btnLimparComanda;
+    private javax.swing.JButton btnLimpar;
     private javax.swing.JLabel lblCdComanda;
     private javax.swing.JRadioButton rbtNao;
     private javax.swing.JRadioButton rbtSim;

@@ -243,7 +243,12 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
     {//GEN-HEADEREND:event_btnAlterarActionPerformed
         if (tabelaUsuario.getSelectedRow() >= 0)
         {
+            int cod = Integer.parseInt(tabelaUsuario.getValueAt(tabelaUsuario.getSelectedRow(), 0).toString());
+            String usuario = tabelaUsuario.getValueAt(tabelaUsuario.getSelectedRow(), 1).toString();
+            String adm = tabelaUsuario.getValueAt(tabelaUsuario.getSelectedRow(), 2).toString();
+            
             FormAlterarUsuario fau = new FormAlterarUsuario();
+            fau.passarValoresUsuario(cod, usuario, adm);
             this.getDesktopPane().add(fau);
             fau.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
             fau.setVisible(true);

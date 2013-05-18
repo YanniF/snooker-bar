@@ -236,7 +236,22 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
     {//GEN-HEADEREND:event_btnAlterarActionPerformed
         if(tabelaFuncionario.getSelectedRow() >= 0)
         {
+            String auxTel = tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 2).toString();
+            String auxCpf = tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 3).toString();
+                        
+            //tirando a formatação
+            auxTel = auxTel.replaceAll("\\(", "").replaceAll("\\)", "").replaceAll("-", "").replaceAll(" ", "");
+            auxCpf = auxCpf.replaceAll("\\.", "").replaceAll("-", "");
+            
+            int cod = Integer.parseInt(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 0).toString());
+            String nome = tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 1).toString();
+            String tel = auxTel;
+            String cpf = auxCpf;
+            String cargo = tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 4).toString();
+            int user = Integer.parseInt(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 5).toString());
+            
             FormAlterarFuncionario faf = new FormAlterarFuncionario();
+            faf.passarValoresFuncionario(cod, nome, cargo, cpf, tel, user);
             this.getDesktopPane().add(faf);
             faf.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
             faf.setVisible(true);

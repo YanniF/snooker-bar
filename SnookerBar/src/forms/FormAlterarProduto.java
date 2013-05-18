@@ -1,10 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package forms;
 
+import classes.Conexao;
 import classes.Utilitarios;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,11 +10,11 @@ import classes.Utilitarios;
  */
 public class FormAlterarProduto extends javax.swing.JInternalFrame {
 
+    Utilitarios u = new Utilitarios();
+    
     /**
      * Creates new form FormCadastrarServico
      */
-    
-    Utilitarios m = new Utilitarios();
     
     public FormAlterarProduto() {
         initComponents();
@@ -59,6 +57,13 @@ public class FormAlterarProduto extends javax.swing.JInternalFrame {
 
         btnAlterar.setText("Alterar");
         btnAlterar.setToolTipText("Clique aqui para gravar as alterações do produto");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
@@ -94,7 +99,7 @@ public class FormAlterarProduto extends javax.swing.JInternalFrame {
                                 .addComponent(txtVlProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnAlterar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
@@ -125,10 +130,47 @@ public class FormAlterarProduto extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        m.limparTextFields(this);
-        txtCdProduto.requestFocus();
+        int cod = Integer.parseInt(txtCdProduto.getText());
+        u.limparTextFields(this);
+        txtCdProduto.setText(Integer.toString(cod));
+        txtNmProduto.requestFocus();
     }//GEN-LAST:event_btnLimparActionPerformed
 
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAlterarActionPerformed
+    {//GEN-HEADEREND:event_btnAlterarActionPerformed
+        try
+        {
+            int cod = Integer.parseInt(txtCdProduto.getText());
+            String nome = txtNmProduto.getText();
+            double valor = Double.parseDouble(txtVlProduto.getText());
+                        
+            String sql = "UPDATE produto SET nm_produto = UPPER('" + nome + "'), vl_produto = " + valor + " WHERE cd_produto = " + cod;
+            
+            if(Conexao.atualizar(sql) == -1)
+            {
+                JOptionPane.showMessageDialog(null, "O registro não pode ser alterado:\n" + Conexao.getErro(), "Erro", 0);
+                this.dispose();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Registro alterado com sucesso.", "Aviso", 1);
+                this.dispose();
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Erro: \n" + e.getMessage(), "Erro!", 0);
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    public void passarValoresProduto(int cod, String nome, Double valor) 
+    {
+        txtCdProduto.setText(Integer.toString(cod));
+        txtNmProduto.setText(nome);
+        txtVlProduto.setText(Double.toString(valor));
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnLimpar;

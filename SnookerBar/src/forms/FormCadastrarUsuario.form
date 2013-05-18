@@ -32,39 +32,36 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblNmLoginUsuario" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCdUsuario" min="-2" pref="48" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblNmLoginUsuario" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblCdUsuario" min="-2" pref="48" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtNmLoginUsuario" min="-2" pref="168" max="-2" attributes="0"/>
-                                  <Component id="txtCdUsuario" min="-2" pref="91" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblSenhaUsuario" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="administradorPanel" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtNmSenhaUsuario" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="txtNmLoginUsuario" min="-2" pref="168" max="-2" attributes="0"/>
+                          <Component id="txtCdUsuario" min="-2" pref="91" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Component id="btnCadastrar" min="-2" pref="81" max="-2" attributes="0"/>
+                      <Component id="lblSenhaUsuario" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnLimpar" min="-2" pref="81" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="administradorPanel" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNmSenhaUsuario" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <Component id="btnCadastrar" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnLimpar" min="-2" pref="81" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
