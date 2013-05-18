@@ -8,6 +8,7 @@ import classes.Conexao;
 import classes.Usuarios;
 import classes.Utilitarios;
 import java.sql.ResultSet;
+import java.text.NumberFormat;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -266,7 +267,7 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
                         modelo.addRow(new Object[] {
                             res.getInt("cd_servico"),
                             res.getString("nm_servico"),
-                            res.getDouble("vl_servico")
+                            NumberFormat.getCurrencyInstance().format(res.getDouble("vl_servico"))
                         });
                     }
                 }
@@ -341,7 +342,7 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
                            modelo.addRow(new Object[] {
                                 res.getInt("cd_servico"),
                                 res.getString("nm_servico"),
-                                res.getDouble("vl_servico")
+                                NumberFormat.getCurrencyInstance().format(res.getDouble("vl_servico"))
                             });
                         }
                     }

@@ -177,7 +177,7 @@ public class FormLogin extends javax.swing.JFrame {
                             Usuarios.adm = false;
                         }
                         
-                        String sql2 = "SELECT f.nm_funcionario FROM funcionario f, usuario u "
+                        String sql2 = "SELECT INITCAP(f.nm_funcionario) FROM funcionario f, usuario u "
                                 + "WHERE f.cd_usuario = u.cd_usuario AND u.nm_login_usuario='" + usuario + "'";
                         
                         ResultSet res = Conexao.consultar(sql2);
@@ -185,7 +185,7 @@ public class FormLogin extends javax.swing.JFrame {
                         
                         while(res.next())
                         {
-                            nome = res.getString("nm_funcionario");
+                            nome = res.getString("INITCAP(f.nm_funcionario)");
                         }
                         String [] aux  = nome.split(" ");
                         Usuarios.nome = aux[0];

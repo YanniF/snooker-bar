@@ -1,6 +1,7 @@
 package forms;
 
 import classes.Conexao;
+import classes.Usuarios;
 import classes.Utilitarios;
 import java.sql.ResultSet;
 import javax.swing.ImageIcon;
@@ -16,14 +17,25 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
 
     Utilitarios u = new Utilitarios();
     DefaultTableModel modelo;
+    public int first = 0;  
+    
     /**
      * Creates new form FormSelecionarFuncionario
      */
     public FormSelecionarFuncionario()
     {
         initComponents();
-        lblTermo.setVisible(false);
-        txtTermo.setVisible(false);
+        
+        btnPesquisarTudoActionPerformed(null);
+        
+        if(!Usuarios.adm){
+            btnCadastrar.setEnabled(false);
+            btnCadastrar.setToolTipText(null);
+            btnAlterar.setEnabled(false);
+            btnAlterar.setToolTipText(null);
+            btnExcluir.setEnabled(false);
+            btnExcluir.setToolTipText(null);
+        }
     }
 
     /**
@@ -42,16 +54,16 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
         tabelaFuncionario = new javax.swing.JTable();
         btnExcluir = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
-        lblTermo = new javax.swing.JLabel();
         btnPesquisarTudo = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
-        pesquisarPanel = new javax.swing.JPanel();
-        rbtCdFuncionario = new javax.swing.JRadioButton();
-        rbtNmFuncionario = new javax.swing.JRadioButton();
-        txtTermo = new javax.swing.JTextField();
+        lblTermoProduto = new javax.swing.JLabel();
+        txtTermoProduto = new javax.swing.JTextField();
+        btnCadastrar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
         setTitle("Consultar Funcionario");
 
         btnLimpar.setText("Limpar");
@@ -116,8 +128,6 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
             }
         });
 
-        lblTermo.setText("Termo:");
-
         btnPesquisarTudo.setText("Pesquisar tudo");
         btnPesquisarTudo.setToolTipText("Clique aqui para pesquisar todos os funcionários");
         btnPesquisarTudo.addActionListener(new java.awt.event.ActionListener()
@@ -129,7 +139,7 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
         });
 
         btnPesquisar.setText("Pesquisar");
-        btnPesquisar.setToolTipText("Clique aqui para pesquisar o funcionário");
+        btnPesquisar.setToolTipText("Clique aqui para pesquisar por código, nome, o CPF ou cargo do funcionário");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -138,104 +148,74 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
             }
         });
 
-        pesquisarPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar por:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 0)));
-        pesquisarPanel.setToolTipText("Pesquisar por código ou nome do funcionário");
+        lblTermoProduto.setText("Pesquisar:");
 
-        pesquisarButtonGroup.add(rbtCdFuncionario);
-        rbtCdFuncionario.setText("Código");
-        rbtCdFuncionario.addActionListener(new java.awt.event.ActionListener()
+        txtTermoProduto.setToolTipText("Digite o código, nome, o CPF (sem pontuação) ou cargo do funcionário para pesquisar");
+
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.setToolTipText("Clique aqui para cadastrar um funcionário");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                rbtCdFuncionarioActionPerformed(evt);
+                btnCadastrarActionPerformed(evt);
             }
         });
-
-        pesquisarButtonGroup.add(rbtNmFuncionario);
-        rbtNmFuncionario.setText("Nome");
-        rbtNmFuncionario.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                rbtNmFuncionarioActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pesquisarPanelLayout = new javax.swing.GroupLayout(pesquisarPanel);
-        pesquisarPanel.setLayout(pesquisarPanelLayout);
-        pesquisarPanelLayout.setHorizontalGroup(
-            pesquisarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pesquisarPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pesquisarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rbtCdFuncionario)
-                    .addComponent(rbtNmFuncionario))
-                .addContainerGap(35, Short.MAX_VALUE))
-        );
-        pesquisarPanelLayout.setVerticalGroup(
-            pesquisarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pesquisarPanelLayout.createSequentialGroup()
-                .addGap(3, 3, 3)
-                .addComponent(rbtCdFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbtNmFuncionario))
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblTermo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTermo, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(pesquisarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnPesquisarTudo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(123, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(lblTermoProduto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTermoProduto))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(48, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnPesquisarTudo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                            .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(170, 170, 170))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnPesquisar)
-                            .addComponent(btnPesquisarTudo)
-                            .addComponent(btnExcluir))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnLimpar)
-                            .addComponent(btnAlterar)))
-                    .addComponent(pesquisarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTermo)
-                    .addComponent(txtTermo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTermoProduto)
+                    .addComponent(txtTermoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPesquisar)
+                    .addComponent(btnPesquisarTudo)
+                    .addComponent(btnLimpar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCadastrar)
+                    .addComponent(btnAlterar)
+                    .addComponent(btnExcluir))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-549)/2, (screenSize.height-484)/2, 549, 484);
+        setBounds((screenSize.width-576)/2, (screenSize.height-484)/2, 576, 484);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnLimparActionPerformed
@@ -250,26 +230,8 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
         catch(NullPointerException e){
             System.out.println("Não há dados na tabela");
         }
-        u.limparTextFields(this);
-        rbtCdFuncionario.setSelected(true);
-        rbtCdFuncionarioActionPerformed(evt);
+        u.limparTextFields(this);        
     }//GEN-LAST:event_btnLimparActionPerformed
-
-    private void rbtCdFuncionarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rbtCdFuncionarioActionPerformed
-    {//GEN-HEADEREND:event_rbtCdFuncionarioActionPerformed
-        lblTermo.setVisible(true);
-        txtTermo.setVisible(true);
-        lblTermo.setText("Código:");
-        txtTermo.setToolTipText("Digite o código do funcionário para pesquisar");
-    }//GEN-LAST:event_rbtCdFuncionarioActionPerformed
-
-    private void rbtNmFuncionarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rbtNmFuncionarioActionPerformed
-    {//GEN-HEADEREND:event_rbtNmFuncionarioActionPerformed
-        lblTermo.setVisible(true);
-        txtTermo.setVisible(true);
-        lblTermo.setText("Nome:");
-        txtTermo.setToolTipText("Digite o nome do funcionário para pesquisar");
-    }//GEN-LAST:event_rbtNmFuncionarioActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAlterarActionPerformed
     {//GEN-HEADEREND:event_btnAlterarActionPerformed
@@ -289,6 +251,7 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
     {//GEN-HEADEREND:event_btnPesquisarTudoActionPerformed
         modelo = (DefaultTableModel) tabelaFuncionario.getModel();
         modelo.setRowCount(0);
+        first++;
         
         try
         {            
@@ -316,8 +279,11 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(null, "Dados não encontrados.", "Aviso", 1);
-                    btnLimparActionPerformed(evt);
+                    if(first > 1)
+                    {
+                        JOptionPane.showMessageDialog(null, "Não há dados para serem exibidos.", "Aviso", 1);
+                        btnLimparActionPerformed(evt);
+                    } 
                 }
             }
         }
@@ -329,29 +295,35 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarActionPerformed
     {//GEN-HEADEREND:event_btnPesquisarActionPerformed
-        int cod;
-        String nome;
+        String termo;
         String sql = "";
-        boolean erro = false;
+        boolean erro;
         
-        if(rbtCdFuncionario.isSelected())
+        try 
         {
-            try {
-                cod = Integer.parseInt(txtTermo.getText());
-                sql = "SELECT * FROM FUNCIONARIO WHERE cd_funcionario = " + cod;
-                erro = false;            
-            }
-            catch(NumberFormatException e)
+            if(txtTermoProduto.getText().equals(""))
             {
-                JOptionPane.showMessageDialog(null, "Digite somente números.", "Aviso", 2);
+                JOptionPane.showMessageDialog(null, "Digite algum valor para fazer a pesquisa.", "Aviso", 2);
                 erro = true;
-                u.limparTextFields(this);
+            }
+            else
+            {
+                termo = txtTermoProduto.getText().toUpperCase(); 
+
+                if(Utilitarios.isNumeric(termo)) {
+                    sql = "SELECT * FROM funcionario WHERE cd_funcionario = " + termo + " OR cd_cpf_funcionario = " + termo;   
+                }
+                else {
+                    sql = "SELECT * FROM funcionario WHERE nm_funcionario LIKE '%" + termo + "%' OR nm_cargo_funcionario LIKE '%" + termo + "%'";                
+                }    
+                erro = false;  
             }
         }
-        else if(rbtNmFuncionario.isSelected())
+        catch(Exception e)
         {
-            nome = txtTermo.getText().toUpperCase();
-            sql = "SELECT * FROM FUNCIONARIO WHERE nm_funcionario = '" + nome + "'";
+            JOptionPane.showMessageDialog(null, "Erro.\n" + e.getMessage(), "Aviso", 2);
+            erro = true;
+            u.limparTextFields(this);
         }
         
         if(!erro)
@@ -425,19 +397,25 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCadastrarActionPerformed
+    {//GEN-HEADEREND:event_btnCadastrarActionPerformed
+        FormCadastrarFuncionario fcf = new FormCadastrarFuncionario();
+        this.getDesktopPane().add(fcf);
+        fcf.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
+        fcf.setVisible(true);
+    }//GEN-LAST:event_btnCadastrarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
+    private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnPesquisarTudo;
     private javax.swing.JScrollPane jScrollPane;
-    private javax.swing.JLabel lblTermo;
+    private javax.swing.JLabel lblTermoProduto;
     private javax.swing.ButtonGroup pesquisarButtonGroup;
-    private javax.swing.JPanel pesquisarPanel;
-    private javax.swing.JRadioButton rbtCdFuncionario;
-    private javax.swing.JRadioButton rbtNmFuncionario;
     private javax.swing.JTable tabelaFuncionario;
-    private javax.swing.JTextField txtTermo;
+    private javax.swing.JTextField txtTermoProduto;
     // End of variables declaration//GEN-END:variables
 }

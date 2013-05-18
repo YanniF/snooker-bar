@@ -1,6 +1,9 @@
 package forms;
 
+import classes.Conexao;
 import classes.Utilitarios;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,7 +15,7 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
      * Creates new form FormCadastrarFuncionario
      */
     
-    Utilitarios m = new Utilitarios();
+    Utilitarios u = new Utilitarios();
     
     public FormCadastrarFuncionario() {
         initComponents();
@@ -94,9 +97,23 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
 
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.setToolTipText("Clique aqui para cadastrar o funcionário");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
 
         btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/procurar.png"))); // NOI18N
         btnPesquisar.setToolTipText("Clique aqui para pesquisar o usuário");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
 
         txtNmCargo.setToolTipText("Digite o nome do funcionário");
 
@@ -182,11 +199,69 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        m.limparTextFields(this);       
+        u.limparTextFields(this);       
         txtCdCpfFuncionario.setValue("");
         txtCdTelefoneFuncionario.setValue("");
         txtCdFuncionario.requestFocus(); 
     }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarActionPerformed
+    {//GEN-HEADEREND:event_btnPesquisarActionPerformed
+        FormSelecionarUsuario fsu = new FormSelecionarUsuario();
+        this.getDesktopPane().add(fsu);
+        fsu.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
+        fsu.setVisible(true);
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCadastrarActionPerformed
+    {//GEN-HEADEREND:event_btnCadastrarActionPerformed
+        int cod;
+        String nome;
+        String cargo;
+        String cpf;
+        String tel;
+        int user; 
+        String sql; 
+        
+        try
+        {
+            cod = Integer.parseInt(txtCdFuncionario.getText());
+            nome = txtNmFuncionario.getText();
+            cargo = txtNmCargo.getText();
+            cpf = txtCdCpfFuncionario.getText();//pega o valor
+            tel = txtCdTelefoneFuncionario.getText();
+            
+            cpf = cpf.replaceAll("\\.", "").replaceAll("-", "");//tira os pontos e o traço
+            tel = tel.replaceAll("\\(", "").replaceAll("\\)", "").replaceAll("-", "").replaceAll(" ", "");
+            
+            if(txtCdUsuario.getText().equals("")) 
+            {//se não foi digitado nada no código
+                sql = "INSERT INTO funcionario (cd_funcionario, nm_funcionario, cd_telefone_funcionario, cd_cpf_funcionario, nm_cargo_funcionario)"
+                   + " VALUES(" + cod + ", UPPER('" + nome + "'), " + tel + ", " + cpf + ", UPPER('" + cargo + "'))" ;
+            }
+            else 
+            {                
+                user = Integer.parseInt(txtCdUsuario.getText());
+                sql = "INSERT INTO funcionario VALUES(" + cod + ", UPPER('" + nome + "'), " + tel + ", " + cpf + ", UPPER('" + cargo + "'), " + user + ")" ;
+            } 
+            
+            if(Conexao.atualizar(sql) == -1)
+            {
+                JOptionPane.showMessageDialog(null, "O registro não pode ser inserido.\n" + Conexao.getErro(), "Cadastro", 0);
+                btnLimparActionPerformed(evt);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
+                btnLimparActionPerformed(evt);  
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(this, "Erro: \n" + e.getMessage(), "Erro!", 0);
+            u.limparTextFields(this);
+        }
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;

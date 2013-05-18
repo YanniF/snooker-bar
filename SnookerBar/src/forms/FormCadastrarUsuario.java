@@ -6,8 +6,6 @@ package forms;
 
 import classes.Conexao;
 import classes.Utilitarios;
-import java.security.MessageDigest;
-import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -140,9 +138,9 @@ public class FormCadastrarUsuario extends javax.swing.JInternalFrame {
                                     .addComponent(txtNmSenhaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(btnCadastrar)
-                        .addGap(29, 29, 29)
-                        .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -202,8 +200,7 @@ public class FormCadastrarUsuario extends javax.swing.JInternalFrame {
             }
             
             String sql = "INSERT INTO USUARIO VALUES(" + cod + ", LOWER('" + nome + "'), '" + Utilitarios.md5Java(senha) + "', UPPER('" + admin + "'))";
-            //ResultSet res = ; 
-            
+                        
             if(Conexao.atualizar(sql) == -1)
             {
                 JOptionPane.showMessageDialog(null, "Registro já existente.", "Cadastro", 0);
