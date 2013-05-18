@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package forms;
 
 import classes.Conexao;
@@ -9,7 +5,6 @@ import classes.Utilitarios;
 import javax.swing.JOptionPane;
 
 /**
- *
  * @author Yanni
  */
 public class FormCadastrarProduto extends javax.swing.JInternalFrame {
@@ -154,7 +149,7 @@ public class FormCadastrarProduto extends javax.swing.JInternalFrame {
                         
             if(Conexao.atualizar(sql) == -1)
             {
-                JOptionPane.showMessageDialog(null, "O registro não pode ser inserido.", "Cadastro", 0);
+                JOptionPane.showMessageDialog(null, "O registro não pode ser inserido: \n" + Conexao.getErro(), "Cadastro", 0);
                 btnLimparActionPerformed(evt);
             }
             else

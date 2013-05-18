@@ -11,14 +11,13 @@ import javax.swing.JOptionPane;
  */
 public class Conexao {
     
-    private static String erro;    
+    private static Connection conexao;
+    private static String erro;   
+    
     public static String getErro(){
         return  erro;
     }
-    
-    private static Connection conexao;
-    //criar um objeto do tipo usuário, onde tem se ele é adm e o nome 
-    
+        
     public static void conectar(String user, String pass) throws Exception
     {
         try
@@ -47,10 +46,13 @@ public class Conexao {
     {
         try
         {
-            return conexao.createStatement().executeQuery(sql);      
+            ResultSet rs = conexao.createStatement().executeQuery(sql);
+            erro = "";
+            return rs;      
         }
         catch(SQLException e)
         {
+            erro = e.getMessage();
             return null;
         }
     }

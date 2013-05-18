@@ -7,7 +7,6 @@ package forms;
 
 import classes.Conexao;
 import classes.Utilitarios;
-import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 
@@ -166,7 +165,7 @@ public class FormCadastrarComanda extends javax.swing.JInternalFrame {
                         
             if(Conexao.atualizar(sql) == -1)
             {
-                JOptionPane.showMessageDialog(null, "O registro não pode ser inserido.", "Cadastro", 0);
+                JOptionPane.showMessageDialog(null, "O registro não pode ser inserido:\n" + Conexao.getErro(), "Cadastro", 0);
                 btnLimparActionPerformed(evt);
             }
             else

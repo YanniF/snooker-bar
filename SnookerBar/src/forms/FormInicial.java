@@ -1,5 +1,6 @@
 package forms;
 
+import classes.Conexao;
 import classes.Usuarios;
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
@@ -279,6 +280,7 @@ public class FormInicial extends javax.swing.JFrame {
         this.dispose();
         Usuarios.adm = false;
         Usuarios.nome = null;
+        Conexao.desconectar();
         
         FormLogin fl = new FormLogin();
         fl.setVisible(true);

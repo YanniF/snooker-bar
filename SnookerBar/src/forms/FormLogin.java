@@ -18,7 +18,6 @@ import javax.swing.JOptionPane;
 public class FormLogin extends javax.swing.JFrame {
 
     Utilitarios u = new Utilitarios();
-    Conexao con = new Conexao();
     
     /**
      * Creates new form FormLogin

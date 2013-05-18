@@ -64,7 +64,7 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Consultar Funcionario");
+        setTitle("Consultar Funcionário");
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
@@ -107,6 +107,8 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane.setViewportView(tabelaFuncionario);
+        tabelaFuncionario.getColumnModel().getColumn(0).setPreferredWidth(20);
+        tabelaFuncionario.getColumnModel().getColumn(5).setPreferredWidth(20);
 
         btnExcluir.setText("Excluir");
         btnExcluir.setToolTipText("Selecione a linha e clique aqui para excluir o funcionário");
@@ -167,10 +169,6 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(29, 29, 29)
@@ -191,6 +189,7 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
                             .addComponent(btnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
                             .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(170, 170, 170))
+            .addComponent(jScrollPane, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,7 +258,7 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
             ResultSet res = Conexao.consultar(sql);            
          
             if(Conexao.consultar(sql) == null){
-                JOptionPane.showMessageDialog(null, "Erro na consulta.", "Erro!", 0);
+                JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + Conexao.getErro(), "Erro!", 0);
             }
             else
             { 
@@ -270,8 +269,8 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
                         modelo.addRow(new Object[] {
                             res.getInt("cd_funcionario"),
                             res.getString("nm_funcionario"),
-                            res.getString("cd_telefone_funcionario"),
-                            res.getString("cd_cpf_funcionario"),
+                            formatarTelefone(res.getString("cd_telefone_funcionario")),
+                            formatarCpf(res.getString("cd_cpf_funcionario")),
                             res.getString("nm_cargo_funcionario"),
                             res.getInt("cd_usuario"),                            
                         });
@@ -289,7 +288,7 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null, "Erro na consulta. \n" + e.getMessage(), "Erro!", 0);
+            JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + e.getMessage(), "Erro!", 0);
         }
     }//GEN-LAST:event_btnPesquisarTudoActionPerformed
 
@@ -321,14 +320,13 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null, "Erro.\n" + e.getMessage(), "Aviso", 2);
+            JOptionPane.showMessageDialog(null, "Erro: \n" + e.getMessage(), "Erro", 0);
             erro = true;
             u.limparTextFields(this);
         }
         
         if(!erro)
         {
-            String admin;
             modelo = (DefaultTableModel) tabelaFuncionario.getModel();
             modelo.setRowCount(0);
 
@@ -338,7 +336,7 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
 
                 if(Conexao.consultar(sql) == null)
                 {
-                    JOptionPane.showMessageDialog(null, "Não há linhas selecionadas.", "Erro!", 0);
+                    JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + Conexao.getErro(), "Erro!", 0);
                 }
                 else
                 { 
@@ -349,8 +347,8 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
                              modelo.addRow(new Object[] {
                                 res.getInt("cd_funcionario"),
                                 res.getString("nm_funcionario"),
-                                res.getString("cd_telefone_funcionario"),
-                                res.getString("cd_cpf_funcionario"),
+                                formatarTelefone(res.getString("cd_telefone_funcionario")),
+                                formatarCpf(res.getString("cd_cpf_funcionario")),
                                 res.getString("nm_cargo_funcionario"),
                                 res.getInt("cd_usuario"),                            
                             });
@@ -358,13 +356,13 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
                     }
                     else
                     {
-                        JOptionPane.showMessageDialog(null, "Dado não encontrado.", "Aviso", 1);
+                        JOptionPane.showMessageDialog(null, "Registro não encontrado.", "Aviso", 1);
                     }
                 }
             }
             catch(Exception e)
             {
-                JOptionPane.showMessageDialog(null, "Erro na consulta. \n" + e.getMessage(), "Erro!", 0);
+                JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + e.getMessage(), "Erro!", 0);
             }
          }
     }//GEN-LAST:event_btnPesquisarActionPerformed
@@ -404,7 +402,47 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
         fcf.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
         fcf.setVisible(true);
     }//GEN-LAST:event_btnCadastrarActionPerformed
-
+ 
+    private String formatarCpf(String cpf)
+    {
+        String aux [] = cpf.split("");
+        String cpf2 = "";
+        
+        for (int c = 1; c < aux.length; c++)
+        {            
+            cpf2 += aux[c];
+            
+            if(c == 9) {
+                cpf2 += "-";
+            }            
+            else if (c % 3 == 0) {
+                cpf2 += ".";
+            }
+        }
+        return cpf2;
+    }
+    
+    private String formatarTelefone(String tel)
+    {
+        String aux [] = tel.split("");
+        String tel2 = "";
+        
+        for (int c = 1; c < aux.length; c++)
+        {        
+            if(c == 1) {
+                tel2 += "(";
+            }
+            tel2 += aux[c];
+            
+            if(c == 2) {
+                tel2 += ") ";
+            }  
+            else if (c == 6) {
+                tel2 += "-";
+            }
+        }
+        return tel2;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCadastrar;

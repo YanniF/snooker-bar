@@ -236,7 +236,7 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
             ResultSet res = Conexao.consultar(sql);            
          
             if(Conexao.consultar(sql) == null){
-                JOptionPane.showMessageDialog(null, "Erro na consulta.", "Erro!", 0);
+                JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + Conexao.getErro(), "Erro!", 0);
             }
             else
             { 
@@ -270,7 +270,7 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null, "Erro na consulta. \n" + e.getMessage(), "Erro!", 0);
+            JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + e.getMessage(), "Erro!", 0);
         }
     }//GEN-LAST:event_btnPesquisarTudoActionPerformed
 
@@ -316,7 +316,7 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null, "Erro.\n" + e.getMessage(), "Aviso", 2);
+            JOptionPane.showMessageDialog(null, "Erro: \n" + e.getMessage(), "Erro", 0);
             erro = true;
             u.limparTextFields(this);
         }
@@ -333,7 +333,7 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
 
                 if(Conexao.consultar(sql) == null)
                 {
-                    JOptionPane.showMessageDialog(null, "Não há linhas selecionadas.", "Erro!", 0);
+                    JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + Conexao.getErro(), "Erro!", 0);
                 }
                 else
                 { 
@@ -357,13 +357,13 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
                     }
                     else
                     {
-                        JOptionPane.showMessageDialog(null, "Dado não encontrado.", "Aviso", 1);
+                        JOptionPane.showMessageDialog(null, "Registro não encontrado.", "Aviso", 1);
                     }
                 }
             }
             catch(Exception e)
             {
-                JOptionPane.showMessageDialog(null, "Erro na consulta. \n" + e.getMessage(), "Erro!", 0);
+                JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + e.getMessage(), "Erro!", 0);
             }
          }
     }//GEN-LAST:event_btnPesquisarActionPerformed
