@@ -11,6 +11,8 @@
 package forms;
 
 import classes.Conexao;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -33,8 +35,7 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jLabelComanda = new javax.swing.JLabel();
         jButtonAbrir = new javax.swing.JButton();
@@ -42,15 +43,31 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle("Abertura de Comanda");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosed(evt);
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
 
         jLabelComanda.setText("Comanda:");
 
         jButtonAbrir.setText("Abrir");
         jButtonAbrir.setToolTipText("Clique aqui para abrir");
-        jButtonAbrir.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButtonAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAbrirActionPerformed(evt);
             }
         });
@@ -80,7 +97,7 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
                     .addComponent(jTextFieldComanda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButtonAbrir)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -111,6 +128,32 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButtonAbrirActionPerformed
     
+    //Executa essas instruções ao abrir o internalFrame
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        //Conecta com o Banco
+        try {
+            Conexao.conectar("snooker", "snooker"); 
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "Erro ao tentar conectar "+e.getMessage(),
+                    "Erro",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_formInternalFrameOpened
+
+    //Executa essas instruções ao fechar o internalFrame
+    private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
+        //Desconecta com o Banco
+        try {
+            Conexao.desconectar();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "Erro ao tentar desconectar "+e.getMessage(),
+                    "Erro",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_formInternalFrameClosed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAbrir;
     private javax.swing.JLabel jLabelComanda;
