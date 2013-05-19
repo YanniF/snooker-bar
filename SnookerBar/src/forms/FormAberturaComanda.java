@@ -130,28 +130,12 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
     
     //Executa essas instruções ao abrir o internalFrame
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-        //Conecta com o Banco
-        try {
-            Conexao.conectar("snooker", "snooker"); 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,
-                    "Erro ao tentar conectar "+e.getMessage(),
-                    "Erro",
-                    JOptionPane.ERROR_MESSAGE);
-        }
+        //fazia conexão com o banco, foi removido
     }//GEN-LAST:event_formInternalFrameOpened
 
     //Executa essas instruções ao fechar o internalFrame
     private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
-        //Desconecta com o Banco
-        try {
-            Conexao.desconectar();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,
-                    "Erro ao tentar desconectar "+e.getMessage(),
-                    "Erro",
-                    JOptionPane.ERROR_MESSAGE);
-        }
+        //fazia desconexão com o banco, foi removido
     }//GEN-LAST:event_formInternalFrameClosed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
