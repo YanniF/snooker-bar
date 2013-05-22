@@ -138,6 +138,11 @@ public class FormInicial extends javax.swing.JFrame {
 
         menuIniciarAtendimento.setText("Iniciar");
         menuIniciarAtendimento.setToolTipText("Iniciar");
+        menuIniciarAtendimento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuIniciarAtendimentoActionPerformed(evt);
+            }
+        });
         menuAtendimento.add(menuIniciarAtendimento);
 
         menuConsultarAtendimento.setText("Consultar");
@@ -333,6 +338,11 @@ public class FormInicial extends javax.swing.JFrame {
         FormSelecionarProduto fsp = new FormSelecionarProduto();
         adicionarJInternalFrame(fsp);
     }//GEN-LAST:event_menuConsultarProdutoActionPerformed
+
+    private void menuIniciarAtendimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIniciarAtendimentoActionPerformed
+        FormIniciarAtendimento fia = new FormIniciarAtendimento();
+        adicionarJInternalFrame(fia);
+    }//GEN-LAST:event_menuIniciarAtendimentoActionPerformed
 
     /**
      * @param args the command line arguments
