@@ -26,11 +26,10 @@ public class FormCadastrarUsuario extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         administradorbuttonGroup = new javax.swing.ButtonGroup();
-        lblCdUsuario = new javax.swing.JLabel();
-        txtCdUsuario = new javax.swing.JTextField();
         txtNmLoginUsuario = new javax.swing.JTextField();
         lblNmLoginUsuario = new javax.swing.JLabel();
         lblSenhaUsuario = new javax.swing.JLabel();
@@ -44,10 +43,6 @@ public class FormCadastrarUsuario extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Cadastrar Usuário");
-
-        lblCdUsuario.setText("Código:");
-
-        txtCdUsuario.setToolTipText("Digite o código do usuário");
 
         txtNmLoginUsuario.setToolTipText("Digite o nome do usuário");
 
@@ -92,16 +87,20 @@ public class FormCadastrarUsuario extends javax.swing.JInternalFrame {
 
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.setToolTipText("Clique aqui para cadastrar o usuário");
-        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnCadastrarActionPerformed(evt);
             }
         });
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
-        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnLimpar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnLimparActionPerformed(evt);
             }
         });
@@ -114,13 +113,9 @@ public class FormCadastrarUsuario extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNmLoginUsuario)
-                            .addComponent(lblCdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNmLoginUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblNmLoginUsuario)
+                        .addGap(12, 12, 12)
+                        .addComponent(txtNmLoginUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblSenhaUsuario)
                         .addGap(18, 18, 18)
@@ -138,11 +133,7 @@ public class FormCadastrarUsuario extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCdUsuario))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNmLoginUsuario)
                     .addComponent(txtNmLoginUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -156,17 +147,17 @@ public class FormCadastrarUsuario extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrar)
                     .addComponent(btnLimpar))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-254)/2, (screenSize.height-335)/2, 254, 335);
+        setBounds((screenSize.width-254)/2, (screenSize.height-294)/2, 254, 294);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         
         u.limparTextFields(this);
-        txtCdUsuario.requestFocus();
+        txtNmLoginUsuario.requestFocus();
         rbtSim.setSelected(true);
     }//GEN-LAST:event_btnLimparActionPerformed
 
@@ -179,7 +170,6 @@ public class FormCadastrarUsuario extends javax.swing.JInternalFrame {
         
         try
         {
-            cod = Integer.parseInt(txtCdUsuario.getText());
             nome = txtNmLoginUsuario.getText();
             senha = String.valueOf(txtNmSenhaUsuario.getPassword());
             
@@ -191,7 +181,7 @@ public class FormCadastrarUsuario extends javax.swing.JInternalFrame {
                 admin = 'n';
             }
             
-            String sql = "INSERT INTO USUARIO VALUES(" + cod + ", LOWER('" + nome + "'), '" + Utilitarios.md5Java(senha) + "', UPPER('" + admin + "'))";
+            String sql = "INSERT INTO USUARIO VALUES(USUARIO_SEQ.NEXTVAL, LOWER('" + nome + "'), '" + Utilitarios.md5Java(senha) + "', UPPER('" + admin + "'))";
                         
             if(Conexao.atualizar(sql) == -1)
             {
@@ -216,12 +206,10 @@ public class FormCadastrarUsuario extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup administradorbuttonGroup;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnLimpar;
-    private javax.swing.JLabel lblCdUsuario;
     private javax.swing.JLabel lblNmLoginUsuario;
     private javax.swing.JLabel lblSenhaUsuario;
     private javax.swing.JRadioButton rbtNao;
     private javax.swing.JRadioButton rbtSim;
-    private javax.swing.JTextField txtCdUsuario;
     private javax.swing.JTextField txtNmLoginUsuario;
     private javax.swing.JPasswordField txtNmSenhaUsuario;
     // End of variables declaration//GEN-END:variables

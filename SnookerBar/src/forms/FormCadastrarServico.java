@@ -30,8 +30,6 @@ public class FormCadastrarServico extends javax.swing.JInternalFrame {
     private void initComponents()
     {
 
-        lblCdServico = new javax.swing.JLabel();
-        txtCdServico = new javax.swing.JTextField();
         lblNmServico = new javax.swing.JLabel();
         txtNmServico = new javax.swing.JTextField();
         lblVlServico = new javax.swing.JLabel();
@@ -42,10 +40,6 @@ public class FormCadastrarServico extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Cadastrar Serviço");
-
-        lblCdServico.setText("Código:");
-
-        txtCdServico.setToolTipText("Digite o código do serviço");
 
         lblNmServico.setText("Nome:");
 
@@ -85,27 +79,21 @@ public class FormCadastrarServico extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNmServico, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblCdServico, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblVlServico, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtVlServico, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                            .addComponent(txtCdServico, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNmServico, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNmServico)
+                            .addComponent(txtVlServico)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnCadastrar)
                         .addGap(18, 18, 18)
                         .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCdServico)
-                    .addComponent(txtCdServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNmServico)
                     .addComponent(txtNmServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -113,11 +101,11 @@ public class FormCadastrarServico extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtVlServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblVlServico))
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrar)
                     .addComponent(btnLimpar))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -126,7 +114,7 @@ public class FormCadastrarServico extends javax.swing.JInternalFrame {
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         u.limparTextFields(this);
-        txtCdServico.requestFocus();
+        txtNmServico.requestFocus();
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCadastrarActionPerformed
@@ -137,11 +125,10 @@ public class FormCadastrarServico extends javax.swing.JInternalFrame {
         
         try
         {
-            cod = Integer.parseInt(txtCdServico.getText());
             nome = txtNmServico.getText();
             valor = Double.parseDouble(txtVlServico.getText());
             
-            String sql = "INSERT INTO SERVICO VALUES(" + cod + ", UPPER('" + nome + "'), " + valor + ")";
+            String sql = "INSERT INTO SERVICO VALUES(SERVICO_SEQ.NEXTVAL, UPPER('" + nome + "'), " + valor + ")";
             
             if(Conexao.atualizar(sql) == -1)
             {
@@ -164,10 +151,8 @@ public class FormCadastrarServico extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnLimpar;
-    private javax.swing.JLabel lblCdServico;
     private javax.swing.JLabel lblNmServico;
     private javax.swing.JLabel lblVlServico;
-    private javax.swing.JTextField txtCdServico;
     private javax.swing.JTextField txtNmServico;
     private javax.swing.JTextField txtVlServico;
     // End of variables declaration//GEN-END:variables

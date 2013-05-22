@@ -29,8 +29,6 @@ public class FormCadastrarProduto extends javax.swing.JInternalFrame {
     private void initComponents()
     {
 
-        lblCdProduto = new javax.swing.JLabel();
-        txtCdProduto = new javax.swing.JTextField();
         lblNmProduto = new javax.swing.JLabel();
         txtNmProduto = new javax.swing.JTextField();
         lblVlProduto = new javax.swing.JLabel();
@@ -41,10 +39,6 @@ public class FormCadastrarProduto extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Cadastrar Produto");
-
-        lblCdProduto.setText("Código:");
-
-        txtCdProduto.setToolTipText("Digite o código do produto");
 
         lblNmProduto.setText("Nome:");
 
@@ -79,37 +73,29 @@ public class FormCadastrarProduto extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblNmProduto)
-                            .addComponent(lblCdProduto))
+                        .addComponent(lblNmProduto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNmProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                            .addComponent(txtCdProduto)))
+                        .addComponent(txtNmProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
+                        .addGap(3, 3, 3)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblVlProduto)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtVlProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnCadastrar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                                .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblVlProduto)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtVlProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCdProduto)
-                    .addComponent(txtCdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNmProduto)
                     .addComponent(txtNmProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -121,16 +107,16 @@ public class FormCadastrarProduto extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrar)
                     .addComponent(btnLimpar))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-218)/2, (screenSize.height-211)/2, 218, 211);
+        setBounds((screenSize.width-218)/2, (screenSize.height-181)/2, 218, 181);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         u.limparTextFields(this);
-        txtCdProduto.requestFocus();
+        txtNmProduto.requestFocus();
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCadastrarActionPerformed
@@ -141,11 +127,10 @@ public class FormCadastrarProduto extends javax.swing.JInternalFrame {
         
         try
         {
-            cod = Integer.parseInt(txtCdProduto.getText());
             nome = txtNmProduto.getText();
             valor = Double.parseDouble(txtVlProduto.getText());
             
-            String sql = "INSERT INTO PRODUTO VALUES(" + cod + ", UPPER('" + nome + "'), " + valor + ")";
+            String sql = "INSERT INTO PRODUTO VALUES(PRODUTO_SEQ.NEXTVAL, UPPER('" + nome + "'), " + valor + ")";
                         
             if(Conexao.atualizar(sql) == -1)
             {
@@ -168,10 +153,8 @@ public class FormCadastrarProduto extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnLimpar;
-    private javax.swing.JLabel lblCdProduto;
     private javax.swing.JLabel lblNmProduto;
     private javax.swing.JLabel lblVlProduto;
-    private javax.swing.JTextField txtCdProduto;
     private javax.swing.JTextField txtNmProduto;
     private javax.swing.JTextField txtVlProduto;
     // End of variables declaration//GEN-END:variables
