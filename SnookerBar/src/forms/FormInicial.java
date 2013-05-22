@@ -26,11 +26,11 @@ public class FormInicial extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         desktopPane = new javax.swing.JDesktopPane();
         lblBemVindo = new javax.swing.JLabel();
-        btnSair = new javax.swing.JButton();
         menuPrincipal = new javax.swing.JMenuBar();
         menuComanda = new javax.swing.JMenu();
         menuAberturaComanda = new javax.swing.JMenu();
@@ -59,29 +59,22 @@ public class FormInicial extends javax.swing.JFrame {
         menuConsultarUsuario = new javax.swing.JMenuItem();
         menuFuncionario = new javax.swing.JMenu();
         menuConsultarFuncionario = new javax.swing.JMenuItem();
+        menuSair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kuka & Beludo Snooker Bar - Menu Principal");
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
+        addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowOpened(java.awt.event.WindowEvent evt)
+            {
                 formWindowOpened(evt);
             }
         });
 
-        lblBemVindo.setFont(new java.awt.Font("Tahoma", 0, 18));
+        lblBemVindo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblBemVindo.setForeground(new java.awt.Color(255, 255, 255));
         lblBemVindo.setBounds(40, 40, 260, 40);
         desktopPane.add(lblBemVindo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        btnSair.setText("Sair");
-        btnSair.setToolTipText("Clique aqui para sair");
-        btnSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSairActionPerformed(evt);
-            }
-        });
-        btnSair.setBounds(500, 20, 70, -1);
-        desktopPane.add(btnSair, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         menuComanda.setText("Comanda");
         menuComanda.setToolTipText("Comanda");
@@ -91,8 +84,10 @@ public class FormInicial extends javax.swing.JFrame {
 
         menuAbrirComanda.setText("Abrir");
         menuAbrirComanda.setToolTipText("Abrir");
-        menuAbrirComanda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        menuAbrirComanda.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 menuAbrirComandaActionPerformed(evt);
             }
         });
@@ -104,8 +99,10 @@ public class FormInicial extends javax.swing.JFrame {
 
         menuAlterarAberturaComanda.setText("Alterar");
         menuAlterarAberturaComanda.setToolTipText("Alterar");
-        menuAlterarAberturaComanda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        menuAlterarAberturaComanda.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 menuAlterarAberturaComandaActionPerformed(evt);
             }
         });
@@ -113,8 +110,10 @@ public class FormInicial extends javax.swing.JFrame {
 
         menuFecharAberturaComanda.setText("Fechar");
         menuFecharAberturaComanda.setToolTipText("Fechar");
-        menuFecharAberturaComanda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        menuFecharAberturaComanda.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 menuFecharAberturaComandaActionPerformed(evt);
             }
         });
@@ -124,8 +123,10 @@ public class FormInicial extends javax.swing.JFrame {
 
         menuConsultarComanda.setText("Consultar");
         menuConsultarComanda.setToolTipText("Consultar");
-        menuConsultarComanda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        menuConsultarComanda.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 menuConsultarComandaActionPerformed(evt);
             }
         });
@@ -138,8 +139,10 @@ public class FormInicial extends javax.swing.JFrame {
 
         menuIniciarAtendimento.setText("Iniciar");
         menuIniciarAtendimento.setToolTipText("Iniciar");
-        menuIniciarAtendimento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        menuIniciarAtendimento.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 menuIniciarAtendimentoActionPerformed(evt);
             }
         });
@@ -185,8 +188,10 @@ public class FormInicial extends javax.swing.JFrame {
 
         menuConsultarMesa.setText("Consultar");
         menuConsultarMesa.setToolTipText("Consultar");
-        menuConsultarMesa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        menuConsultarMesa.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 menuConsultarMesaActionPerformed(evt);
             }
         });
@@ -199,8 +204,10 @@ public class FormInicial extends javax.swing.JFrame {
 
         menuConsultarProduto.setText("Consultar");
         menuConsultarProduto.setToolTipText("Consultar produto");
-        menuConsultarProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        menuConsultarProduto.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 menuConsultarProdutoActionPerformed(evt);
             }
         });
@@ -213,8 +220,10 @@ public class FormInicial extends javax.swing.JFrame {
 
         menuConsultarServico.setText("Consultar");
         menuConsultarServico.setToolTipText("Consultar serviço");
-        menuConsultarServico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        menuConsultarServico.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 menuConsultarServicoActionPerformed(evt);
             }
         });
@@ -227,8 +236,10 @@ public class FormInicial extends javax.swing.JFrame {
 
         menuConsultarUsuario.setText("Consultar");
         menuConsultarUsuario.setToolTipText("Consultar usuário");
-        menuConsultarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        menuConsultarUsuario.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 menuConsultarUsuarioActionPerformed(evt);
             }
         });
@@ -241,14 +252,26 @@ public class FormInicial extends javax.swing.JFrame {
 
         menuConsultarFuncionario.setText("Consultar");
         menuConsultarFuncionario.setToolTipText("Consultar funcionário");
-        menuConsultarFuncionario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        menuConsultarFuncionario.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 menuConsultarFuncionarioActionPerformed(evt);
             }
         });
         menuFuncionario.add(menuConsultarFuncionario);
 
         menuPrincipal.add(menuFuncionario);
+
+        menuSair.setText("Sair");
+        menuSair.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                menuSairMouseClicked(evt);
+            }
+        });
+        menuPrincipal.add(menuSair);
 
         setJMenuBar(menuPrincipal);
 
@@ -308,17 +331,6 @@ public class FormInicial extends javax.swing.JFrame {
         adicionarJInternalFrame(fsf);
     }//GEN-LAST:event_menuConsultarFuncionarioActionPerformed
 
-    private void btnSairActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnSairActionPerformed
-    {//GEN-HEADEREND:event_btnSairActionPerformed
-        this.dispose();
-        Usuarios.adm = false;
-        Usuarios.nome = null;
-        Conexao.desconectar();
-        
-        FormLogin fl = new FormLogin();
-        fl.setVisible(true);
-    }//GEN-LAST:event_btnSairActionPerformed
-
     private void menuAbrirComandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAbrirComandaActionPerformed
         FormAberturaComanda fac = new FormAberturaComanda();
         adicionarJInternalFrame(fac);
@@ -344,12 +356,22 @@ public class FormInicial extends javax.swing.JFrame {
         adicionarJInternalFrame(fia);
     }//GEN-LAST:event_menuIniciarAtendimentoActionPerformed
 
+    private void menuSairMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_menuSairMouseClicked
+    {//GEN-HEADEREND:event_menuSairMouseClicked
+        this.dispose();
+        Usuarios.adm = false;
+        Usuarios.nome = null;
+        Conexao.desconectar();
+        
+        FormLogin fl = new FormLogin();
+        fl.setVisible(true);
+    }//GEN-LAST:event_menuSairMouseClicked
+
     /**
      * @param args the command line arguments
      */
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSair;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JLabel lblBemVindo;
     private javax.swing.JMenu menuAberturaComanda;
@@ -378,6 +400,7 @@ public class FormInicial extends javax.swing.JFrame {
     private javax.swing.JMenu menuMesa;
     private javax.swing.JMenuBar menuPrincipal;
     private javax.swing.JMenu menuProduto;
+    private javax.swing.JMenu menuSair;
     private javax.swing.JMenu menuServico;
     private javax.swing.JMenu menuUsuario;
     // End of variables declaration//GEN-END:variables

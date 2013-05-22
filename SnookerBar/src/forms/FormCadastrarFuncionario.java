@@ -28,10 +28,9 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
-        lblCdFuncionario = new javax.swing.JLabel();
-        txtCdFuncionario = new javax.swing.JTextField();
         lblNmFuncionario = new javax.swing.JLabel();
         txtNmFuncionario = new javax.swing.JTextField();
         lblCdCpfFuncionario = new javax.swing.JLabel();
@@ -50,28 +49,28 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setTitle("Cadastrar Funcionário");
 
-        lblCdFuncionario.setText("Código:");
-
-        txtCdFuncionario.setToolTipText("Digite o código do funcionário");
-
         lblNmFuncionario.setText("Nome:");
 
         txtNmFuncionario.setToolTipText("Digite o nome do funcionário");
 
         lblCdCpfFuncionario.setText("CPF:");
 
-        try {
+        try
+        {
             txtCdCpfFuncionario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
+        } catch (java.text.ParseException ex)
+        {
             ex.printStackTrace();
         }
         txtCdCpfFuncionario.setToolTipText("Digite o CPF do funcionário");
 
         lblCdTelefoneFuncionario.setText("Telefone:");
 
-        try {
+        try
+        {
             txtCdTelefoneFuncionario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
-        } catch (java.text.ParseException ex) {
+        } catch (java.text.ParseException ex)
+        {
             ex.printStackTrace();
         }
         txtCdTelefoneFuncionario.setToolTipText("Digite o telefone do funcionário");
@@ -82,24 +81,30 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
-        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnLimpar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnLimparActionPerformed(evt);
             }
         });
 
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.setToolTipText("Clique aqui para cadastrar o funcionário");
-        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnCadastrarActionPerformed(evt);
             }
         });
 
         btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/procurar.png"))); // NOI18N
         btnPesquisar.setToolTipText("Clique aqui para pesquisar o usuário");
-        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnPesquisarActionPerformed(evt);
             }
         });
@@ -121,11 +126,9 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
                             .addComponent(lblCdTelefoneFuncionario)
                             .addComponent(lblCdCpfFuncionario)
                             .addComponent(lblNmFuncionario)
-                            .addComponent(lblCdFuncionario)
                             .addComponent(lblNmCargo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCdFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNmFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCdCpfFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCdTelefoneFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -139,16 +142,12 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(65, 65, 65)
                         .addComponent(btnCadastrar)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCdFuncionario)
-                    .addComponent(txtCdFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNmFuncionario)
                     .addComponent(txtNmFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -174,18 +173,18 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrar)
                     .addComponent(btnLimpar))
-                .addGap(47, 47, 47))
+                .addGap(74, 74, 74))
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-399)/2, (screenSize.height-315)/2, 399, 315);
+        setBounds((screenSize.width-399)/2, (screenSize.height-301)/2, 399, 301);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         u.limparTextFields(this);       
         txtCdCpfFuncionario.setValue("");
         txtCdTelefoneFuncionario.setValue("");
-        txtCdFuncionario.requestFocus(); 
+        txtNmFuncionario.requestFocus(); 
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarActionPerformed
@@ -198,7 +197,6 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCadastrarActionPerformed
     {//GEN-HEADEREND:event_btnCadastrarActionPerformed
-        int cod;
         String nome;
         String cargo;
         String cpf;
@@ -208,7 +206,6 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
         
         try
         {
-            cod = Integer.parseInt(txtCdFuncionario.getText());
             nome = txtNmFuncionario.getText();
             cargo = txtNmCargo.getText();
             cpf = txtCdCpfFuncionario.getText();//pega o valor
@@ -220,12 +217,12 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
             if(txtCdUsuario.getText().equals("")) 
             {//se não foi digitado nada no código
                 sql = "INSERT INTO funcionario (cd_funcionario, nm_funcionario, cd_telefone_funcionario, cd_cpf_funcionario, nm_cargo_funcionario)"
-                   + " VALUES(" + cod + ", UPPER('" + nome + "'), " + tel + ", " + cpf + ", UPPER('" + cargo + "'))" ;
+                   + " VALUES(FUNCIONARIO_SEQ.NEXTVAL, UPPER('" + nome + "'), " + tel + ", " + cpf + ", UPPER('" + cargo + "'))" ;
             }
             else 
             {                
                 user = Integer.parseInt(txtCdUsuario.getText());
-                sql = "INSERT INTO funcionario VALUES(" + cod + ", UPPER('" + nome + "'), " + tel + ", " + cpf + ", UPPER('" + cargo + "'), " + user + ")" ;
+                sql = "INSERT INTO funcionario VALUES(FUNCIONARIO_SEQ.NEXTVAL, UPPER('" + nome + "'), " + tel + ", " + cpf + ", UPPER('" + cargo + "'), " + user + ")" ;
             } 
             
             if(Conexao.atualizar(sql) == -1)
@@ -251,13 +248,11 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JLabel lblCdCpfFuncionario;
-    private javax.swing.JLabel lblCdFuncionario;
     private javax.swing.JLabel lblCdTelefoneFuncionario;
     private javax.swing.JLabel lblCdUsuario;
     private javax.swing.JLabel lblNmCargo;
     private javax.swing.JLabel lblNmFuncionario;
     private javax.swing.JFormattedTextField txtCdCpfFuncionario;
-    private javax.swing.JTextField txtCdFuncionario;
     private javax.swing.JFormattedTextField txtCdTelefoneFuncionario;
     private javax.swing.JTextField txtCdUsuario;
     private javax.swing.JTextField txtNmCargo;
