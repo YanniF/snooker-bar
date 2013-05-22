@@ -6,6 +6,7 @@ package forms;
 
 import classes.Conexao;
 import java.sql.ResultSet;
+import java.util.HashMap;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -44,11 +45,11 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
         jTextFieldQtd = new javax.swing.JTextField();
         jButtonIncluir = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jTextFieldNComanda = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jTextFieldVlUnitario = new javax.swing.JTextField();
+        jComboBoxComanda = new javax.swing.JComboBox();
 
         setClosable(true);
         setTitle("Iniciar Atendimento");
@@ -123,9 +124,6 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Nº Comanda:");
 
-        jTextFieldNComanda.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextFieldNComanda.setToolTipText("Digite o número da comanda");
-
         jButton2.setText("Limpar");
         jButton2.setToolTipText("Clique aqui para limpar os valores");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -146,6 +144,8 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
 
         jTextFieldVlUnitario.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextFieldVlUnitario.setText("10");
+
+        jComboBoxComanda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -180,10 +180,10 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBoxProdutos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldNComanda, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                                    .addComponent(jComboBoxProdutos, 0, 145, Short.MAX_VALUE)
                                     .addComponent(jTextFieldVlUnitario)
-                                    .addComponent(jTextFieldQtd))))
+                                    .addComponent(jTextFieldQtd)
+                                    .addComponent(jComboBoxComanda, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(0, 43, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -193,7 +193,7 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextFieldNComanda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxComanda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -263,14 +263,35 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private HashMap<Integer, Integer> comandas = new HashMap<Integer, Integer>(); 
+    
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         try {
+            
+            
+            //Pega o código de abertura comanda na tabela Abertura Comanda
+            
+            String sqlAbertComa = 
+                    "SELECT \"ABERTURA_COMANDA\".\"cd_abertura_comanda\", \"ABERTURA_COMANDA\".\"cd_comanda\" "
+                    + "FROM snooker.\"ABERTURA_COMANDA\" "
+                    + "WHERE \"ABERTURA_COMANDA\".\"dt_hora_fechar\" is null "
+                    + "ORDER BY \"ABERTURA_COMANDA\".\"cd_comanda\"";
+            ResultSet rs1 = Conexao.consultar(sqlAbertComa);
+            DefaultComboBoxModel model2 = (DefaultComboBoxModel) jComboBoxComanda.getModel();
+            model2.removeAllElements();
+            
+            comandas.clear();
+            while(rs1.next()){
+                comandas.put(rs1.getInt("cd_comanda"), rs1.getInt("cd_abertura_comanda")); 
+                model2.addElement(rs1.getInt("cd_comanda"));
+            }
+            
+            //Carrega o combo com o nome dos produtos
             DefaultComboBoxModel model = (DefaultComboBoxModel) jComboBoxProdutos.getModel();
             model.removeAllElements();
 
             String sql = "SELECT * FROM PRODUTO";
             ResultSet rs2 = Conexao.consultar(sql);
-            System.out.println("passou");
             while (rs2.next()) {
                 model.addElement(rs2.getString("NM_PRODUTO"));
             }
@@ -288,13 +309,15 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameClosed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        int cd_comanda = Integer.parseInt(jTextFieldNComanda.getText().toString());
-        int cd_abertura_comanda = 0;
+        
+//        int cd_comanda = Integer.parseInt(jTextFieldNComanda.getText().toString());
+        //int cd_abertura_comanda = 0;
         String nome = "";
         Double vlu = 0.0;
         Double vlt = 0.0;
         int qtd = 0;
         try {
+
             //Capturar os valores da tabela
             DefaultTableModel modelTable = (DefaultTableModel) jTable1.getModel();
 
@@ -310,18 +333,32 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
                         vlt = Double.parseDouble(modelTable.getValueAt(row, col).toString());
                     }
                 }
-                String sql = "INSERT INTO ATENDIMENTO VALUES (atendimento_seq.nextval," + qtd + ",null," + vlt + "," + cd_comanda + ",null,null," + cd_abertura_comanda + ")";
-                Conexao.consultar(sql);
+                
+                String sql = "INSERT INTO ATENDIMENTO VALUES (atendimento_seq.nextval," + qtd + ",null," + vlt + ",'"+nome+"',null," + comandas.get(jComboBoxComanda.getSelectedItem()) + " )";
+                if(Conexao.consultar(sql)==null){
+                    JOptionPane.showMessageDialog(null, "Erro no Insert");
+                    break;
+                }
+                
             }
+            jTextFieldVlUnitario.setText("");
+            jTextFieldQtd.setText("");
+            for(int i=0; i<modelTable.getRowCount();i++){
+            modelTable.removeRow(i);
+            }
+            jTextFieldSomaTotal.setText("");
+        
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro: \n" + e.getMessage(), "Erro!", 0);
         }
+        
 
     }//GEN-LAST:event_jButtonSalvarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonIncluir;
     private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JComboBox jComboBoxComanda;
     private javax.swing.JComboBox jComboBoxProdutos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -331,7 +368,6 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextFieldNComanda;
     private javax.swing.JTextField jTextFieldQtd;
     private javax.swing.JTextField jTextFieldSomaTotal;
     private javax.swing.JTextField jTextFieldVlUnitario;
