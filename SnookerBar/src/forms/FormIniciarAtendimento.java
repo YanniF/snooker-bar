@@ -72,6 +72,7 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
         jLabel2.setText("VALOR TOTAL R$:");
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField1.setToolTipText("Valor total");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -81,10 +82,14 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
         jLabel3.setText("Produto / Serviço:");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setToolTipText("Selecione o produto ou serviço");
 
         jLabel4.setText("Quantidade:");
 
+        jTextField2.setToolTipText("Digite a quantidade");
+
         jButton1.setText("Incluir");
+        jButton1.setToolTipText("Clique aqui para incluir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -93,7 +98,10 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Nº Comanda:");
 
+        jTextField3.setToolTipText("Digite o número da comanda");
+
         jButton2.setText("Limpar");
+        jButton2.setToolTipText("Clique aqui para limpar os valores");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -101,6 +109,7 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
         });
 
         jButton4.setText("Salvar");
+        jButton4.setToolTipText("Clique aqui para salvar ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

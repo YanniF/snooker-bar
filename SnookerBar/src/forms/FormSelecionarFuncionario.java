@@ -45,8 +45,7 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         pesquisarButtonGroup = new javax.swing.ButtonGroup();
         btnLimpar = new javax.swing.JButton();
@@ -68,41 +67,32 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
-        btnLimpar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparActionPerformed(evt);
             }
         });
 
         tabelaFuncionario.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
+            new Object [][] {
 
             },
-            new String []
-            {
+            new String [] {
                 "Código", "Nome", "Telefone", "CPF", "Cargo", "Usuário"
             }
-        )
-        {
-            Class[] types = new Class []
-            {
+        ) {
+            Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean []
-            {
+            boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
             };
 
-            public Class getColumnClass(int columnIndex)
-            {
+            public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
 
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
@@ -112,54 +102,44 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
 
         btnExcluir.setText("Excluir");
         btnExcluir.setToolTipText("Selecione a linha e clique aqui para excluir o funcionário");
-        btnExcluir.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);
             }
         });
 
         btnAlterar.setText("Alterar");
         btnAlterar.setToolTipText("Selecione a linha e clique aqui para alterar o funcionário");
-        btnAlterar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarActionPerformed(evt);
             }
         });
 
         btnPesquisarTudo.setText("Pesquisar tudo");
         btnPesquisarTudo.setToolTipText("Clique aqui para pesquisar todos os funcionários");
-        btnPesquisarTudo.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnPesquisarTudo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarTudoActionPerformed(evt);
             }
         });
 
         btnPesquisar.setText("Pesquisar");
-        btnPesquisar.setToolTipText("Clique aqui para pesquisar por código, nome, o CPF ou cargo do funcionário");
-        btnPesquisar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnPesquisar.setToolTipText("Clique aqui para pesquisar por código, nome, CPF ou cargo do funcionário");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
             }
         });
 
         lblTermoProduto.setText("Pesquisar:");
 
-        txtTermoProduto.setToolTipText("Digite o código, nome, o CPF (sem pontuação) ou cargo do funcionário para pesquisar");
+        txtTermoProduto.setToolTipText("Digite o código, nome, CPF (sem pontuação) ou cargo do funcionário para pesquisar");
 
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.setToolTipText("Clique aqui para cadastrar um funcionário");
-        btnCadastrar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarActionPerformed(evt);
             }
         });

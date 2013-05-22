@@ -29,8 +29,7 @@ public class FormCadastrarComanda extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         ativaButtonGroup = new javax.swing.ButtonGroup();
         lblCdComanda = new javax.swing.JLabel();
@@ -56,10 +55,12 @@ public class FormCadastrarComanda extends javax.swing.JInternalFrame {
 
         ativaButtonGroup.add(rbtNao);
         rbtNao.setText("Não");
+        rbtNao.setToolTipText("Selecione esta opção se a comanda não estiver ativa");
 
         ativaButtonGroup.add(rbtSim);
         rbtSim.setSelected(true);
         rbtSim.setText("Sim");
+        rbtSim.setToolTipText("Selecione esta opção se a comanda estiver ativa");
 
         javax.swing.GroupLayout ativaPanelLayout = new javax.swing.GroupLayout(ativaPanel);
         ativaPanel.setLayout(ativaPanelLayout);
@@ -82,20 +83,16 @@ public class FormCadastrarComanda extends javax.swing.JInternalFrame {
 
         btnCadastrarComanda.setText("Cadastrar");
         btnCadastrarComanda.setToolTipText("Clique aqui para cadastrar a comanda");
-        btnCadastrarComanda.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnCadastrarComanda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarComandaActionPerformed(evt);
             }
         });
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
-        btnLimpar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparActionPerformed(evt);
             }
         });

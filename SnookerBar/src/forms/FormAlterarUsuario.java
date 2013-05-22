@@ -26,8 +26,7 @@ public class FormAlterarUsuario extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         administradorbuttonGroup = new javax.swing.ButtonGroup();
         lblCdUsuario = new javax.swing.JLabel();
@@ -65,10 +64,12 @@ public class FormAlterarUsuario extends javax.swing.JInternalFrame {
 
         administradorbuttonGroup.add(rbtNao);
         rbtNao.setText("Não");
+        rbtNao.setToolTipText("Selecione esta opção se não for o administrador");
 
         administradorbuttonGroup.add(rbtSim);
         rbtSim.setSelected(true);
         rbtSim.setText("Sim");
+        rbtSim.setToolTipText("Selecione esta opção se for administrador");
 
         javax.swing.GroupLayout administradorPanelLayout = new javax.swing.GroupLayout(administradorPanel);
         administradorPanel.setLayout(administradorPanelLayout);
@@ -93,20 +94,16 @@ public class FormAlterarUsuario extends javax.swing.JInternalFrame {
 
         btnAlterar.setText("Alterar");
         btnAlterar.setToolTipText("Clique aqui para alterar o usuário");
-        btnAlterar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarActionPerformed(evt);
             }
         });
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
-        btnLimpar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparActionPerformed(evt);
             }
         });

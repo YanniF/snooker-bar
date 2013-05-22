@@ -26,8 +26,7 @@ public class FormAlterarServico extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         lblCdServico = new javax.swing.JLabel();
         txtCdServico = new javax.swing.JTextField();
@@ -44,6 +43,7 @@ public class FormAlterarServico extends javax.swing.JInternalFrame {
 
         lblCdServico.setText("Código:");
 
+        txtCdServico.setToolTipText("Digite o código do serviço");
         txtCdServico.setEnabled(false);
 
         lblNmServico.setText("Nome:");
@@ -56,20 +56,16 @@ public class FormAlterarServico extends javax.swing.JInternalFrame {
 
         btnAlterar.setToolTipText("Clique aqui para gravar as alterações do serviço");
         btnAlterar.setLabel("Alterar");
-        btnAlterar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarActionPerformed(evt);
             }
         });
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
-        btnLimpar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparActionPerformed(evt);
             }
         });

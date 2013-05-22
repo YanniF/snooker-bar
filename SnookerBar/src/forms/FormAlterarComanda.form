@@ -116,6 +116,7 @@
               <ComponentRef name="ativaButtonGroup"/>
             </Property>
             <Property name="text" type="java.lang.String" value="N&#xe3;o"/>
+            <Property name="toolTipText" type="java.lang.String" value="Selecione esta op&#xe7;&#xe3;o para desativar a comanda"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbtSim">
@@ -124,6 +125,7 @@
               <ComponentRef name="ativaButtonGroup"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Sim"/>
+            <Property name="toolTipText" type="java.lang.String" value="Selecione esta op&#xe7;&#xe3;o para ativar a comanda"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -153,6 +155,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtCdComanda">
       <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Digite o n&#xfa;mero da comanda"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>

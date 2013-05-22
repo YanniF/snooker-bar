@@ -191,7 +191,7 @@
     <Component class="javax.swing.JButton" name="btnPesquisar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pesquisar"/>
-        <Property name="toolTipText" type="java.lang.String" value="Clique aqui para pesquisar por c&#xf3;digo, nome, o CPF ou cargo do funcion&#xe1;rio"/>
+        <Property name="toolTipText" type="java.lang.String" value="Clique aqui para pesquisar por c&#xf3;digo, nome, CPF ou cargo do funcion&#xe1;rio"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPesquisarActionPerformed"/>
@@ -204,7 +204,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtTermoProduto">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Digite o c&#xf3;digo, nome, o CPF (sem pontua&#xe7;&#xe3;o) ou cargo do funcion&#xe1;rio para pesquisar"/>
+        <Property name="toolTipText" type="java.lang.String" value="Digite o c&#xf3;digo, nome, CPF (sem pontua&#xe7;&#xe3;o) ou cargo do funcion&#xe1;rio para pesquisar"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnCadastrar">

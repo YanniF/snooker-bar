@@ -7,16 +7,19 @@
         <Menu class="javax.swing.JMenu" name="menuComanda">
           <Properties>
             <Property name="text" type="java.lang.String" value="Comanda"/>
+            <Property name="toolTipText" type="java.lang.String" value="Menu Comanda"/>
           </Properties>
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="menuAberturaComanda">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Abertura"/>
+                <Property name="toolTipText" type="java.lang.String" value="Abertura"/>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="menuAbrirComanda">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Abrir"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Abrir"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuAbrirComandaActionPerformed"/>
@@ -25,11 +28,13 @@
                 <MenuItem class="javax.swing.JMenuItem" name="menuConsultarAberturaComanda">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Consultar"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Consultar"/>
                   </Properties>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="menuAlterarAberturaComanda">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Alterar"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Alterar"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuAlterarAberturaComandaActionPerformed"/>
@@ -38,6 +43,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="menuFecharAberturaComanda">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Fechar"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Fechar"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuFecharAberturaComandaActionPerformed"/>
@@ -48,6 +54,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuConsultarComanda">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consultar"/>
+                <Property name="toolTipText" type="java.lang.String" value="Consultar"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuConsultarComandaActionPerformed"/>
@@ -58,26 +65,31 @@
         <Menu class="javax.swing.JMenu" name="menuAtendimento">
           <Properties>
             <Property name="text" type="java.lang.String" value="Atendimento"/>
+            <Property name="toolTipText" type="java.lang.String" value="Menu Atendimento"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuIniciarAtendimento">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Iniciar"/>
+                <Property name="toolTipText" type="java.lang.String" value="Iniciar"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuConsultarAtendimento">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consultar"/>
+                <Property name="toolTipText" type="java.lang.String" value="Consultar"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuAlterarAtendimento">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Alterar"/>
+                <Property name="toolTipText" type="java.lang.String" value="Alterar"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuExcluirAtendimento">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Excluir"/>
+                <Property name="toolTipText" type="java.lang.String" value="Excluir"/>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -85,31 +97,37 @@
         <Menu class="javax.swing.JMenu" name="menuMesa">
           <Properties>
             <Property name="text" type="java.lang.String" value="Mesa"/>
+            <Property name="toolTipText" type="java.lang.String" value="Menu Mesa"/>
           </Properties>
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="menuAberturaMesa">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Abertura"/>
+                <Property name="toolTipText" type="java.lang.String" value="Abertura"/>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="menuAbrirMesa">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Abrir"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Abrir"/>
                   </Properties>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="menuConsultarAberturaMesa">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Consultar"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Consultar"/>
                   </Properties>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="menuAlterarAberturaMesa">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Alterar"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Alterar"/>
                   </Properties>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="menuFecharAberturaMesa">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Fechar"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Fechar"/>
                   </Properties>
                 </MenuItem>
               </SubComponents>
@@ -117,6 +135,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuConsultarMesa">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consultar"/>
+                <Property name="toolTipText" type="java.lang.String" value="Consultar"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuConsultarMesaActionPerformed"/>
@@ -127,11 +146,13 @@
         <Menu class="javax.swing.JMenu" name="menuProduto">
           <Properties>
             <Property name="text" type="java.lang.String" value="Produto"/>
+            <Property name="toolTipText" type="java.lang.String" value="Menu Produto"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuConsultarProduto">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consultar"/>
+                <Property name="toolTipText" type="java.lang.String" value="Consultar produto"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuConsultarProdutoActionPerformed"/>
@@ -142,11 +163,13 @@
         <Menu class="javax.swing.JMenu" name="menuServico">
           <Properties>
             <Property name="text" type="java.lang.String" value="Servi&#xe7;o"/>
+            <Property name="toolTipText" type="java.lang.String" value="Menu Servi&#xe7;o"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuConsultarServico">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consultar"/>
+                <Property name="toolTipText" type="java.lang.String" value="Consultar servi&#xe7;o"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuConsultarServicoActionPerformed"/>
@@ -157,11 +180,13 @@
         <Menu class="javax.swing.JMenu" name="menuUsuario">
           <Properties>
             <Property name="text" type="java.lang.String" value="Usu&#xe1;rio"/>
+            <Property name="toolTipText" type="java.lang.String" value="Menu Usu&#xe1;rio"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuConsultarUsuario">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consultar"/>
+                <Property name="toolTipText" type="java.lang.String" value="Consultar usu&#xe1;rio"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuConsultarUsuarioActionPerformed"/>
@@ -172,11 +197,13 @@
         <Menu class="javax.swing.JMenu" name="menuFuncionario">
           <Properties>
             <Property name="text" type="java.lang.String" value="Funcion&#xe1;rio"/>
+            <Property name="toolTipText" type="java.lang.String" value="Menu funcion&#xe1;rio"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuConsultarFuncionario">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consultar"/>
+                <Property name="toolTipText" type="java.lang.String" value="Consultar funcion&#xe1;rio"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuConsultarFuncionarioActionPerformed"/>
@@ -245,6 +272,7 @@
         <Component class="javax.swing.JButton" name="btnSair">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sair"/>
+            <Property name="toolTipText" type="java.lang.String" value="Clique aqui para sair"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSairActionPerformed"/>

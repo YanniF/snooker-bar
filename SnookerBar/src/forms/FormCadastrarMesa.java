@@ -27,8 +27,7 @@ public class FormCadastrarMesa extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         ativaButtonGroup = new javax.swing.ButtonGroup();
         btnCadastrar = new javax.swing.JButton();
@@ -47,20 +46,16 @@ public class FormCadastrarMesa extends javax.swing.JInternalFrame {
 
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.setToolTipText("Clique aqui para cadastrar a mesa");
-        btnCadastrar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarActionPerformed(evt);
             }
         });
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
-        btnLimpar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparActionPerformed(evt);
             }
         });
@@ -78,10 +73,12 @@ public class FormCadastrarMesa extends javax.swing.JInternalFrame {
 
         ativaButtonGroup.add(rbtNao);
         rbtNao.setText("Não");
+        rbtNao.setToolTipText("Selecione esta opção para mesa não ativa");
 
         ativaButtonGroup.add(rbtSim);
         rbtSim.setSelected(true);
         rbtSim.setText("Sim");
+        rbtSim.setToolTipText("Selecione esta opção para mesa ativa");
 
         javax.swing.GroupLayout ativaPanelLayout = new javax.swing.GroupLayout(ativaPanel);
         ativaPanel.setLayout(ativaPanelLayout);

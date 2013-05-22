@@ -27,8 +27,7 @@ public class FormAlterarFuncionario extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         lblCdFuncionario = new javax.swing.JLabel();
         txtCdFuncionario = new javax.swing.JTextField();
@@ -64,48 +63,43 @@ public class FormAlterarFuncionario extends javax.swing.JInternalFrame {
 
         lblCdUsuario.setText("Usuário:");
 
+        txtCdUsuario.setToolTipText("Digite o código de usuário do funcionário (não obrigatório)");
         txtCdUsuario.setEnabled(false);
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
-        btnLimpar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparActionPerformed(evt);
             }
         });
 
         btnAlterar.setText("Alterar");
-        btnAlterar.setToolTipText("Clique aqui para alterar o funcionário");
-        btnAlterar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnAlterar.setToolTipText("Clique aqui para salvar as alterações");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarActionPerformed(evt);
             }
         });
 
-        txtNmCargo.setToolTipText("Digite o nome do funcionário");
+        txtNmCargo.setToolTipText("Digite o cargo do funcionário");
 
         lblNmCargo.setText("Cargo:");
 
-        try
-        {
+        try {
             txtCdCpfFuncionario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex)
-        {
+        } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtCdCpfFuncionario.setToolTipText("Digite o cpf do funcionário");
         txtCdCpfFuncionario.setEnabled(false);
 
-        try
-        {
+        try {
             txtCdTelefoneFuncionario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
-        } catch (java.text.ParseException ex)
-        {
+        } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtCdTelefoneFuncionario.setToolTipText("Digite o telefone do funcionário");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

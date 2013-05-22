@@ -128,6 +128,7 @@
               <ComponentRef name="ativaButtonGroup"/>
             </Property>
             <Property name="text" type="java.lang.String" value="N&#xe3;o"/>
+            <Property name="toolTipText" type="java.lang.String" value="Selecione esta op&#xe7;&#xe3;o se a comanda n&#xe3;o estiver ativa"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbtSim">
@@ -137,6 +138,7 @@
             </Property>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Sim"/>
+            <Property name="toolTipText" type="java.lang.String" value="Selecione esta op&#xe7;&#xe3;o se a comanda estiver ativa"/>
           </Properties>
         </Component>
       </SubComponents>

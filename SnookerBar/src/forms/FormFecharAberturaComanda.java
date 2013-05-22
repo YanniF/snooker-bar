@@ -68,6 +68,7 @@ public class FormFecharAberturaComanda extends javax.swing.JInternalFrame {
         jLabel2.setText("VALOR TOTAL R$:");
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField1.setToolTipText("Valor total");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -75,6 +76,8 @@ public class FormFecharAberturaComanda extends javax.swing.JInternalFrame {
         });
 
         jLabel5.setText("Nº Comanda:");
+
+        jTextField3.setToolTipText("Digite o número da comanda");
 
         jButton4.setText("Encerrar");
         jButton4.setToolTipText("Clique aqui para encerrar o atendimento");
@@ -85,6 +88,7 @@ public class FormFecharAberturaComanda extends javax.swing.JInternalFrame {
         });
 
         jButton3.setText("Pesquisar");
+        jButton3.setToolTipText("Clique aqui para pesquisar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -92,6 +96,7 @@ public class FormFecharAberturaComanda extends javax.swing.JInternalFrame {
         });
 
         jButton1.setText("Limpar");
+        jButton1.setToolTipText("Clique aqui para limpar os valores");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -28,8 +28,7 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         lblCdFuncionario = new javax.swing.JLabel();
         txtCdFuncionario = new javax.swing.JTextField();
@@ -61,22 +60,18 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
 
         lblCdCpfFuncionario.setText("CPF:");
 
-        try
-        {
+        try {
             txtCdCpfFuncionario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex)
-        {
+        } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
         txtCdCpfFuncionario.setToolTipText("Digite o CPF do funcionário");
 
         lblCdTelefoneFuncionario.setText("Telefone:");
 
-        try
-        {
+        try {
             txtCdTelefoneFuncionario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
-        } catch (java.text.ParseException ex)
-        {
+        } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
         txtCdTelefoneFuncionario.setToolTipText("Digite o telefone do funcionário");
@@ -87,35 +82,29 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
-        btnLimpar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparActionPerformed(evt);
             }
         });
 
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.setToolTipText("Clique aqui para cadastrar o funcionário");
-        btnCadastrar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarActionPerformed(evt);
             }
         });
 
         btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/procurar.png"))); // NOI18N
         btnPesquisar.setToolTipText("Clique aqui para pesquisar o usuário");
-        btnPesquisar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
             }
         });
 
-        txtNmCargo.setToolTipText("Digite o nome do funcionário");
+        txtNmCargo.setToolTipText("Digite o cargo do funcionário");
 
         lblNmCargo.setText("Cargo:");
 

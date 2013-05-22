@@ -24,8 +24,7 @@ public class FormAlterarMesa extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         ativaButtonGroup = new javax.swing.ButtonGroup();
         btnAlterar = new javax.swing.JButton();
@@ -44,20 +43,16 @@ public class FormAlterarMesa extends javax.swing.JInternalFrame {
 
         btnAlterar.setText("Alterar");
         btnAlterar.setToolTipText("Clique aqui para gravar as alterações da mesa");
-        btnAlterar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarActionPerformed(evt);
             }
         });
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
-        btnLimpar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparActionPerformed(evt);
             }
         });
@@ -68,6 +63,7 @@ public class FormAlterarMesa extends javax.swing.JInternalFrame {
 
         txtNmMesa.setToolTipText("Digite a identificação (nome) da mesa");
 
+        txtCdMesa.setToolTipText("Digite o código da mesa");
         txtCdMesa.setEnabled(false);
 
         ativaPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Ativa?"));
@@ -75,9 +71,11 @@ public class FormAlterarMesa extends javax.swing.JInternalFrame {
 
         ativaButtonGroup.add(rbtNao);
         rbtNao.setText("Não");
+        rbtNao.setToolTipText("Selecione esta opção para desativar a mesa");
 
         ativaButtonGroup.add(rbtSim);
         rbtSim.setText("Sim");
+        rbtSim.setToolTipText("Selecione esta opção para deixar a mesa ativa");
 
         javax.swing.GroupLayout ativaPanelLayout = new javax.swing.GroupLayout(ativaPanel);
         ativaPanel.setLayout(ativaPanelLayout);
