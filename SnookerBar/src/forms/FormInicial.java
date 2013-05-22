@@ -68,7 +68,7 @@ public class FormInicial extends javax.swing.JFrame {
             }
         });
 
-        lblBemVindo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblBemVindo.setFont(new java.awt.Font("Tahoma", 0, 18));
         lblBemVindo.setForeground(new java.awt.Color(255, 255, 255));
         lblBemVindo.setBounds(40, 40, 260, 40);
         desktopPane.add(lblBemVindo, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -80,11 +80,11 @@ public class FormInicial extends javax.swing.JFrame {
                 btnSairActionPerformed(evt);
             }
         });
-        btnSair.setBounds(500, 20, 70, 23);
+        btnSair.setBounds(500, 20, 70, -1);
         desktopPane.add(btnSair, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         menuComanda.setText("Comanda");
-        menuComanda.setToolTipText("Menu Comanda");
+        menuComanda.setToolTipText("Comanda");
 
         menuAberturaComanda.setText("Abertura");
         menuAberturaComanda.setToolTipText("Abertura");
@@ -134,7 +134,7 @@ public class FormInicial extends javax.swing.JFrame {
         menuPrincipal.add(menuComanda);
 
         menuAtendimento.setText("Atendimento");
-        menuAtendimento.setToolTipText("Menu Atendimento");
+        menuAtendimento.setToolTipText("Atendimento");
 
         menuIniciarAtendimento.setText("Iniciar");
         menuIniciarAtendimento.setToolTipText("Iniciar");
@@ -160,7 +160,7 @@ public class FormInicial extends javax.swing.JFrame {
         menuPrincipal.add(menuAtendimento);
 
         menuMesa.setText("Mesa");
-        menuMesa.setToolTipText("Menu Mesa");
+        menuMesa.setToolTipText("Mesa");
 
         menuAberturaMesa.setText("Abertura");
         menuAberturaMesa.setToolTipText("Abertura");
@@ -195,7 +195,7 @@ public class FormInicial extends javax.swing.JFrame {
         menuPrincipal.add(menuMesa);
 
         menuProduto.setText("Produto");
-        menuProduto.setToolTipText("Menu Produto");
+        menuProduto.setToolTipText("Produto");
 
         menuConsultarProduto.setText("Consultar");
         menuConsultarProduto.setToolTipText("Consultar produto");
@@ -209,7 +209,7 @@ public class FormInicial extends javax.swing.JFrame {
         menuPrincipal.add(menuProduto);
 
         menuServico.setText("Serviço");
-        menuServico.setToolTipText("Menu Serviço");
+        menuServico.setToolTipText("Serviço");
 
         menuConsultarServico.setText("Consultar");
         menuConsultarServico.setToolTipText("Consultar serviço");
@@ -223,7 +223,7 @@ public class FormInicial extends javax.swing.JFrame {
         menuPrincipal.add(menuServico);
 
         menuUsuario.setText("Usuário");
-        menuUsuario.setToolTipText("Menu Usuário");
+        menuUsuario.setToolTipText("Usuário");
 
         menuConsultarUsuario.setText("Consultar");
         menuConsultarUsuario.setToolTipText("Consultar usuário");
@@ -237,7 +237,7 @@ public class FormInicial extends javax.swing.JFrame {
         menuPrincipal.add(menuUsuario);
 
         menuFuncionario.setText("Funcionário");
-        menuFuncionario.setToolTipText("Menu funcionário");
+        menuFuncionario.setToolTipText("Funcionário");
 
         menuConsultarFuncionario.setText("Consultar");
         menuConsultarFuncionario.setToolTipText("Consultar funcionário");
