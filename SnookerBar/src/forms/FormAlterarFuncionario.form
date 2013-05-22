@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.1" encoding="UTF-8" ?>
 
-<Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+<Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <Properties>
     <Property name="closable" type="boolean" value="true"/>
     <Property name="iconifiable" type="boolean" value="true"/>
@@ -29,14 +29,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="lblNmCargo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtNmCargo" min="-2" pref="300" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="lblCdUsuario" min="-2" max="-2" attributes="0"/>
                           <Component id="lblCdTelefoneFuncionario" min="-2" max="-2" attributes="0"/>
@@ -45,26 +39,30 @@
                           <Component id="lblCdFuncionario" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtCdFuncionario" min="-2" pref="92" max="-2" attributes="0"/>
-                                  <Component id="txtNmFuncionario" min="-2" pref="300" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="txtCdTelefoneFuncionario" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtCdCpfFuncionario" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtCdUsuario" alignment="0" pref="133" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="btnAlterar" min="-2" pref="77" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnLimpar" min="-2" pref="72" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                          </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="0" pref="51" max="32767" attributes="0"/>
+                      <Component id="lblNmCargo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="btnAlterar" min="-2" pref="77" max="-2" attributes="0"/>
+                      <EmptySpace pref="86" max="32767" attributes="0"/>
+                      <Component id="btnLimpar" min="-2" pref="72" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="txtNmCargo" alignment="0" max="32767" attributes="1"/>
+                          <Component id="txtCdFuncionario" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
+                          <Component id="txtNmFuncionario" alignment="0" pref="300" max="32767" attributes="1"/>
+                          <Component id="txtCdTelefoneFuncionario" alignment="0" min="-2" pref="113" max="-2" attributes="1"/>
+                          <Component id="txtCdCpfFuncionario" alignment="0" min="-2" pref="130" max="-2" attributes="1"/>
+                          <Component id="txtCdUsuario" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -89,7 +87,7 @@
                   <Component id="lblNmCargo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtNmCargo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="15" max="32767" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblCdCpfFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtCdCpfFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
