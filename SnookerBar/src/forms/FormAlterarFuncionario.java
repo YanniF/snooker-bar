@@ -27,7 +27,8 @@ public class FormAlterarFuncionario extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         lblCdFuncionario = new javax.swing.JLabel();
         txtCdFuncionario = new javax.swing.JTextField();
@@ -50,7 +51,6 @@ public class FormAlterarFuncionario extends javax.swing.JInternalFrame {
 
         lblCdFuncionario.setText("Código:");
 
-        txtCdFuncionario.setToolTipText("Digite o código do funcionário");
         txtCdFuncionario.setEnabled(false);
 
         lblNmFuncionario.setText("Nome:");
@@ -63,21 +63,24 @@ public class FormAlterarFuncionario extends javax.swing.JInternalFrame {
 
         lblCdUsuario.setText("Usuário:");
 
-        txtCdUsuario.setToolTipText("Digite o código de usuário do funcionário (não obrigatório)");
         txtCdUsuario.setEnabled(false);
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
-        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnLimpar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnLimparActionPerformed(evt);
             }
         });
 
         btnAlterar.setText("Alterar");
         btnAlterar.setToolTipText("Clique aqui para salvar as alterações");
-        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAlterar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnAlterarActionPerformed(evt);
             }
         });
@@ -86,17 +89,20 @@ public class FormAlterarFuncionario extends javax.swing.JInternalFrame {
 
         lblNmCargo.setText("Cargo:");
 
-        try {
+        try
+        {
             txtCdCpfFuncionario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
+        } catch (java.text.ParseException ex)
+        {
             ex.printStackTrace();
         }
-        txtCdCpfFuncionario.setToolTipText("Digite o cpf do funcionário");
         txtCdCpfFuncionario.setEnabled(false);
 
-        try {
+        try
+        {
             txtCdTelefoneFuncionario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
-        } catch (java.text.ParseException ex) {
+        } catch (java.text.ParseException ex)
+        {
             ex.printStackTrace();
         }
         txtCdTelefoneFuncionario.setToolTipText("Digite o telefone do funcionário");
@@ -114,12 +120,11 @@ public class FormAlterarFuncionario extends javax.swing.JInternalFrame {
                             .addComponent(lblCdTelefoneFuncionario)
                             .addComponent(lblCdCpfFuncionario)
                             .addComponent(lblNmFuncionario)
-                            .addComponent(lblCdFuncionario))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addComponent(lblCdFuncionario)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 51, Short.MAX_VALUE)
-                        .addComponent(lblNmCargo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblNmCargo)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -152,7 +157,7 @@ public class FormAlterarFuncionario extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNmCargo)
                     .addComponent(txtNmCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCdCpfFuncionario)
                     .addComponent(txtCdCpfFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
