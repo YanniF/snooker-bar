@@ -86,6 +86,7 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Quantidade:");
 
+        jTextField2.setText("10");
         jTextField2.setToolTipText("Digite a quantidade");
 
         jButton1.setText("Incluir");
