@@ -52,13 +52,9 @@ public class FormInicial extends javax.swing.JFrame {
         menuFecharAberturaMesa = new javax.swing.JMenuItem();
         menuConsultarMesa = new javax.swing.JMenuItem();
         menuProduto = new javax.swing.JMenu();
-        menuConsultarProduto = new javax.swing.JMenuItem();
         menuServico = new javax.swing.JMenu();
-        menuConsultarServico = new javax.swing.JMenuItem();
         menuUsuario = new javax.swing.JMenu();
-        menuConsultarUsuario = new javax.swing.JMenuItem();
         menuFuncionario = new javax.swing.JMenu();
-        menuConsultarFuncionario = new javax.swing.JMenuItem();
         menuSair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -201,66 +197,46 @@ public class FormInicial extends javax.swing.JFrame {
 
         menuProduto.setText("Produto");
         menuProduto.setToolTipText("Produto");
-
-        menuConsultarProduto.setText("Consultar");
-        menuConsultarProduto.setToolTipText("Consultar produto");
-        menuConsultarProduto.addActionListener(new java.awt.event.ActionListener()
+        menuProduto.addMouseListener(new java.awt.event.MouseAdapter()
         {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
+            public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                menuConsultarProdutoActionPerformed(evt);
+                menuProdutoMouseClicked(evt);
             }
         });
-        menuProduto.add(menuConsultarProduto);
-
         menuPrincipal.add(menuProduto);
 
         menuServico.setText("Serviço");
         menuServico.setToolTipText("Serviço");
-
-        menuConsultarServico.setText("Consultar");
-        menuConsultarServico.setToolTipText("Consultar serviço");
-        menuConsultarServico.addActionListener(new java.awt.event.ActionListener()
+        menuServico.addMouseListener(new java.awt.event.MouseAdapter()
         {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
+            public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                menuConsultarServicoActionPerformed(evt);
+                menuServicoMouseClicked(evt);
             }
         });
-        menuServico.add(menuConsultarServico);
-
         menuPrincipal.add(menuServico);
 
         menuUsuario.setText("Usuário");
         menuUsuario.setToolTipText("Usuário");
-
-        menuConsultarUsuario.setText("Consultar");
-        menuConsultarUsuario.setToolTipText("Consultar usuário");
-        menuConsultarUsuario.addActionListener(new java.awt.event.ActionListener()
+        menuUsuario.addMouseListener(new java.awt.event.MouseAdapter()
         {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
+            public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                menuConsultarUsuarioActionPerformed(evt);
+                menuUsuarioMouseClicked(evt);
             }
         });
-        menuUsuario.add(menuConsultarUsuario);
-
         menuPrincipal.add(menuUsuario);
 
         menuFuncionario.setText("Funcionário");
         menuFuncionario.setToolTipText("Funcionário");
-
-        menuConsultarFuncionario.setText("Consultar");
-        menuConsultarFuncionario.setToolTipText("Consultar funcionário");
-        menuConsultarFuncionario.addActionListener(new java.awt.event.ActionListener()
+        menuFuncionario.addMouseListener(new java.awt.event.MouseAdapter()
         {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
+            public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                menuConsultarFuncionarioActionPerformed(evt);
+                menuFuncionarioMouseClicked(evt);
             }
         });
-        menuFuncionario.add(menuConsultarFuncionario);
-
         menuPrincipal.add(menuFuncionario);
 
         menuSair.setText("Sair");
@@ -313,24 +289,6 @@ public class FormInicial extends javax.swing.JFrame {
         adicionarJInternalFrame(fsm);
     }//GEN-LAST:event_menuConsultarMesaActionPerformed
 
-    private void menuConsultarServicoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_menuConsultarServicoActionPerformed
-    {//GEN-HEADEREND:event_menuConsultarServicoActionPerformed
-        FormSelecionarServico fss = new FormSelecionarServico();
-        adicionarJInternalFrame(fss);
-    }//GEN-LAST:event_menuConsultarServicoActionPerformed
-
-    private void menuConsultarUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_menuConsultarUsuarioActionPerformed
-    {//GEN-HEADEREND:event_menuConsultarUsuarioActionPerformed
-        FormSelecionarUsuario fsu = new FormSelecionarUsuario();
-        adicionarJInternalFrame(fsu);
-    }//GEN-LAST:event_menuConsultarUsuarioActionPerformed
-
-    private void menuConsultarFuncionarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_menuConsultarFuncionarioActionPerformed
-    {//GEN-HEADEREND:event_menuConsultarFuncionarioActionPerformed
-        FormSelecionarFuncionario fsf = new FormSelecionarFuncionario();
-        adicionarJInternalFrame(fsf);
-    }//GEN-LAST:event_menuConsultarFuncionarioActionPerformed
-
     private void menuAbrirComandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAbrirComandaActionPerformed
         FormAberturaComanda fac = new FormAberturaComanda();
         adicionarJInternalFrame(fac);
@@ -345,11 +303,6 @@ public class FormInicial extends javax.swing.JFrame {
         FormAlterarComanda fac = new FormAlterarComanda();
         adicionarJInternalFrame(fac);
     }//GEN-LAST:event_menuAlterarAberturaComandaActionPerformed
-
-    private void menuConsultarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarProdutoActionPerformed
-        FormSelecionarProduto fsp = new FormSelecionarProduto();
-        adicionarJInternalFrame(fsp);
-    }//GEN-LAST:event_menuConsultarProdutoActionPerformed
 
     private void menuIniciarAtendimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIniciarAtendimentoActionPerformed
         FormIniciarAtendimento fia = new FormIniciarAtendimento();
@@ -366,6 +319,30 @@ public class FormInicial extends javax.swing.JFrame {
         FormLogin fl = new FormLogin();
         fl.setVisible(true);
     }//GEN-LAST:event_menuSairMouseClicked
+
+    private void menuProdutoMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_menuProdutoMouseClicked
+    {//GEN-HEADEREND:event_menuProdutoMouseClicked
+        FormSelecionarProduto fsp = new FormSelecionarProduto();
+        adicionarJInternalFrame(fsp);
+    }//GEN-LAST:event_menuProdutoMouseClicked
+
+    private void menuServicoMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_menuServicoMouseClicked
+    {//GEN-HEADEREND:event_menuServicoMouseClicked
+        FormSelecionarServico fss = new FormSelecionarServico();
+        adicionarJInternalFrame(fss);
+    }//GEN-LAST:event_menuServicoMouseClicked
+
+    private void menuUsuarioMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_menuUsuarioMouseClicked
+    {//GEN-HEADEREND:event_menuUsuarioMouseClicked
+        FormSelecionarUsuario fsu = new FormSelecionarUsuario();
+        adicionarJInternalFrame(fsu);
+    }//GEN-LAST:event_menuUsuarioMouseClicked
+
+    private void menuFuncionarioMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_menuFuncionarioMouseClicked
+    {//GEN-HEADEREND:event_menuFuncionarioMouseClicked
+        FormSelecionarFuncionario fsf = new FormSelecionarFuncionario();
+        adicionarJInternalFrame(fsf);
+    }//GEN-LAST:event_menuFuncionarioMouseClicked
 
     /**
      * @param args the command line arguments
@@ -387,11 +364,7 @@ public class FormInicial extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuConsultarAberturaMesa;
     private javax.swing.JMenuItem menuConsultarAtendimento;
     private javax.swing.JMenuItem menuConsultarComanda;
-    private javax.swing.JMenuItem menuConsultarFuncionario;
     private javax.swing.JMenuItem menuConsultarMesa;
-    private javax.swing.JMenuItem menuConsultarProduto;
-    private javax.swing.JMenuItem menuConsultarServico;
-    private javax.swing.JMenuItem menuConsultarUsuario;
     private javax.swing.JMenuItem menuExcluirAtendimento;
     private javax.swing.JMenuItem menuFecharAberturaComanda;
     private javax.swing.JMenuItem menuFecharAberturaMesa;

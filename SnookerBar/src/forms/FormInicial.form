@@ -151,68 +151,36 @@
             <Property name="text" type="java.lang.String" value="Produto"/>
             <Property name="toolTipText" type="java.lang.String" value="Produto"/>
           </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuConsultarProduto">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Consultar"/>
-                <Property name="toolTipText" type="java.lang.String" value="Consultar produto"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuConsultarProdutoActionPerformed"/>
-              </Events>
-            </MenuItem>
-          </SubComponents>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuProdutoMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuServico">
           <Properties>
             <Property name="text" type="java.lang.String" value="Servi&#xe7;o"/>
             <Property name="toolTipText" type="java.lang.String" value="Servi&#xe7;o"/>
           </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuConsultarServico">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Consultar"/>
-                <Property name="toolTipText" type="java.lang.String" value="Consultar servi&#xe7;o"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuConsultarServicoActionPerformed"/>
-              </Events>
-            </MenuItem>
-          </SubComponents>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuServicoMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuUsuario">
           <Properties>
             <Property name="text" type="java.lang.String" value="Usu&#xe1;rio"/>
             <Property name="toolTipText" type="java.lang.String" value="Usu&#xe1;rio"/>
           </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuConsultarUsuario">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Consultar"/>
-                <Property name="toolTipText" type="java.lang.String" value="Consultar usu&#xe1;rio"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuConsultarUsuarioActionPerformed"/>
-              </Events>
-            </MenuItem>
-          </SubComponents>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuUsuarioMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuFuncionario">
           <Properties>
             <Property name="text" type="java.lang.String" value="Funcion&#xe1;rio"/>
             <Property name="toolTipText" type="java.lang.String" value="Funcion&#xe1;rio"/>
           </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuConsultarFuncionario">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Consultar"/>
-                <Property name="toolTipText" type="java.lang.String" value="Consultar funcion&#xe1;rio"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuConsultarFuncionarioActionPerformed"/>
-              </Events>
-            </MenuItem>
-          </SubComponents>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuFuncionarioMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuSair">
           <Properties>
