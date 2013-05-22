@@ -177,7 +177,7 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-399)/2, (screenSize.height-301)/2, 399, 301);
+        setBounds((screenSize.width-399)/2, (screenSize.height-325)/2, 399, 325);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
