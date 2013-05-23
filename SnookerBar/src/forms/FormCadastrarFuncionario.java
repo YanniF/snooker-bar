@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
  */
 public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
 
+    public String textoPermitido = "abcdefghijklmnopqrstuvwxyzçáéíóúâêôàèãõñ ";
     /**
      * Creates new form FormCadastrarFuncionario
      */
@@ -32,7 +33,7 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
     {
 
         lblNmFuncionario = new javax.swing.JLabel();
-        txtNmFuncionario = new javax.swing.JTextField();
+        txtNmFuncionario = new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido + textoPermitido.toUpperCase()), "", 30);
         lblCdCpfFuncionario = new javax.swing.JLabel();
         txtCdCpfFuncionario = new javax.swing.JFormattedTextField();
         lblCdTelefoneFuncionario = new javax.swing.JLabel();
@@ -42,7 +43,7 @@ public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
         btnLimpar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
-        txtNmCargo = new javax.swing.JTextField();
+        txtNmCargo = new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido + textoPermitido.toUpperCase()), "", 20);
         lblNmCargo = new javax.swing.JLabel();
 
         setClosable(true);

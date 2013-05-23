@@ -15,6 +15,7 @@ public class FormAlterarFuncionario extends javax.swing.JInternalFrame {
      */
     
     Utilitarios u = new Utilitarios();
+    public String textoPermitido = "abcdefghijklmnopqrstuvwxyzçáéíóúâêôàèãõñ ";
     
     public FormAlterarFuncionario() {
         initComponents();
@@ -33,14 +34,14 @@ public class FormAlterarFuncionario extends javax.swing.JInternalFrame {
         lblCdFuncionario = new javax.swing.JLabel();
         txtCdFuncionario = new javax.swing.JTextField();
         lblNmFuncionario = new javax.swing.JLabel();
-        txtNmFuncionario = new javax.swing.JTextField();
+        txtNmFuncionario = new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido + textoPermitido.toUpperCase()), "", 30);
         lblCdCpfFuncionario = new javax.swing.JLabel();
         lblCdTelefoneFuncionario = new javax.swing.JLabel();
         lblCdUsuario = new javax.swing.JLabel();
         txtCdUsuario = new javax.swing.JTextField();
         btnLimpar = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
-        txtNmCargo = new javax.swing.JTextField();
+        txtNmCargo = new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido + textoPermitido.toUpperCase()), "", 20);
         lblNmCargo = new javax.swing.JLabel();
         txtCdCpfFuncionario = new javax.swing.JFormattedTextField();
         txtCdTelefoneFuncionario = new javax.swing.JFormattedTextField();
@@ -128,7 +129,7 @@ public class FormAlterarFuncionario extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                         .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(70, 70, 70))
                     .addGroup(layout.createSequentialGroup()
@@ -137,9 +138,8 @@ public class FormAlterarFuncionario extends javax.swing.JInternalFrame {
                             .addComponent(txtCdFuncionario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNmFuncionario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                             .addComponent(txtCdCpfFuncionario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtCdUsuario, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtCdTelefoneFuncionario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)))
+                            .addComponent(txtCdUsuario, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCdTelefoneFuncionario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -177,7 +177,7 @@ public class FormAlterarFuncionario extends javax.swing.JInternalFrame {
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-399)/2, (screenSize.height-330)/2, 399, 330);
+        setBounds((screenSize.width-412)/2, (screenSize.height-330)/2, 412, 330);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed

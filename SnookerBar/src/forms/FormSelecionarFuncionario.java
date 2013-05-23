@@ -17,7 +17,8 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
 
     Utilitarios u = new Utilitarios();
     DefaultTableModel modelo;
-    public boolean nada;  
+    public boolean nada;
+    public String textoPermitido = "abcdefghijklmnopqrstuvwxyzçáéíóúâêôàèãõñ0123456789 ";
     
     /**
      * Creates new form FormSelecionarFuncionario
@@ -55,7 +56,7 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
         btnPesquisarTudo = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
         lblTermoProduto = new javax.swing.JLabel();
-        txtTermoProduto = new javax.swing.JTextField();
+        txtTermoProduto = new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido + textoPermitido.toUpperCase()), "", 30);
         btnCadastrar = new javax.swing.JButton();
 
         setClosable(true);
