@@ -195,7 +195,7 @@ public class FormAlterarUsuario extends javax.swing.JInternalFrame {
             
             String sql = "UPDATE usuario SET nm_login_usuario = LOWER('" + nome + "'), nm_senha_usuario = '" + 
                     Utilitarios.md5Java(senha) + "', ic_administrador_sim_nao = '" + admin + "' WHERE cd_usuario = " + cod;
-            System.out.println(sql);
+            
             if(Conexao.atualizar(sql) == -1)
             {
                 JOptionPane.showMessageDialog(null, "O registro não pode ser alterado:\n" + Conexao.getErro(), "Erro", 0);

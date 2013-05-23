@@ -20,8 +20,8 @@ import javax.swing.table.DefaultTableModel;
 public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
 
     Utilitarios u = new Utilitarios();
-    DefaultTableModel modelo;
-    public int first = 0;  
+    DefaultTableModel modelo; 
+    public boolean nada;
 
     /**
      * Creates new form FormSelecionarUsuario
@@ -30,8 +30,6 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
     {
         initComponents();
 
-        btnPesquisarTudoActionPerformed(null);
-        
         if(!Usuarios.adm){
             btnCadastrar.setEnabled(false);
             btnCadastrar.setToolTipText(null);
@@ -66,6 +64,31 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Consultar Usuário");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener()
+        {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)
+            {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+        });
 
         btnPesquisarTudo.setText("Pesquisar tudo");
         btnPesquisarTudo.setToolTipText("Clique aqui para pesquisar todos os usuários");
@@ -261,56 +284,12 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
 
     private void btnPesquisarTudoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarTudoActionPerformed
     {//GEN-HEADEREND:event_btnPesquisarTudoActionPerformed
-        modelo = (DefaultTableModel) tabelaUsuario.getModel();
-        modelo.setRowCount(0);
-        String admin;
-        first++;
-
-        try
+        pesquisarTudo();
+        
+        if(nada)
         {
-            String sql = "SELECT * FROM USUARIO ORDER BY 1";
-            ResultSet res = Conexao.consultar(sql);
-
-            if (Conexao.consultar(sql) == null)
-            {
-                JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + Conexao.getErro(), "Erro!", 0);
-            }
-            else
-            {
-                if (Conexao.consultar(sql).next())
-                {
-                    while (res.next())
-                    {
-                        if (res.getString("ic_administrador_sim_nao").equalsIgnoreCase("s"))
-                        {
-                            admin = "Sim";
-                        }
-                        else
-                        {
-                            admin = "Não";
-                        }
-
-                        modelo.addRow(new Object[]
-                                {
-                                    res.getInt("cd_usuario"),
-                                    res.getString("nm_login_usuario"),
-                                    admin
-                                });
-                    }
-                }
-                else
-                {
-                    if(first > 1)
-                    {
-                        JOptionPane.showMessageDialog(null, "Não há dados para serem exibidos.", "Aviso", 1);
-                        btnLimparActionPerformed(evt);
-                    } 
-                }
-            }
-        }
-        catch (Exception e)
-        {
-            JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + e.getMessage(), "Erro!", 0);
+            JOptionPane.showMessageDialog(null, "Não há dados para serem exibidos.", "Aviso", 1);
+            btnLimparActionPerformed(null);
         }
     }//GEN-LAST:event_btnPesquisarTudoActionPerformed
 
@@ -492,6 +471,62 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
         fcu.setVisible(true);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt)//GEN-FIRST:event_formInternalFrameActivated
+    {//GEN-HEADEREND:event_formInternalFrameActivated
+        pesquisarTudo();
+    }//GEN-LAST:event_formInternalFrameActivated
+
+    private void pesquisarTudo()
+    {
+        modelo = (DefaultTableModel) tabelaUsuario.getModel();
+        modelo.setRowCount(0);
+        String admin;
+
+        try
+        {
+            String sql = "SELECT * FROM USUARIO ORDER BY 1";
+            ResultSet res = Conexao.consultar(sql);
+
+            if (Conexao.consultar(sql) == null)
+            {
+                JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + Conexao.getErro(), "Erro!", 0);
+            }
+            else
+            {
+                if (Conexao.consultar(sql).next())
+                {
+                    while (res.next())
+                    {
+                        if (res.getString("ic_administrador_sim_nao").equalsIgnoreCase("s"))
+                        {
+                            admin = "Sim";
+                        }
+                        else
+                        {
+                            admin = "Não";
+                        }
+
+                        modelo.addRow(new Object[]
+                                {
+                                    res.getInt("cd_usuario"),
+                                    res.getString("nm_login_usuario"),
+                                    admin
+                                });
+                    }
+                    nada = false;
+                }
+                else
+                {
+                    nada = true;
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + e.getMessage(), "Erro!", 0);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCadastrar;

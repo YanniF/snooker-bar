@@ -20,15 +20,13 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
 
     Utilitarios u = new Utilitarios(); 
     DefaultTableModel modelo;
-    public int first = 0;  
+    public boolean nada;  
     
     /**
      * Creates new form FormSelecionarComanda
      */
     public FormSelecionarComanda() {
         initComponents();
-                
-        btnPesquisarTudoActionPerformed(null);
         
         if(!Usuarios.adm){
             btnCadastrar.setEnabled(false);
@@ -61,6 +59,31 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Consultar Comanda");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener()
+        {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)
+            {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+        });
 
         lblTermoComanda.setText("Pesquisar:");
 
@@ -243,54 +266,12 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
 
     private void btnPesquisarTudoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarTudoActionPerformed
     {//GEN-HEADEREND:event_btnPesquisarTudoActionPerformed
-        modelo = (DefaultTableModel) tabelaComanda.getModel();
-        modelo.setRowCount(0);//para cada vez que executar isso, limpar as linhas da tabela
-        String ativa;
-        first++;
+        pesquisarTudo();
         
-        try
-        {            
-            String sql = "SELECT * FROM COMANDA ORDER BY 1";                                    
-            ResultSet res = Conexao.consultar(sql);            
-         
-            if(Conexao.consultar(sql) == null)
-            {
-                JOptionPane.showMessageDialog(null, "Erro na consulta:\n" + Conexao.getErro(), "Erro!", 0);
-            }
-            else
-            { 
-                if(Conexao.consultar(sql).next())
-                {//verifica se a consulta não é vazia
-                    while(res.next())
-                    {
-                        if(res.getString("ic_ativa_inativa").equalsIgnoreCase("s"))
-                        {
-                            ativa = "Ativa";
-                        }
-                        else
-                        {
-                            ativa = "Inativa";
-                        }
-
-                         modelo.addRow(new Object[] {
-                            res.getInt("cd_comanda"),
-                            ativa
-                        });
-                    }
-                }
-                else
-                {
-                    if(first > 1)
-                    {
-                        JOptionPane.showMessageDialog(null, "Não há dados para serem exibidos.", "Aviso", 1);
-                        btnLimparActionPerformed(evt);
-                    }                    
-                }
-            }
-        }
-        catch(Exception e)
+        if(nada)
         {
-            JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + e.getMessage(), "Erro!", 0);
+            JOptionPane.showMessageDialog(null, "Não há dados para serem exibidos.", "Aviso", 1);
+            btnLimparActionPerformed(null);
         }
     }//GEN-LAST:event_btnPesquisarTudoActionPerformed
 
@@ -389,6 +370,58 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
         fcc.setVisible(true);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt)//GEN-FIRST:event_formInternalFrameActivated
+    {//GEN-HEADEREND:event_formInternalFrameActivated
+        pesquisarTudo();
+    }//GEN-LAST:event_formInternalFrameActivated
+    
+    private void pesquisarTudo()
+    {
+        modelo = (DefaultTableModel) tabelaComanda.getModel();
+        modelo.setRowCount(0);//para cada vez que executar isso, limpar as linhas da tabela
+        String ativa;
+        
+        try
+        {            
+            String sql = "SELECT * FROM COMANDA ORDER BY 1";                                    
+            ResultSet res = Conexao.consultar(sql);            
+         
+            if(Conexao.consultar(sql) == null)
+            {
+                JOptionPane.showMessageDialog(null, "Erro na consulta:\n" + Conexao.getErro(), "Erro!", 0);
+            }
+            else
+            { 
+                if(Conexao.consultar(sql).next())
+                {//verifica se a consulta não é vazia
+                    while(res.next())
+                    {
+                        if(res.getString("ic_ativa_inativa").equalsIgnoreCase("s")) {
+                            ativa = "Ativa";
+                        }
+                        else {
+                            ativa = "Inativa";
+                        }
+
+                         modelo.addRow(new Object[] {
+                            res.getInt("cd_comanda"),
+                            ativa
+                        });
+                    }
+                    nada = false;
+                }
+                else
+                {
+                    nada = true;
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + e.getMessage(), "Erro!", 0);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCadastrar;

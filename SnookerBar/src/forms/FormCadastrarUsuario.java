@@ -182,6 +182,7 @@ public class FormCadastrarUsuario extends javax.swing.JInternalFrame {
             }
             
             String sql = "INSERT INTO USUARIO VALUES(USUARIO_SEQ.NEXTVAL, LOWER('" + nome + "'), '" + Utilitarios.md5Java(senha) + "', UPPER('" + admin + "'))";
+            
                         
             if(Conexao.atualizar(sql) == -1)
             {
@@ -191,6 +192,7 @@ public class FormCadastrarUsuario extends javax.swing.JInternalFrame {
             else
             {
                 JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
+                Conexao.atualizar("COMMIT");
                 btnLimparActionPerformed(evt);  
             }
         }

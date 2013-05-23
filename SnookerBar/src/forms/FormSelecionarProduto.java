@@ -16,7 +16,7 @@ public class FormSelecionarProduto extends javax.swing.JInternalFrame {
 
     Utilitarios u = new Utilitarios();
     DefaultTableModel modelo;      
-    public int first = 0;  
+    public boolean nada;  
     
     /**
      * Creates new form FormSelecionarProduto
@@ -24,8 +24,6 @@ public class FormSelecionarProduto extends javax.swing.JInternalFrame {
     public FormSelecionarProduto()
     {
         initComponents();
-        
-        btnPesquisarTudoActionPerformed(null);
         
         if(!Usuarios.adm){
             btnCadastrar.setEnabled(false);
@@ -61,6 +59,31 @@ public class FormSelecionarProduto extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Consultar Produto");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener()
+        {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)
+            {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+        });
 
         btnAlterar.setText("Alterar");
         btnAlterar.setToolTipText("Selecione a linha e clique aqui para alterar o produto");
@@ -252,44 +275,12 @@ public class FormSelecionarProduto extends javax.swing.JInternalFrame {
 
     private void btnPesquisarTudoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarTudoActionPerformed
     {//GEN-HEADEREND:event_btnPesquisarTudoActionPerformed
-        modelo = (DefaultTableModel) tabelaProduto.getModel();
-        modelo.setRowCount(0);
-        first++;
+        pesquisarTudo();
         
-        try
-        {            
-            String sql = "SELECT * FROM PRODUTO ORDER BY 1";                                    
-            ResultSet res = Conexao.consultar(sql);            
-         
-            if(Conexao.consultar(sql) == null){
-                JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + Conexao.getErro(), "Erro!", 0);
-            }
-            else
-            { 
-                if(Conexao.consultar(sql).next())
-                {
-                    while(res.next())
-                    {                        
-                        modelo.addRow(new Object[] {
-                            res.getInt("cd_produto"),
-                            res.getString("nm_produto"),
-                            NumberFormat.getCurrencyInstance().format(res.getDouble("vl_produto"))
-                        });
-                    }
-                }
-                else
-                {
-                    if(first > 1)
-                    {
-                        JOptionPane.showMessageDialog(null, "Não há dados para serem exibidos.", "Aviso", 1);
-                        btnLimparActionPerformed(evt);
-                    } 
-                }
-            }
-        }
-        catch(Exception e)
+        if(nada)
         {
-            JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + e.getMessage(), "Erro!", 0);
+            JOptionPane.showMessageDialog(null, "Não há dados para serem exibidos.", "Aviso", 1);
+            btnLimparActionPerformed(null);
         }
     }//GEN-LAST:event_btnPesquisarTudoActionPerformed
 
@@ -402,6 +393,50 @@ public class FormSelecionarProduto extends javax.swing.JInternalFrame {
         fcp.setVisible(true);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt)//GEN-FIRST:event_formInternalFrameActivated
+    {//GEN-HEADEREND:event_formInternalFrameActivated
+        pesquisarTudo();
+    }//GEN-LAST:event_formInternalFrameActivated
+
+    private void pesquisarTudo()
+    {
+        modelo = (DefaultTableModel) tabelaProduto.getModel();
+        modelo.setRowCount(0);
+        
+        try
+        {            
+            String sql = "SELECT * FROM PRODUTO ORDER BY 1";                                    
+            ResultSet res = Conexao.consultar(sql);            
+         
+            if(Conexao.consultar(sql) == null){
+                JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + Conexao.getErro(), "Erro!", 0);
+            }
+            else
+            { 
+                if(Conexao.consultar(sql).next())
+                {
+                    while(res.next())
+                    {                        
+                        modelo.addRow(new Object[] {
+                            res.getInt("cd_produto"),
+                            res.getString("nm_produto"),
+                            NumberFormat.getCurrencyInstance().format(res.getDouble("vl_produto"))
+                        });
+                    }
+                    nada = false;
+                }
+                else
+                {
+                    nada = true;
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + e.getMessage(), "Erro!", 0);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCadastrar;

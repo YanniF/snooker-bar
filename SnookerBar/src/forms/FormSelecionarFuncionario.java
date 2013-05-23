@@ -17,7 +17,7 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
 
     Utilitarios u = new Utilitarios();
     DefaultTableModel modelo;
-    public int first = 0;  
+    public boolean nada;  
     
     /**
      * Creates new form FormSelecionarFuncionario
@@ -25,8 +25,6 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
     public FormSelecionarFuncionario()
     {
         initComponents();
-        
-        btnPesquisarTudoActionPerformed(null);
         
         if(!Usuarios.adm){
             btnCadastrar.setEnabled(false);
@@ -45,7 +43,8 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         pesquisarButtonGroup = new javax.swing.ButtonGroup();
         btnLimpar = new javax.swing.JButton();
@@ -64,35 +63,69 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         setTitle("Consultar Funcionário");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener()
+        {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)
+            {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+        });
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
-        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnLimpar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnLimparActionPerformed(evt);
             }
         });
 
         tabelaFuncionario.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+            new Object [][]
+            {
 
             },
-            new String [] {
+            new String []
+            {
                 "Código", "Nome", "Telefone", "CPF", "Cargo", "Usuário"
             }
-        ) {
-            Class[] types = new Class [] {
+        )
+        {
+            Class[] types = new Class []
+            {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
+            boolean[] canEdit = new boolean []
+            {
                 false, false, false, false, false, false
             };
 
-            public Class getColumnClass(int columnIndex) {
+            public Class getColumnClass(int columnIndex)
+            {
                 return types [columnIndex];
             }
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
                 return canEdit [columnIndex];
             }
         });
@@ -102,32 +135,40 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
 
         btnExcluir.setText("Excluir");
         btnExcluir.setToolTipText("Selecione a linha e clique aqui para excluir o funcionário");
-        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnExcluir.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnExcluirActionPerformed(evt);
             }
         });
 
         btnAlterar.setText("Alterar");
         btnAlterar.setToolTipText("Selecione a linha e clique aqui para alterar o funcionário");
-        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAlterar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnAlterarActionPerformed(evt);
             }
         });
 
         btnPesquisarTudo.setText("Pesquisar tudo");
         btnPesquisarTudo.setToolTipText("Clique aqui para pesquisar todos os funcionários");
-        btnPesquisarTudo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnPesquisarTudo.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnPesquisarTudoActionPerformed(evt);
             }
         });
 
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.setToolTipText("Clique aqui para pesquisar por código, nome, CPF ou cargo do funcionário");
-        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnPesquisarActionPerformed(evt);
             }
         });
@@ -138,8 +179,10 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
 
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.setToolTipText("Clique aqui para cadastrar um funcionário");
-        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnCadastrarActionPerformed(evt);
             }
         });
@@ -243,47 +286,12 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
 
     private void btnPesquisarTudoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarTudoActionPerformed
     {//GEN-HEADEREND:event_btnPesquisarTudoActionPerformed
-        modelo = (DefaultTableModel) tabelaFuncionario.getModel();
-        modelo.setRowCount(0);
-        first++;
+        pesquisarTudo();
         
-        try
-        {            
-            String sql = "SELECT * FROM FUNCIONARIO ORDER BY 1";                                    
-            ResultSet res = Conexao.consultar(sql);            
-         
-            if(Conexao.consultar(sql) == null){
-                JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + Conexao.getErro(), "Erro!", 0);
-            }
-            else
-            { 
-                if(Conexao.consultar(sql).next())
-                {
-                    while(res.next())
-                    {
-                        modelo.addRow(new Object[] {
-                            res.getInt("cd_funcionario"),
-                            res.getString("nm_funcionario"),
-                            formatarTelefone(res.getString("cd_telefone_funcionario")),
-                            formatarCpf(res.getString("cd_cpf_funcionario")),
-                            res.getString("nm_cargo_funcionario"),
-                            res.getInt("cd_usuario"),                            
-                        });
-                    }
-                }
-                else
-                {
-                    if(first > 1)
-                    {
-                        JOptionPane.showMessageDialog(null, "Não há dados para serem exibidos.", "Aviso", 1);
-                        btnLimparActionPerformed(evt);
-                    } 
-                }
-            }
-        }
-        catch(Exception e)
+        if(nada)
         {
-            JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + e.getMessage(), "Erro!", 0);
+            JOptionPane.showMessageDialog(null, "Não há dados para serem exibidos.", "Aviso", 1);
+            btnLimparActionPerformed(null);
         }
     }//GEN-LAST:event_btnPesquisarTudoActionPerformed
 
@@ -399,6 +407,11 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
         fcf.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
         fcf.setVisible(true);
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt)//GEN-FIRST:event_formInternalFrameActivated
+    {//GEN-HEADEREND:event_formInternalFrameActivated
+        pesquisarTudo();
+    }//GEN-LAST:event_formInternalFrameActivated
  
     private String formatarCpf(String cpf)
     {
@@ -439,6 +452,48 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
             }
         }
         return tel2;
+    }
+    
+    private void pesquisarTudo()
+    {
+        modelo = (DefaultTableModel) tabelaFuncionario.getModel();
+        modelo.setRowCount(0);
+        
+        try
+        {            
+            String sql = "SELECT * FROM FUNCIONARIO ORDER BY 1";                                    
+            ResultSet res = Conexao.consultar(sql);            
+         
+            if(Conexao.consultar(sql) == null){
+                JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + Conexao.getErro(), "Erro!", 0);
+            }
+            else
+            { 
+                if(Conexao.consultar(sql).next())
+                {
+                    while(res.next())
+                    {
+                        modelo.addRow(new Object[] {
+                            res.getInt("cd_funcionario"),
+                            res.getString("nm_funcionario"),
+                            formatarTelefone(res.getString("cd_telefone_funcionario")),
+                            formatarCpf(res.getString("cd_cpf_funcionario")),
+                            res.getString("nm_cargo_funcionario"),
+                            res.getInt("cd_usuario"),                            
+                        });
+                    }
+                    nada = false;
+                }
+                else
+                {
+                    nada = true;
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + e.getMessage(), "Erro!", 0);
+        }     
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;

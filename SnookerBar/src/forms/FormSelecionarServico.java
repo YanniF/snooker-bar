@@ -17,15 +17,13 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
 
     Utilitarios u = new Utilitarios();
     DefaultTableModel modelo;    
-    public int first = 0;  
+    public boolean nada;  
     /**
      * Creates new form FormSelecionarServico
      */
     public FormSelecionarServico()
     {
         initComponents();
-        
-        btnPesquisarTudoActionPerformed(null);
         
         if(!Usuarios.adm){
             btnCadastrar.setEnabled(false);
@@ -61,6 +59,31 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Consultar Serviço");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener()
+        {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)
+            {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+        });
 
         tabelaServico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
@@ -250,44 +273,11 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
 
     private void btnPesquisarTudoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarTudoActionPerformed
     {//GEN-HEADEREND:event_btnPesquisarTudoActionPerformed
-        modelo = (DefaultTableModel) tabelaServico.getModel();
-        modelo.setRowCount(0);
-        first++;
-        
-        try
-        {            
-            String sql = "SELECT * FROM SERVICO ORDER BY 1";                                    
-            ResultSet res = Conexao.consultar(sql);            
-         
-            if(Conexao.consultar(sql) == null){
-                JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + Conexao.getErro(), "Erro!", 0);
-            }
-            else
-            { 
-                if(Conexao.consultar(sql).next())
-                {
-                    while(res.next())
-                    {                        
-                        modelo.addRow(new Object[] {
-                            res.getInt("cd_servico"),
-                            res.getString("nm_servico"),
-                            NumberFormat.getCurrencyInstance().format(res.getDouble("vl_servico"))
-                        });
-                    }
-                }
-                else
-                {
-                    if(first > 1)
-                    {
-                        JOptionPane.showMessageDialog(null, "Não há dados para serem exibidos.", "Aviso", 1);
-                        btnLimparActionPerformed(evt);
-                    } 
-                }
-            }
-        }
-        catch(Exception e)
+        pesquisarTudo();
+        if(nada)
         {
-            JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + e.getMessage(), "Erro!", 0);
+            JOptionPane.showMessageDialog(null, "Não há dados para serem exibidos.", "Aviso", 1);
+            btnLimparActionPerformed(null);
         }
     }//GEN-LAST:event_btnPesquisarTudoActionPerformed
 
@@ -400,6 +390,50 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
         fcs.setVisible(true);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt)//GEN-FIRST:event_formInternalFrameActivated
+    {//GEN-HEADEREND:event_formInternalFrameActivated
+        pesquisarTudo();
+    }//GEN-LAST:event_formInternalFrameActivated
+
+    private void pesquisarTudo()
+    {
+        modelo = (DefaultTableModel) tabelaServico.getModel();
+        modelo.setRowCount(0);
+        
+        try
+        {            
+            String sql = "SELECT * FROM SERVICO ORDER BY 1";                                    
+            ResultSet res = Conexao.consultar(sql);            
+         
+            if(Conexao.consultar(sql) == null){
+                JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + Conexao.getErro(), "Erro!", 0);
+            }
+            else
+            { 
+                if(Conexao.consultar(sql).next())
+                {
+                    while(res.next())
+                    {                        
+                        modelo.addRow(new Object[] {
+                            res.getInt("cd_servico"),
+                            res.getString("nm_servico"),
+                            NumberFormat.getCurrencyInstance().format(res.getDouble("vl_servico"))
+                        });
+                    }
+                    nada = false;
+                }
+                else
+                {
+                    nada = true;
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + e.getMessage(), "Erro!", 0);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCadastrar;
