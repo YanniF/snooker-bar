@@ -14,6 +14,8 @@ public class FormAlterarServico extends javax.swing.JInternalFrame {
      */
     
     Utilitarios u = new Utilitarios();
+    private String textoPermitido = "abcdefghijklmnopqrstuvwxyzçáéíóúâêôàèãõñ ";
+    private String textoPermitido2 = "01234567890,.";
     
     public FormAlterarServico() {
         initComponents();
@@ -26,14 +28,15 @@ public class FormAlterarServico extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         lblCdServico = new javax.swing.JLabel();
         txtCdServico = new javax.swing.JTextField();
         lblNmServico = new javax.swing.JLabel();
-        txtNmServico = new javax.swing.JTextField();
+        txtNmServico = new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido + textoPermitido.toUpperCase()), "", 30);
         lblVlServico = new javax.swing.JLabel();
-        txtVlServico = new javax.swing.JTextField();
+        txtVlServico = new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido2), "", 20);
         btnAlterar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
 
@@ -43,7 +46,6 @@ public class FormAlterarServico extends javax.swing.JInternalFrame {
 
         lblCdServico.setText("Código:");
 
-        txtCdServico.setToolTipText("Digite o código do serviço");
         txtCdServico.setEnabled(false);
 
         lblNmServico.setText("Nome:");
@@ -56,16 +58,20 @@ public class FormAlterarServico extends javax.swing.JInternalFrame {
 
         btnAlterar.setToolTipText("Clique aqui para gravar as alterações do serviço");
         btnAlterar.setLabel("Alterar");
-        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAlterar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnAlterarActionPerformed(evt);
             }
         });
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
-        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnLimpar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnLimparActionPerformed(evt);
             }
         });
@@ -91,7 +97,7 @@ public class FormAlterarServico extends javax.swing.JInternalFrame {
                         .addComponent(btnAlterar)
                         .addGap(18, 18, 18)
                         .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,7 +122,7 @@ public class FormAlterarServico extends javax.swing.JInternalFrame {
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-218)/2, (screenSize.height-211)/2, 218, 211);
+        setBounds((screenSize.width-225)/2, (screenSize.height-211)/2, 225, 211);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
@@ -132,7 +138,9 @@ public class FormAlterarServico extends javax.swing.JInternalFrame {
         {
             int cod = Integer.parseInt(txtCdServico.getText());
             String nome = txtNmServico.getText();
-            double valor = Double.parseDouble(txtVlServico.getText());
+            String valorString = txtVlServico.getText();
+            valorString = valorString.replace(",", ".");//substitui a vírgula por pontos
+            double valor = Double.parseDouble(valorString);
                         
             String sql = "UPDATE servico SET nm_servico = UPPER('" + nome + "'), vl_servico = " + valor + " WHERE cd_servico = " + cod;
             
@@ -156,9 +164,12 @@ public class FormAlterarServico extends javax.swing.JInternalFrame {
 
     public void passarValoresServico(int cod, String nome, Double valor) 
     {
+        String valorStr = valor.toString();
+        valorStr = valorStr.replace(".",",");
+        
         txtCdServico.setText(Integer.toString(cod));
         txtNmServico.setText(nome);
-        txtVlServico.setText(Double.toString(valor));
+        txtVlServico.setText(valorStr);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

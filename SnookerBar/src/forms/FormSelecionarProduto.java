@@ -17,6 +17,7 @@ public class FormSelecionarProduto extends javax.swing.JInternalFrame {
     Utilitarios u = new Utilitarios();
     DefaultTableModel modelo;      
     public boolean nada;  
+    private String textoPermitido = "abcdefghijklmnopqrstuvwxyzçáéíóúâêôàèãõñ0123456789., ";
     
     /**
      * Creates new form FormSelecionarProduto
@@ -52,7 +53,7 @@ public class FormSelecionarProduto extends javax.swing.JInternalFrame {
         jScrollPane = new javax.swing.JScrollPane();
         tabelaProduto = new javax.swing.JTable();
         btnExcluir = new javax.swing.JButton();
-        txtTermoProduto = new javax.swing.JTextField();
+        txtTermoProduto = new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido + textoPermitido.toUpperCase()), "", 30);
         lblTermoProduto = new javax.swing.JLabel();
         btnCadastrar = new javax.swing.JButton();
 
@@ -300,7 +301,8 @@ public class FormSelecionarProduto extends javax.swing.JInternalFrame {
             else
             {
                 termo = txtTermoProduto.getText().toUpperCase(); 
-
+                termo = termo.replace(",", ".");
+                
                 if(Utilitarios.isNumeric(termo)) {
                     sql = "SELECT * FROM produto WHERE cd_produto = " + termo + " OR vl_produto = " + termo;   
                 }

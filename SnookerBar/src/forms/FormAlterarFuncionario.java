@@ -15,7 +15,7 @@ public class FormAlterarFuncionario extends javax.swing.JInternalFrame {
      */
     
     Utilitarios u = new Utilitarios();
-    public String textoPermitido = "abcdefghijklmnopqrstuvwxyzçáéíóúâêôàèãõñ ";
+    private String textoPermitido = "abcdefghijklmnopqrstuvwxyzçáéíóúâêôàèãõñ ";
     
     public FormAlterarFuncionario() {
         initComponents();

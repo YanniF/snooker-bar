@@ -10,6 +10,8 @@ import javax.swing.JOptionPane;
  */
 public class FormCadastrarMesa extends javax.swing.JInternalFrame {
 
+    private String textoPermitido = "abcdefghijklmnopqrstuvwxyzçáéíóúâêôàèãõñ0123456789 ";
+    
     /**
      * Creates new form FormCadastrarMesa
      */
@@ -34,7 +36,7 @@ public class FormCadastrarMesa extends javax.swing.JInternalFrame {
         btnCadastrar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         lblNmMesa = new javax.swing.JLabel();
-        txtNmMesa = new javax.swing.JTextField();
+        txtNmMesa = new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido + textoPermitido.toUpperCase()), "", 20);
         ativaPanel = new javax.swing.JPanel();
         rbtNao = new javax.swing.JRadioButton();
         rbtSim = new javax.swing.JRadioButton();

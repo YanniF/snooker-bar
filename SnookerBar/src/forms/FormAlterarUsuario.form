@@ -103,13 +103,11 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtCdUsuario">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Digite o c&#xf3;digo do usu&#xe1;rio"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNmLoginUsuario">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Digite o nome do usu&#xe1;rio"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>

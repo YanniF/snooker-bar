@@ -14,6 +14,8 @@ public class FormCadastrarProduto extends javax.swing.JInternalFrame {
      */
     
     Utilitarios u = new Utilitarios();
+    private String textoPermitido = "abcdefghijklmnopqrstuvwxyzçáéíóúâêôàèãõñ ";
+    private String textoPermitido2 = "01234567890,.";
     
     public FormCadastrarProduto() {
         initComponents();
@@ -30,9 +32,9 @@ public class FormCadastrarProduto extends javax.swing.JInternalFrame {
     {
 
         lblNmProduto = new javax.swing.JLabel();
-        txtNmProduto = new javax.swing.JTextField();
+        txtNmProduto = new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido + textoPermitido.toUpperCase()), "", 30);
         lblVlProduto = new javax.swing.JLabel();
-        txtVlProduto = new javax.swing.JTextField();
+        txtVlProduto = new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido2), "", 20);
         btnCadastrar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
 

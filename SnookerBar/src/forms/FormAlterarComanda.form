@@ -155,7 +155,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtCdComanda">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Digite o n&#xfa;mero da comanda"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>

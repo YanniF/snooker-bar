@@ -11,7 +11,8 @@ import javax.swing.JOptionPane;
 public class FormAlterarProduto extends javax.swing.JInternalFrame {
 
     Utilitarios u = new Utilitarios();
-    
+    private String textoPermitido = "abcdefghijklmnopqrstuvwxyzçáéíóúâêôàèãõñ ";
+    private String textoPermitido2 = "01234567890,.";
     /**
      * Creates new form FormCadastrarServico
      */
@@ -27,14 +28,15 @@ public class FormAlterarProduto extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         lblCdProduto = new javax.swing.JLabel();
         txtCdProduto = new javax.swing.JTextField();
         lblNmProduto = new javax.swing.JLabel();
-        txtNmProduto = new javax.swing.JTextField();
+        txtNmProduto = new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido + textoPermitido.toUpperCase()), "", 30);
         lblVlProduto = new javax.swing.JLabel();
-        txtVlProduto = new javax.swing.JTextField();
+        txtVlProduto = new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido2), "", 20);
         btnAlterar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
 
@@ -44,7 +46,6 @@ public class FormAlterarProduto extends javax.swing.JInternalFrame {
 
         lblCdProduto.setText("Código:");
 
-        txtCdProduto.setToolTipText("Digite o código do produto");
         txtCdProduto.setEnabled(false);
 
         lblNmProduto.setText("Nome:");
@@ -57,16 +58,20 @@ public class FormAlterarProduto extends javax.swing.JInternalFrame {
 
         btnAlterar.setText("Alterar");
         btnAlterar.setToolTipText("Clique aqui para gravar as alterações do produto");
-        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAlterar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnAlterarActionPerformed(evt);
             }
         });
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
-        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnLimpar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnLimparActionPerformed(evt);
             }
         });
@@ -138,7 +143,9 @@ public class FormAlterarProduto extends javax.swing.JInternalFrame {
         {
             int cod = Integer.parseInt(txtCdProduto.getText());
             String nome = txtNmProduto.getText();
-            double valor = Double.parseDouble(txtVlProduto.getText());
+            String valorString = txtVlProduto.getText();
+            valorString = valorString.replace(",", ".");//substitui a vírgula por pontos
+            double valor = Double.parseDouble(valorString);
                         
             String sql = "UPDATE produto SET nm_produto = UPPER('" + nome + "'), vl_produto = " + valor + " WHERE cd_produto = " + cod;
             
@@ -162,9 +169,12 @@ public class FormAlterarProduto extends javax.swing.JInternalFrame {
 
     public void passarValoresProduto(int cod, String nome, Double valor) 
     {
+        String valorStr = valor.toString();
+        valorStr = valorStr.replace(".",",");
+        
         txtCdProduto.setText(Integer.toString(cod));
         txtNmProduto.setText(nome);
-        txtVlProduto.setText(Double.toString(valor));
+        txtVlProduto.setText(valorStr);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

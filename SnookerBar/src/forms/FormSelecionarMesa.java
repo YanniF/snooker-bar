@@ -17,6 +17,7 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
     Utilitarios u = new Utilitarios();
     DefaultTableModel modelo;    
     public boolean nada;  
+    private String textoPermitido = "abcdefghijklmnopqrstuvwxyzçáéíóúâêôàèãõñ0123456789 ";
     
     /**
      * Creates new form FormSelecionarMesa
@@ -50,7 +51,7 @@ public class FormSelecionarMesa extends javax.swing.JInternalFrame {
         btnAlterar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
         lblTermoMesa = new javax.swing.JLabel();
-        txtTermoMesa = new javax.swing.JTextField();
+        txtTermoMesa = new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido + textoPermitido.toUpperCase()), "", 30);
 
         setClosable(true);
         setIconifiable(true);

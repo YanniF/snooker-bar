@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
  */
 public class FormAlterarMesa extends javax.swing.JInternalFrame {
 
+    private String textoPermitido = "abcdefghijklmnopqrstuvwxyzçáéíóúâêôàèãõñ0123456789 ";
     /**
      * Creates new form FormCadastrarMesa
      */
@@ -24,14 +25,15 @@ public class FormAlterarMesa extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         ativaButtonGroup = new javax.swing.ButtonGroup();
         btnAlterar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         lblCdMesa = new javax.swing.JLabel();
         lblNmMesa = new javax.swing.JLabel();
-        txtNmMesa = new javax.swing.JTextField();
+        txtNmMesa = new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido + textoPermitido.toUpperCase()), "", 20);
         txtCdMesa = new javax.swing.JTextField();
         ativaPanel = new javax.swing.JPanel();
         rbtNao = new javax.swing.JRadioButton();
@@ -43,16 +45,20 @@ public class FormAlterarMesa extends javax.swing.JInternalFrame {
 
         btnAlterar.setText("Alterar");
         btnAlterar.setToolTipText("Clique aqui para gravar as alterações da mesa");
-        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAlterar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnAlterarActionPerformed(evt);
             }
         });
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
-        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnLimpar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnLimparActionPerformed(evt);
             }
         });
@@ -63,7 +69,6 @@ public class FormAlterarMesa extends javax.swing.JInternalFrame {
 
         txtNmMesa.setToolTipText("Digite a identificação (nome) da mesa");
 
-        txtCdMesa.setToolTipText("Digite o código da mesa");
         txtCdMesa.setEnabled(false);
 
         ativaPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Ativa?"));

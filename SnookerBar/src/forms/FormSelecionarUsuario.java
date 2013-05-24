@@ -22,6 +22,7 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
     Utilitarios u = new Utilitarios();
     DefaultTableModel modelo; 
     public boolean nada;
+    private String textoPermitido = "abcdefghijklmnopqrstuvwxyzçáéíóúâêôàèãõñ0123456789 ";
 
     /**
      * Creates new form FormSelecionarUsuario
@@ -58,7 +59,7 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
         jScrollPane = new javax.swing.JScrollPane();
         tabelaUsuario = new javax.swing.JTable();
         btnCadastrar = new javax.swing.JButton();
-        txtTermoUsuario = new javax.swing.JTextField();
+        txtTermoUsuario = new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido + textoPermitido.toUpperCase()), "", 30);
         lblTermoUsuario = new javax.swing.JLabel();
 
         setClosable(true);
@@ -309,7 +310,8 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
             else
             {
                 termo = txtTermoUsuario.getText().toLowerCase(); 
-
+                termo = termo.replace(",", ".");
+                
                 if(Utilitarios.isNumeric(termo)) {
                     sql = "SELECT * FROM usuario WHERE cd_usuario = " + termo;   
                 }

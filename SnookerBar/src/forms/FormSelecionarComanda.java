@@ -21,6 +21,7 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
     Utilitarios u = new Utilitarios(); 
     DefaultTableModel modelo;
     public boolean nada;  
+    private String textoPermitido = "abcdefghijklmnopqrstuvwxyzçáéíóúâêôàèãõñ0123456789 ";
     
     /**
      * Creates new form FormSelecionarComanda
@@ -47,7 +48,7 @@ public class FormSelecionarComanda extends javax.swing.JInternalFrame {
     {
 
         lblTermoComanda = new javax.swing.JLabel();
-        txtTermoComanda = new javax.swing.JTextField();
+        txtTermoComanda = new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido + textoPermitido.toUpperCase()), "", 30);
         btnPesquisar = new javax.swing.JButton();
         btnPesquisarTudo = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();

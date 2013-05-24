@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 public class FormLogin extends javax.swing.JFrame {
 
     Utilitarios u = new Utilitarios();
+    private String textoPermitido = "abcdefghijklmnopqrstuvwxyzçáéíóúâêôàèãõñ0123456789 ";
     
     /**
      * Creates new form FormLogin
@@ -39,7 +40,7 @@ public class FormLogin extends javax.swing.JFrame {
 
         lblUsuario = new javax.swing.JLabel();
         lblSenha = new javax.swing.JLabel();
-        txtUsuario = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido + textoPermitido.toUpperCase()), "", 30);
         btnLogin = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         txtSenha = new javax.swing.JPasswordField();

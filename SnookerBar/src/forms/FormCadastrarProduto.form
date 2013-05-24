@@ -88,6 +88,9 @@
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value="Digite o nome do produto"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido + textoPermitido.toUpperCase()), &quot;&quot;, 30)"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="lblVlProduto">
       <Properties>
@@ -98,6 +101,9 @@
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value="Digite o valor do produto"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido2), &quot;&quot;, 20)"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="btnCadastrar">
       <Properties>

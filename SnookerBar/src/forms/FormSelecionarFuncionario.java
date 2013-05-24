@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
  * @author Yanni
  */
 
@@ -18,7 +17,7 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
     Utilitarios u = new Utilitarios();
     DefaultTableModel modelo;
     public boolean nada;
-    public String textoPermitido = "abcdefghijklmnopqrstuvwxyzçáéíóúâêôàèãõñ0123456789 ";
+    private String textoPermitido = "abcdefghijklmnopqrstuvwxyzçáéíóúâêôàèãõñ0123456789 ";
     
     /**
      * Creates new form FormSelecionarFuncionario

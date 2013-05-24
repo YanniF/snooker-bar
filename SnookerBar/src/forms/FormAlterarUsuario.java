@@ -48,10 +48,8 @@ public class FormAlterarUsuario extends javax.swing.JInternalFrame {
 
         lblCdUsuario.setText("Código:");
 
-        txtCdUsuario.setToolTipText("Digite o código do usuário");
         txtCdUsuario.setEnabled(false);
 
-        txtNmLoginUsuario.setToolTipText("Digite o nome do usuário");
         txtNmLoginUsuario.setEnabled(false);
 
         lblNmLoginUsuario.setText("Usuário:");

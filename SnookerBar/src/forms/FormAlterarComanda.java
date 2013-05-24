@@ -26,7 +26,8 @@ public class FormAlterarComanda extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         ativaButtonGroup = new javax.swing.ButtonGroup();
         ativaPanel = new javax.swing.JPanel();
@@ -73,23 +74,26 @@ public class FormAlterarComanda extends javax.swing.JInternalFrame {
 
         btnAlterarComanda.setText("Alterar");
         btnAlterarComanda.setToolTipText("Clique aqui para gravar as alterações da comanda");
-        btnAlterarComanda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAlterarComanda.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnAlterarComandaActionPerformed(evt);
             }
         });
 
         btnLimpar.setText("Limpar");
         btnLimpar.setToolTipText("Clique aqui para limpar os valores");
-        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnLimpar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnLimparActionPerformed(evt);
             }
         });
 
         lblCdComanda.setText("Código:");
 
-        txtCdComanda.setToolTipText("Digite o número da comanda");
         txtCdComanda.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

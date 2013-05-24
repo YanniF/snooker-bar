@@ -14,6 +14,7 @@ public class FormCadastrarUsuario extends javax.swing.JInternalFrame {
      * Creates new form FormCadastrarUsuario
      */
     Utilitarios u = new Utilitarios();
+    private String textoPermitido = "abcdefghijklmnopqrstuvwxyzçáéíóúâêôàèãõñ0123456789 ";
     
     public FormCadastrarUsuario() {
         initComponents();
@@ -30,7 +31,7 @@ public class FormCadastrarUsuario extends javax.swing.JInternalFrame {
     {
 
         administradorbuttonGroup = new javax.swing.ButtonGroup();
-        txtNmLoginUsuario = new javax.swing.JTextField();
+        txtNmLoginUsuario = new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido + textoPermitido.toUpperCase()), "", 30);
         lblNmLoginUsuario = new javax.swing.JLabel();
         lblSenhaUsuario = new javax.swing.JLabel();
         txtNmSenhaUsuario = new javax.swing.JPasswordField();

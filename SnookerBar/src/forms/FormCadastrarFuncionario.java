@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  */
 public class FormCadastrarFuncionario extends javax.swing.JInternalFrame {
 
-    public String textoPermitido = "abcdefghijklmnopqrstuvwxyzçáéíóúâêôàèãõñ ";
+    private String textoPermitido = "abcdefghijklmnopqrstuvwxyzçáéíóúâêôàèãõñ ";
     /**
      * Creates new form FormCadastrarFuncionario
      */

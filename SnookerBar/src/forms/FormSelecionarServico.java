@@ -18,6 +18,7 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
     Utilitarios u = new Utilitarios();
     DefaultTableModel modelo;    
     public boolean nada;  
+    private String textoPermitido = "abcdefghijklmnopqrstuvwxyzçáéíóúâêôàèãõñ0123456789,. ";
     /**
      * Creates new form FormSelecionarServico
      */
@@ -53,7 +54,7 @@ public class FormSelecionarServico extends javax.swing.JInternalFrame {
         btnAlterar = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
         lblTermoServico = new javax.swing.JLabel();
-        txtTermoServico = new javax.swing.JTextField();
+        txtTermoServico = new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido + textoPermitido.toUpperCase()), "", 30);
         btnCadastrar = new javax.swing.JButton();
 
         setClosable(true);

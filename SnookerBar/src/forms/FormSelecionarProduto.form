@@ -183,6 +183,9 @@
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value="Digite o c&#xf3;digo, nome ou o pre&#xe7;o do produto para pesquisar"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido + textoPermitido.toUpperCase()), &quot;&quot;, 30)"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTermoProduto">
       <Properties>

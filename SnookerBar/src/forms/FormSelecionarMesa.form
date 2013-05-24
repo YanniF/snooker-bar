@@ -182,6 +182,9 @@
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value="Digite o c&#xf3;digo, identifica&#xe7;&#xe3;o ou o estado da mesa para pesquisar"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido + textoPermitido.toUpperCase()), &quot;&quot;, 30)"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

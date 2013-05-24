@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 public class FormCadastrarComanda extends javax.swing.JInternalFrame {
 
     Utilitarios u = new Utilitarios();
+    private String textoPermitido = "0123456789";
     
     /** Creates new form Comanda */
     public FormCadastrarComanda() {
@@ -34,7 +35,7 @@ public class FormCadastrarComanda extends javax.swing.JInternalFrame {
 
         ativaButtonGroup = new javax.swing.ButtonGroup();
         lblCdComanda = new javax.swing.JLabel();
-        txtCdComanda = new javax.swing.JTextField();
+        txtCdComanda = new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido), "", 20);
         ativaPanel = new javax.swing.JPanel();
         rbtNao = new javax.swing.JRadioButton();
         rbtSim = new javax.swing.JRadioButton();

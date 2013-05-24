@@ -15,6 +15,8 @@ public class FormCadastrarServico extends javax.swing.JInternalFrame {
      */
     
     Utilitarios u = new Utilitarios();
+    private String textoPermitido = "abcdefghijklmnopqrstuvwxyzçáéíóúâêôàèãõñ ";
+    private String textoPermitido2 = "01234567890,.";
     
     public FormCadastrarServico() {
         initComponents();
@@ -31,9 +33,9 @@ public class FormCadastrarServico extends javax.swing.JInternalFrame {
     {
 
         lblNmServico = new javax.swing.JLabel();
-        txtNmServico = new javax.swing.JTextField();
+        txtNmServico = new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido + textoPermitido.toUpperCase()), "", 30);
         lblVlServico = new javax.swing.JLabel();
-        txtVlServico = new javax.swing.JTextField();
+        txtVlServico = new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido2), "", 20);
         btnCadastrar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
 
@@ -88,7 +90,7 @@ public class FormCadastrarServico extends javax.swing.JInternalFrame {
                         .addComponent(btnCadastrar)
                         .addGap(18, 18, 18)
                         .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,7 +111,7 @@ public class FormCadastrarServico extends javax.swing.JInternalFrame {
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-218)/2, (screenSize.height-211)/2, 218, 211);
+        setBounds((screenSize.width-227)/2, (screenSize.height-211)/2, 227, 211);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed

@@ -87,6 +87,9 @@
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value="Digite o c&#xf3;digo da comanda"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido), &quot;&quot;, 20)"/>
+      </AuxValues>
     </Component>
     <Container class="javax.swing.JPanel" name="ativaPanel">
       <Properties>
