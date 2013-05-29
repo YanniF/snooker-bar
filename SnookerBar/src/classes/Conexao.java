@@ -42,7 +42,7 @@ public class Conexao {
         }
     }
     
-    public static ResultSet consultar(String sql) throws SQLException
+    public static ResultSet consultar(String sql)
     {
         try
         {
@@ -57,7 +57,7 @@ public class Conexao {
         }
     }
     
-    public static int atualizar(String sql) throws SQLException
+    public static int atualizar(String sql)
     {
         try
         {
