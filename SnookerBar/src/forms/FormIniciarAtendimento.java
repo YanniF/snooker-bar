@@ -10,7 +10,6 @@ import java.util.HashMap;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import oracle.sql.DATE;
 
 /**
  *
@@ -268,9 +267,7 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         try {
             
-            
             //Pega o código de abertura comanda na tabela Abertura Comanda
-            
             String sqlAbertComa = 
                     "SELECT \"ABERTURA_COMANDA\".\"cd_abertura_comanda\", \"ABERTURA_COMANDA\".\"cd_comanda\" "
                     + "FROM snooker.\"ABERTURA_COMANDA\" "
@@ -312,7 +309,7 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
         
 //        int cd_comanda = Integer.parseInt(jTextFieldNComanda.getText().toString());
         //int cd_abertura_comanda = 0;
-        String nome = "";
+        String nome= "";
         Double vlu = 0.0;
         Double vlt = 0.0;
         int qtd = 0;
