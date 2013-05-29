@@ -92,6 +92,7 @@ public class FormFecharAberturaComanda extends javax.swing.JInternalFrame {
 
         jTextFieldSomaTotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextFieldSomaTotal.setToolTipText("Valor total");
+        jTextFieldSomaTotal.setEnabled(false);
         jTextFieldSomaTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldSomaTotalActionPerformed(evt);
@@ -202,12 +203,11 @@ public class FormFecharAberturaComanda extends javax.swing.JInternalFrame {
         System.out.println("Teste formato data: "+sdf.format(new Date()));
         
         //NÃO TESTADO...
-            String sqlUpdate = "UPDATE snooker.\"ABERTURA_COMANDA\" "
-                    + "set \"ABERTURA_COMANDA\".\"dt_hora_fechar\"=' (to_date('" + sdf.format(new Date()) + "','dd/MM/yyyy HH24:MI'))'"
-                    + "WHERE \"ABERTURA_COMANDA\".\"cd_abertura_comanda\"="+cd_abertura+"";
+            String sqlUpdate = "UPDATE SNOOKER.ABERTURA_COMANDA "
+                    + "set \"dt_hora_fechar\"= (to_date('29/05/2013 17:15','dd/MM/yyyy HH24:MI')) "
+                    + "WHERE \"cd_abertura_comanda\"="+cd_abertura+"";
             
-
-            if (Conexao.atualizar(sql) != -1) {
+            if (Conexao.atualizar(sqlUpdate) != -1) {
                 JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
             } else {
                 JOptionPane.showMessageDialog(null, Conexao.getErro(), "Cadastro", 1);
