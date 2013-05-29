@@ -185,6 +185,7 @@
         <Menu class="javax.swing.JMenu" name="menuSair">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sair"/>
+            <Property name="toolTipText" type="java.lang.String" value="Sair"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuSairMouseClicked"/>
