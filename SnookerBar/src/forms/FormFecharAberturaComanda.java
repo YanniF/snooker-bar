@@ -4,6 +4,15 @@
  */
 package forms;
 
+import classes.Conexao;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Rafael
@@ -30,25 +39,39 @@ public class FormFecharAberturaComanda extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldSomaTotal = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButtonEncerrar = new javax.swing.JButton();
+        jButtonPesquisar = new javax.swing.JButton();
+        jButtonLimpar = new javax.swing.JButton();
+        jComboBoxComanda = new javax.swing.JComboBox();
 
         setClosable(true);
         setTitle("Encerrar Atendimento");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("DESCRIÇÃO DOS PRODUTOS E SERVIÇOS");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Quantidade", "Descrição", "R$ Unitário", "R$ Total"
@@ -67,36 +90,41 @@ public class FormFecharAberturaComanda extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("VALOR TOTAL R$:");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField1.setToolTipText("Valor total");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldSomaTotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldSomaTotal.setToolTipText("Valor total");
+        jTextFieldSomaTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTextFieldSomaTotalActionPerformed(evt);
             }
         });
 
         jLabel5.setText("Nº Comanda:");
 
-        jTextField3.setToolTipText("Digite o número da comanda");
-
-        jButton4.setText("Encerrar");
-        jButton4.setToolTipText("Clique aqui para encerrar o atendimento");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEncerrar.setText("Encerrar");
+        jButtonEncerrar.setToolTipText("Clique aqui para encerrar o atendimento");
+        jButtonEncerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButtonEncerrarActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Pesquisar");
-        jButton3.setToolTipText("Clique aqui para pesquisar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPesquisar.setText("Pesquisar");
+        jButtonPesquisar.setToolTipText("Clique aqui para pesquisar");
+        jButtonPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonPesquisarActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Limpar");
-        jButton1.setToolTipText("Clique aqui para limpar os valores");
+        jButtonLimpar.setText("Limpar");
+        jButtonLimpar.setToolTipText("Clique aqui para limpar os valores");
+        jButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimparActionPerformed(evt);
+            }
+        });
+
+        jComboBoxComanda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,27 +132,27 @@ public class FormFecharAberturaComanda extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 179, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jTextFieldSomaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
+                        .addComponent(jComboBoxComanda, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButtonPesquisar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(144, 144, 144)
-                        .addComponent(jButton4)))
-                .addGap(0, 63, Short.MAX_VALUE))
+                        .addComponent(jButtonEncerrar)))
+                .addGap(0, 11, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,9 +160,9 @@ public class FormFecharAberturaComanda extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton1))
+                    .addComponent(jButtonPesquisar)
+                    .addComponent(jButtonLimpar)
+                    .addComponent(jComboBoxComanda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
@@ -142,38 +170,146 @@ public class FormFecharAberturaComanda extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldSomaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButtonEncerrar)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-410)/2, (screenSize.height-302)/2, 410, 302);
+        setBounds((screenSize.width-410)/2, (screenSize.height-320)/2, 410, 320);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextFieldSomaTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSomaTotalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTextFieldSomaTotalActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void jButtonEncerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEncerrarActionPerformed
+        try {
+            int cd_abertura = 0;
+        //Consulta para pegar o numero do cd_abertura_comanda que está aberto
+                 String sql = "SELECT \"ABERTURA_COMANDA\".\"cd_abertura_comanda\" "
+                    + "FROM \"ABERTURA_COMANDA\" "
+                    + "WHERE \"ABERTURA_COMANDA\".\"cd_comanda\"=" + jComboBoxComanda.getSelectedItem() + " AND \"ABERTURA_COMANDA\".\"dt_hora_fechar\" is null ";
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+            ResultSet rs = Conexao.consultar(sql);
+            while (rs.next()) {
+                cd_abertura = rs.getInt("cd_abertura_comanda");
+            }
+        
+        //Pega a hora do sistema para inserir no banco
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");  
+        System.out.println("Teste formato data: "+sdf.format(new Date()));
+        
+        //NÃO TESTADO...
+            String sqlUpdate = "UPDATE snooker.\"ABERTURA_COMANDA\" "
+                    + "set \"ABERTURA_COMANDA\".\"dt_hora_fechar\"=' (to_date('" + sdf.format(new Date()) + "','dd/MM/yyyy HH24:MI'))'"
+                    + "WHERE \"ABERTURA_COMANDA\".\"cd_abertura_comanda\"="+cd_abertura+"";
+            
 
+            if (Conexao.atualizar(sql) != -1) {
+                JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
+            } else {
+                JOptionPane.showMessageDialog(null, Conexao.getErro(), "Cadastro", 1);
+            }
+            //limpa o campo da comanda
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro na Exceção\n" + e.getMessage(), "Erro!", 0);
+        }
+
+    }//GEN-LAST:event_jButtonEncerrarActionPerformed
+    private HashMap<Integer, Integer> comandas = new HashMap<Integer, Integer>();
+
+    private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
+        try {
+            Double vlu = 0.0;
+            Double vlt = 0.0;
+            int qtd = 0;
+            String cd_produto = "";
+
+            //Declara a tabela
+            DefaultTableModel modelTable = (DefaultTableModel) jTable1.getModel();
+
+            //Faz Consulta para Inserir os valores na tabela
+            String sql = "SELECT \"ABERTURA_COMANDA\".\"cd_abertura_comanda\" "
+                    + "FROM \"ABERTURA_COMANDA\" "
+                    + "WHERE \"ABERTURA_COMANDA\".\"cd_comanda\"=" + jComboBoxComanda.getSelectedItem() + " AND \"ABERTURA_COMANDA\".\"dt_hora_fechar\" is null ";
+
+            ResultSet rs = Conexao.consultar(sql);
+
+            int cd_abertura = 0;
+            while (rs.next()) {
+                cd_abertura = rs.getInt("cd_abertura_comanda");
+            }
+            String sql2 = "SELECT * FROM ATENDIMENTO WHERE cd_abertura_comanda =" + cd_abertura + "";
+
+            ResultSet rs2 = Conexao.consultar(sql2);
+            while (rs2.next()) {
+                qtd = rs2.getInt("qt_produto");
+                cd_produto = rs2.getString("cd_produto");
+                vlt = rs2.getDouble("vl_total_atendimento");
+                vlu = vlt / qtd;
+
+                //Adiciona as linhas na tabela
+                modelTable.addRow(new Object[]{
+                            qtd,
+                            cd_produto,
+                            vlu,
+                            vlt
+                        });
+            }
+
+            //Varre a coluna do valor total, incrementando na variável
+            Double valorTotal = 0.00;
+            for (int row = 0; row < modelTable.getRowCount(); row++) {
+                valorTotal += Double.parseDouble(modelTable.getValueAt(row, 3).toString());
+            }
+            jTextFieldSomaTotal.setText(valorTotal.toString());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro:\n" + e.getMessage(), "Aviso", 2);
+        }
+    }//GEN-LAST:event_jButtonPesquisarActionPerformed
+
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        try {
+            //Pega o código de abertura comanda na tabela Abertura Comanda
+            String sqlAbertComa =
+                    "SELECT \"ABERTURA_COMANDA\".\"cd_abertura_comanda\", \"ABERTURA_COMANDA\".\"cd_comanda\" "
+                    + "FROM snooker.\"ABERTURA_COMANDA\" "
+                    + "WHERE \"ABERTURA_COMANDA\".\"dt_hora_fechar\" is null "
+                    + "ORDER BY \"ABERTURA_COMANDA\".\"cd_comanda\"";
+            ResultSet rs1 = Conexao.consultar(sqlAbertComa);
+            DefaultComboBoxModel model2 = (DefaultComboBoxModel) jComboBoxComanda.getModel();
+            model2.removeAllElements();
+
+            comandas.clear();
+            while (rs1.next()) {
+                comandas.put(rs1.getInt("cd_comanda"), rs1.getInt("cd_abertura_comanda"));
+                model2.addElement(rs1.getInt("cd_comanda"));
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro:\n" + e.getMessage(), "Aviso", 2);
+        }
+    }//GEN-LAST:event_formInternalFrameOpened
+
+    private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
+        DefaultTableModel modelTable = (DefaultTableModel) jTable1.getModel();
+        for (int i = 0; i < modelTable.getRowCount(); i++) {
+            modelTable.removeRow(i);
+        }
+    }//GEN-LAST:event_jButtonLimparActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonEncerrar;
+    private javax.swing.JButton jButtonLimpar;
+    private javax.swing.JButton jButtonPesquisar;
+    private javax.swing.JComboBox jComboBoxComanda;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextFieldSomaTotal;
     // End of variables declaration//GEN-END:variables
 }
