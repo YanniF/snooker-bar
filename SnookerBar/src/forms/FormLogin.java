@@ -180,6 +180,7 @@ public class FormLogin extends javax.swing.JFrame {
                         FormInicial fi = new FormInicial();
                         fi.setVisible(true);
                         this.dispose();
+                        Usuarios.login = txtUsuario.getText();//saber o nome do usuário para quando exclui, não apagar um usuários logado
                         
                         if(resultado.getString("ic_administrador_sim_nao").equalsIgnoreCase("s")) {
                             Usuarios.adm = true;
@@ -188,7 +189,7 @@ public class FormLogin extends javax.swing.JFrame {
                             Usuarios.adm = false;
                         }
                         
-                        String sql2 = "SELECT INITCAP(f.nm_funcionario) FROM funcionario f, usuario u "
+                        String sql2 = "SELECT INITCAP(f.nm_funcionario), u.nm_login_usuario FROM funcionario f, usuario u "
                                 + "WHERE f.cd_usuario = u.cd_usuario AND u.nm_login_usuario='" + usuario + "'";
                         
                         ResultSet res = Conexao.consultar(sql2);

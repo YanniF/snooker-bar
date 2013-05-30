@@ -366,74 +366,89 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnExcluirActionPerformed
     {//GEN-HEADEREND:event_btnExcluirActionPerformed
-        //não permitir que todos os administradores sejam apagados
         if (tabelaUsuario.getSelectedRow() >= 0)
         {
             String cod = tabelaUsuario.getValueAt(tabelaUsuario.getSelectedRow(), 0).toString();
             String sql;
+            String login = "";
             
             //Confirma a operação
             if (JOptionPane.showConfirmDialog(null, "Confirma a exclusão do registro " + cod + "?") == JOptionPane.YES_OPTION)
             {
-                if (tabelaUsuario.getValueAt(tabelaUsuario.getSelectedRow(), 2).toString().equalsIgnoreCase("sim"))
-                {
-                    sql = "SELECT cd_usuario FROM USUARIO WHERE UPPER(ic_administrador_sim_nao) = 'S'";
+                try {//pega o nome de login do usuário
+                    sql = "SELECT nm_login_usuario FROM USUARIO WHERE cd_usuario = " + cod;
+                    ResultSet rs = Conexao.consultar(sql);
 
-                    try
+                    while(rs.next()) {
+                       login = rs.getString("nm_login_usuario");
+                    }
+                }
+                catch(SQLException e)    {
+                    JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+                }
+                
+                if(!login.equals(Usuarios.login))
+                {//se o usuario que vai ser excluído é diferente do usuário logado                    
+                    if (tabelaUsuario.getValueAt(tabelaUsuario.getSelectedRow(), 2).toString().equalsIgnoreCase("sim"))
                     {
-                        ResultSet res = Conexao.consultar(sql);
-                        int qtd = 0;
+                        sql = "SELECT cd_usuario FROM USUARIO WHERE UPPER(ic_administrador_sim_nao) = 'S'";
 
-                        while (res.next())
-                        { //não queria ter feito assim :/
-                            qtd++;
-                        }
-
-                        if (qtd <= 1)
+                        try
                         {
-                            JOptionPane.showMessageDialog(null, "Não é possível excluir todos os administradores.", "Aviso", 2);
+                            ResultSet res = Conexao.consultar(sql);
+                            int qtd = 0;
+
+                            while (res.next()) { //não queria ter feito assim :/
+                                qtd++;
+                            }
+
+                            if (qtd <= 1) {
+                                JOptionPane.showMessageDialog(null, "Não é possível excluir todos os administradores.", "Aviso", 1);
+                            }
+                            else
+                            {
+                                sql = "DELETE FROM USUARIO WHERE cd_usuario=" + cod;
+
+                                if(Conexao.atualizar(sql) == -1) {
+                                    JOptionPane.showMessageDialog(null, "O registro não pode ser excluído.\n" + Conexao.getErro(), "Erro", 0);
+                                }
+                                
+                                btnPesquisarTudoActionPerformed(evt);
+                                u.limparTextFields(this);
+                            }
                         }
-                        else
+                        catch (Exception ex) {
+                            JOptionPane.showMessageDialog(null, "O registro não pode ser excluído.\n" + ex.getMessage(), "Erro", 0);
+                        }
+                    }//fim if de verificação dos usuários administradores
+                    else
+                    { 
+                        try
                         {
                             sql = "DELETE FROM USUARIO WHERE cd_usuario=" + cod;
 
                             if(Conexao.atualizar(sql) == -1) {
                                 JOptionPane.showMessageDialog(null, "O registro não pode ser excluído.\n" + Conexao.getErro(), "Erro", 0);
                             }
+                        }
+                        catch (Exception ex) {
+                            JOptionPane.showMessageDialog(null, "O registro não pode ser excluído.\n" + ex.getMessage(), "Erro", 0);
+                        }
+                        finally
+                        {
                             btnPesquisarTudoActionPerformed(evt);
                             u.limparTextFields(this);
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        JOptionPane.showMessageDialog(null, "O registro não pode ser excluído.\n" + ex.getMessage(), "Erro", 0);
-                    }
-                }
-                else
-                { 
-                    try
-                    {
-                        sql = "DELETE FROM USUARIO WHERE cd_usuario=" + cod;
-                        
-                        if(Conexao.atualizar(sql) == -1) {
-                            JOptionPane.showMessageDialog(null, "O registro não pode ser excluído.\n" + Conexao.getErro(), "Erro", 0);
-                        }
-                    }
-                    catch (SQLException ex)
-                    {
-                        JOptionPane.showMessageDialog(null, "O registro não pode ser excluído.\n" + ex.getMessage(), "Erro", 0);
-                    }
-                    finally
-                    {
-                        btnPesquisarTudoActionPerformed(evt);
-                        u.limparTextFields(this);
-                    }
+                } // fim if de verificação do usuário ativo
+                else {
+                    JOptionPane.showMessageDialog(null, "Não é possível excluir usuário logado.", "Aviso", 1);
                 }
             }//if de confirmação de exclusão
-        }
+        }//if da linha selecionada
         else
         {
-            JOptionPane.showMessageDialog(null, "Selecione alguma linha para excluir.", "Aviso", 2);
+            JOptionPane.showMessageDialog(null, "Selecione alguma linha para excluir.", "Aviso", 1);
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 

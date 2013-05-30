@@ -198,9 +198,10 @@ public class FormAlterarFuncionario extends javax.swing.JInternalFrame {
             String sql;
             
             tel = tel.replaceAll("\\(", "").replaceAll("\\)", "").replaceAll("-", "").replaceAll(" ", "");
-                     
+            
             sql = "UPDATE funcionario SET nm_funcionario = UPPER('" + nome + "'), cd_telefone_funcionario = " + tel 
-                    + ", nm_cargo_funcionario = UPPER('" + cargo + "'), WHERE cd_funcionario = " + cod;
+                    + ", nm_cargo_funcionario = UPPER('" + cargo + "') WHERE cd_funcionario = " + cod;
+            System.out.println(sql);
             
             if(Conexao.atualizar(sql) == -1)
             {
@@ -220,21 +221,14 @@ public class FormAlterarFuncionario extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
-    public void passarValoresFuncionario(int cod, String nome, String cargo, String cpf, String tel, int user) 
+    public void passarValoresFuncionario(int cod, String nome, String cargo, String cpf, String tel, String user) 
     {
         txtCdFuncionario.setText(Integer.toString(cod));
         txtNmFuncionario.setText(nome);
         txtNmCargo.setText(cargo);
         txtCdCpfFuncionario.setText(cpf);
         txtCdTelefoneFuncionario.setText(tel);
-        
-        if(user == 0) {
-            txtCdUsuario.setText("");
-        }
-        else
-        {
-            txtCdUsuario.setText(Integer.toString(user));
-        }
+        txtCdUsuario.setText(user);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -11,22 +11,22 @@ import javax.swing.table.DefaultTableModel;
 /**
  * @author Yanni
  */
-
 public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
 
     Utilitarios u = new Utilitarios();
     DefaultTableModel modelo;
-    public boolean nada;
+    private boolean nada;
     private String textoPermitido = "abcdefghijklmnopqrstuvwxyzçáéíóúâêôàèãõñ0123456789 ";
-    
+
     /**
      * Creates new form FormSelecionarFuncionario
      */
     public FormSelecionarFuncionario()
     {
         initComponents();
-        
-        if(!Usuarios.adm){
+
+        if (!Usuarios.adm)
+        {
             btnCadastrar.setEnabled(false);
             btnCadastrar.setToolTipText(null);
             btnAlterar.setEnabled(false);
@@ -131,7 +131,9 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
         });
         jScrollPane.setViewportView(tabelaFuncionario);
         tabelaFuncionario.getColumnModel().getColumn(0).setPreferredWidth(20);
-        tabelaFuncionario.getColumnModel().getColumn(5).setPreferredWidth(20);
+        tabelaFuncionario.getColumnModel().getColumn(2).setPreferredWidth(55);
+        tabelaFuncionario.getColumnModel().getColumn(3).setPreferredWidth(60);
+        tabelaFuncionario.getColumnModel().getColumn(5).setPreferredWidth(40);
 
         btnExcluir.setText("Excluir");
         btnExcluir.setToolTipText("Selecione a linha e clique aqui para excluir o funcionário");
@@ -175,7 +177,7 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
 
         lblTermoProduto.setText("Pesquisar:");
 
-        txtTermoProduto.setToolTipText("Digite o código, nome, CPF (sem pontuação) ou cargo do funcionário para pesquisar");
+        txtTermoProduto.setToolTipText("Digite o código, nome, CPF (sem pontuação), cargo ou login do funcionário para pesquisar");
 
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.setToolTipText("Clique aqui para cadastrar um funcionário");
@@ -199,7 +201,7 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTermoProduto))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(48, Short.MAX_VALUE)
+                        .addContainerGap(81, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
@@ -237,49 +239,51 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-576)/2, (screenSize.height-484)/2, 576, 484);
+        setBounds((screenSize.width-609)/2, (screenSize.height-484)/2, 609, 484);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnLimparActionPerformed
     {//GEN-HEADEREND:event_btnLimparActionPerformed
         try
         {
-            for(int c = modelo.getRowCount() - 1; c >= 0; c--)
+            for (int c = modelo.getRowCount() - 1; c >= 0; c--)
             {
                 modelo.removeRow(c);
             }
         }
-        catch(NullPointerException e){
+        catch (NullPointerException e)
+        {
             System.out.println("Não há dados na tabela");
         }
-        u.limparTextFields(this);        
+        u.limparTextFields(this);
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAlterarActionPerformed
     {//GEN-HEADEREND:event_btnAlterarActionPerformed
-        if(tabelaFuncionario.getSelectedRow() >= 0)
+        if (tabelaFuncionario.getSelectedRow() >= 0)
         {
             String auxTel = tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 2).toString();
             String auxCpf = tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 3).toString();
-                        
+
             //tirando a formatação
             auxTel = auxTel.replaceAll("\\(", "").replaceAll("\\)", "").replaceAll("-", "").replaceAll(" ", "");
             auxCpf = auxCpf.replaceAll("\\.", "").replaceAll("-", "");
-            
+
             int cod = Integer.parseInt(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 0).toString());
             String nome = tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 1).toString();
             String tel = auxTel;
             String cpf = auxCpf;
             String cargo = tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 4).toString();
-            int user = Integer.parseInt(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 5).toString());
-            
+            String user = tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 5).toString();
+
             FormAlterarFuncionario faf = new FormAlterarFuncionario();
             faf.passarValoresFuncionario(cod, nome, cargo, cpf, tel, user);
             this.getDesktopPane().add(faf);
             faf.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
             faf.setVisible(true);
         }
-        else {
+        else
+        {
             JOptionPane.showMessageDialog(null, "Selecione alguma linha para alterar.", "Aviso", 2);
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
@@ -287,8 +291,8 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
     private void btnPesquisarTudoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarTudoActionPerformed
     {//GEN-HEADEREND:event_btnPesquisarTudoActionPerformed
         pesquisarTudo();
-        
-        if(nada)
+
+        if (nada)
         {
             JOptionPane.showMessageDialog(null, "Não há dados para serem exibidos.", "Aviso", 1);
             btnLimparActionPerformed(null);
@@ -300,61 +304,68 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
         String termo;
         String sql = "";
         boolean erro;
-        
-        try 
+
+        try
         {
-            if(txtTermoProduto.getText().equals(""))
+            if (txtTermoProduto.getText().equals(""))
             {
                 JOptionPane.showMessageDialog(null, "Digite algum valor para fazer a pesquisa.", "Aviso", 2);
                 erro = true;
             }
             else
             {
-                termo = txtTermoProduto.getText().toUpperCase(); 
+                termo = txtTermoProduto.getText().toUpperCase();
 
-                if(Utilitarios.isNumeric(termo)) {
-                    sql = "SELECT * FROM funcionario WHERE cd_funcionario = " + termo + " OR cd_cpf_funcionario = " + termo;   
+                if (Utilitarios.isNumeric(termo))
+                {
+                    sql = "SELECT f.*, u.nm_login_usuario FROM funcionario f, usuario u "
+                            + "WHERE (f.cd_funcionario = " + termo + " OR f.cd_cpf_funcionario = " + termo
+                            + ") AND f.cd_usuario = u.cd_usuario";
                 }
-                else {
-                    sql = "SELECT * FROM funcionario WHERE nm_funcionario LIKE '%" + termo + "%' OR nm_cargo_funcionario LIKE '%" + termo + "%'";                
-                }    
-                erro = false;  
+                else
+                {
+                    sql = "SELECT f.*, u.nm_login_usuario FROM funcionario f, usuario u "
+                            + "WHERE (f.nm_funcionario LIKE '%" + termo + "%' OR f.nm_cargo_funcionario LIKE '%" + termo + "%' OR u.nm_login_usuario LIKE LOWER('%" + termo + "%')) "
+                            + "AND f.cd_usuario = u.cd_usuario";
+                }
+                erro = false;
             }
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             JOptionPane.showMessageDialog(null, "Erro: \n" + e.getMessage(), "Erro", 0);
             erro = true;
             u.limparTextFields(this);
         }
-        
-        if(!erro)
+
+        if (!erro)
         {
             modelo = (DefaultTableModel) tabelaFuncionario.getModel();
             modelo.setRowCount(0);
 
             try
-            {  
-                ResultSet res = Conexao.consultar(sql);            
+            {
+                ResultSet res = Conexao.consultar(sql);
 
-                if(Conexao.consultar(sql) == null)
+                if (Conexao.consultar(sql) == null)
                 {
                     JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + Conexao.getErro(), "Erro!", 0);
                 }
                 else
-                { 
-                    if(Conexao.consultar(sql).next())
+                {
+                    if (Conexao.consultar(sql).next())
                     {
-                        while(res.next())
+                        while (res.next())
                         {
-                             modelo.addRow(new Object[] {
-                                res.getInt("cd_funcionario"),
-                                res.getString("nm_funcionario"),
-                                formatarTelefone(res.getString("cd_telefone_funcionario")),
-                                formatarCpf(res.getString("cd_cpf_funcionario")),
-                                res.getString("nm_cargo_funcionario"),
-                                res.getInt("cd_usuario"),                            
-                            });
+                            modelo.addRow(new Object[]
+                                    {
+                                        res.getInt("cd_funcionario"),
+                                        res.getString("nm_funcionario"),
+                                        formatarTelefone(res.getString("cd_telefone_funcionario")),
+                                        formatarCpf(res.getString("cd_cpf_funcionario")),
+                                        res.getString("nm_cargo_funcionario"),
+                                        res.getString("nm_login_usuario"),
+                                    });
                         }
                     }
                     else
@@ -363,39 +374,41 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
                     }
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + e.getMessage(), "Erro!", 0);
             }
-         }
+        }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnExcluirActionPerformed
     {//GEN-HEADEREND:event_btnExcluirActionPerformed
-        if(tabelaFuncionario.getSelectedRow() >= 0)
+        if (tabelaFuncionario.getSelectedRow() >= 0)
         {
-            String cod = tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 0).toString();         
-            
+            String cod = tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 0).toString();
+
             //Confirma a operação
-            if(JOptionPane.showConfirmDialog(null, "Confirma a exclusão do registro " + cod + "?") == JOptionPane.YES_OPTION)
+            if (JOptionPane.showConfirmDialog(null, "Confirma a exclusão do registro " + cod + "?") == JOptionPane.YES_OPTION)
             {
                 String sql = "DELETE FROM FUNCIONARIO WHERE cd_funcionario=" + cod;
-                
+
                 try
                 {
-                    if(Conexao.atualizar(sql) == -1) {
+                    if (Conexao.atualizar(sql) == -1)
+                    {
                         JOptionPane.showMessageDialog(null, "O registro não pode ser excluído.\n" + Conexao.getErro(), "Erro", 0);
                     }
                     btnPesquisarTudoActionPerformed(evt);
                     u.limparTextFields(this);
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     JOptionPane.showMessageDialog(null, "O registro não pode ser excluído.", "Erro", 0);
                 }
             }
         }
-        else {
+        else
+        {
             JOptionPane.showMessageDialog(null, "Selecione alguma linha para excluir.", "Aviso", 2);
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
@@ -412,75 +425,84 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
     {//GEN-HEADEREND:event_formInternalFrameActivated
         pesquisarTudo();
     }//GEN-LAST:event_formInternalFrameActivated
- 
+
     private String formatarCpf(String cpf)
     {
-        String aux [] = cpf.split("");
+        String aux[] = cpf.split("");
         String cpf2 = "";
-        
+
         for (int c = 1; c < aux.length; c++)
-        {            
+        {
             cpf2 += aux[c];
-            
-            if(c == 9) {
+
+            if (c == 9)
+            {
                 cpf2 += "-";
-            }            
-            else if (c % 3 == 0) {
+            }
+            else if (c % 3 == 0)
+            {
                 cpf2 += ".";
             }
         }
         return cpf2;
     }
-    
+
     private String formatarTelefone(String tel)
     {
-        String aux [] = tel.split("");
+        String aux[] = tel.split("");
         String tel2 = "";
-        
+
         for (int c = 1; c < aux.length; c++)
-        {        
-            if(c == 1) {
+        {
+            if (c == 1)
+            {
                 tel2 += "(";
             }
             tel2 += aux[c];
-            
-            if(c == 2) {
+
+            if (c == 2)
+            {
                 tel2 += ") ";
-            }  
-            else if (c == 6) {
+            }
+            else if (c == 6)
+            {
                 tel2 += "-";
             }
         }
         return tel2;
     }
-    
+
     private void pesquisarTudo()
     {
         modelo = (DefaultTableModel) tabelaFuncionario.getModel();
         modelo.setRowCount(0);
-        
+
         try
-        {            
-            String sql = "SELECT * FROM FUNCIONARIO ORDER BY 1";                                    
-            ResultSet res = Conexao.consultar(sql);            
-         
-            if(Conexao.consultar(sql) == null){
+        {
+            String sql = "SELECT f.*, u.nm_login_usuario FROM funcionario f, usuario u"
+                    + " WHERE f.cd_usuario = u.cd_usuario ORDER BY f.cd_funcionario";
+
+            ResultSet res = Conexao.consultar(sql);
+
+            if (Conexao.consultar(sql) == null)
+            {
                 JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + Conexao.getErro(), "Erro!", 0);
             }
             else
-            { 
-                if(Conexao.consultar(sql).next())
+            {
+                if (Conexao.consultar(sql).next())
                 {
-                    while(res.next())
+                    while (res.next())
                     {
-                        modelo.addRow(new Object[] {
-                            res.getInt("cd_funcionario"),
-                            res.getString("nm_funcionario"),
-                            formatarTelefone(res.getString("cd_telefone_funcionario")),
-                            formatarCpf(res.getString("cd_cpf_funcionario")),
-                            res.getString("nm_cargo_funcionario"),
-                            res.getInt("cd_usuario"),                            
-                        });
+                        modelo.addRow(new Object[]
+                                {
+                                    res.getInt("cd_funcionario"),
+                                    res.getString("nm_funcionario"),
+                                    formatarTelefone(res.getString("cd_telefone_funcionario")),
+                                    formatarCpf(res.getString("cd_cpf_funcionario")),
+                                    res.getString("nm_cargo_funcionario"),
+                                    res.getString("nm_login_usuario"),
+                                });
                     }
                     nada = false;
                 }
@@ -490,10 +512,10 @@ public class FormSelecionarFuncionario extends javax.swing.JInternalFrame {
                 }
             }
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + e.getMessage(), "Erro!", 0);
-        }     
+        }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;

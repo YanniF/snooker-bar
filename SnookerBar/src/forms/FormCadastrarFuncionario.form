@@ -12,6 +12,9 @@
     <SyntheticProperty name="generateSize" type="boolean" value="true"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="internalFrameOpened" listener="javax.swing.event.InternalFrameListener" parameters="javax.swing.event.InternalFrameEvent" handler="formInternalFrameOpened"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -43,15 +46,15 @@
                           <Component id="txtNmFuncionario" min="-2" pref="300" max="-2" attributes="0"/>
                           <Component id="txtCdCpfFuncionario" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
                           <Component id="txtCdTelefoneFuncionario" min="-2" pref="133" max="-2" attributes="0"/>
+                          <Component id="txtNmCargo" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="txtCdUsuario" min="-2" pref="133" max="-2" attributes="0"/>
+                              <Component id="cmbNmUsuario" min="-2" pref="133" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="btnLimpar" min="-2" pref="72" max="-2" attributes="0"/>
                                   <Component id="btnPesquisar" min="-2" pref="49" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="txtNmCargo" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -91,7 +94,7 @@
                   <Component id="btnPesquisar" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="lblCdUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtCdUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbNmUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
@@ -149,11 +152,6 @@
         <Property name="text" type="java.lang.String" value="Usu&#xe1;rio:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtCdUsuario">
-      <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Digite o c&#xf3;digo de usu&#xe1;rio do funcion&#xe1;rio (n&#xe3;o obrigat&#xf3;rio)"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="btnLimpar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Limpar"/>
@@ -194,6 +192,13 @@
     <Component class="javax.swing.JLabel" name="lblNmCargo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cargo:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbNmUsuario">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>
