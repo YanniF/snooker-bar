@@ -15,6 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -144,30 +146,35 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
         //Pega a hora do sistema para inserir no banco
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         System.out.println("Teste formato data: " + sdf.format(new Date()));
+
         try {
+
             String sql = "INSERT INTO snooker.\"ABERTURA_COMANDA\" VALUES (abertura_comanda_seq.nextval,to_date('" + sdf.format(new Date()) + "','dd/MM/yyyy HH24:MI'),null,null," + c + ")";
-            //não permitir que cadastre um item com o mesmo código (banco)
 
             if (Conexao.atualizar(sql) != -1) {
                 //JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
             } else {
                 JOptionPane.showMessageDialog(null, Conexao.getErro(), "Cadastro", 1);
             }
-            //vai para o primeiro item do combo box
-            int index = jComboBoxComanda.getSelectedIndex();
-            jComboBoxComanda.remove(index);
-            jComboBoxComanda.setSelectedIndex(0);
-
+            pesquisarTudo();
             atualizarTabela();
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro na Exceção\n" + e.getMessage(), "Erro!", 0);
         }
+
     }//GEN-LAST:event_jButtonAbrirActionPerformed
 
     //Executa essas instruções ao abrir o internalFrame
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-        pesquisarTudo();
+
+        try {
+            pesquisarTudo();
+            atualizarTabela();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(FormAberturaComanda.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_formInternalFrameOpened
 
     //Executa essas instruções ao fechar o internalFrame
@@ -179,7 +186,11 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
         modelo.removeAllElements();//para cada vez que executar isso, limpar as linhas da tabela
 
         try {
-            String sql = "SELECT * FROM COMANDA ORDER BY 1";
+
+            //Tratar para só aparecer as que estiverem Disponíveis
+
+            String sql = "select * from COMANDA where \"cd_comanda\" not in(select \"cd_comanda\" from ABERTURA_COMANDA where \"dt_hora_fechar\" is null) ORDER BY \"cd_comanda\"";
+                            
             ResultSet res = Conexao.consultar(sql);
 
             if (Conexao.consultar(sql) == null) {
@@ -198,21 +209,21 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
     private void atualizarTabela() throws SQLException {
         DefaultTableModel tableModel = (DefaultTableModel) jTableComanda.getModel();
         tableModel.setRowCount(0);
-        
-        String sqlAbertComa = 
-                    "SELECT \"ABERTURA_COMANDA\".\"cd_abertura_comanda\", \"ABERTURA_COMANDA\".\"cd_comanda\" "
-                    + "FROM snooker.\"ABERTURA_COMANDA\" "
-                    + "WHERE \"ABERTURA_COMANDA\".\"dt_hora_fechar\" is null "
-                    + "ORDER BY \"ABERTURA_COMANDA\".\"cd_comanda\"";
-        
+
+        String sqlAbertComa =
+                "SELECT \"ABERTURA_COMANDA\".\"cd_abertura_comanda\", \"ABERTURA_COMANDA\".\"cd_comanda\" "
+                + "FROM snooker.\"ABERTURA_COMANDA\" "
+                + "WHERE \"ABERTURA_COMANDA\".\"dt_hora_fechar\" is null "
+                + "ORDER BY \"ABERTURA_COMANDA\".\"cd_comanda\"";
+
         ResultSet rs1 = Conexao.consultar(sqlAbertComa);
         int comanda = 0;
-        while(rs1.next()){
-                        tableModel.addRow(new Object[]{
+        while (rs1.next()) {
+            tableModel.addRow(new Object[]{
                         comanda = rs1.getInt("cd_comanda")
                     });
         }
-                
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAbrir;
