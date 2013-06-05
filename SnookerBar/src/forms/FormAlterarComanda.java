@@ -26,15 +26,13 @@ public class FormAlterarComanda extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         ativaButtonGroup = new javax.swing.ButtonGroup();
         ativaPanel = new javax.swing.JPanel();
         rbtNao = new javax.swing.JRadioButton();
         rbtSim = new javax.swing.JRadioButton();
         btnAlterarComanda = new javax.swing.JButton();
-        btnLimpar = new javax.swing.JButton();
         lblCdComanda = new javax.swing.JLabel();
         txtCdComanda = new javax.swing.JTextField();
 
@@ -74,21 +72,9 @@ public class FormAlterarComanda extends javax.swing.JInternalFrame {
 
         btnAlterarComanda.setText("Alterar");
         btnAlterarComanda.setToolTipText("Clique aqui para gravar as alterações da comanda");
-        btnAlterarComanda.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnAlterarComanda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarComandaActionPerformed(evt);
-            }
-        });
-
-        btnLimpar.setText("Limpar");
-        btnLimpar.setToolTipText("Clique aqui para limpar os valores");
-        btnLimpar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                btnLimparActionPerformed(evt);
             }
         });
 
@@ -102,20 +88,17 @@ public class FormAlterarComanda extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAlterarComanda, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ativaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblCdComanda)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCdComanda, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(lblCdComanda)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCdComanda, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(btnAlterarComanda, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ativaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,22 +109,14 @@ public class FormAlterarComanda extends javax.swing.JInternalFrame {
                     .addComponent(txtCdComanda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ativaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnLimpar)
-                    .addComponent(btnAlterarComanda))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAlterarComanda)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-218)/2, (screenSize.height-228)/2, 218, 228);
+        setBounds((screenSize.width-222)/2, (screenSize.height-228)/2, 222, 228);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnLimparActionPerformed
-    {//GEN-HEADEREND:event_btnLimparActionPerformed
-        rbtSim.setSelected(false);
-        rbtNao.setSelected(false);
-    }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnAlterarComandaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAlterarComandaActionPerformed
     {//GEN-HEADEREND:event_btnAlterarComandaActionPerformed
@@ -193,7 +168,6 @@ public class FormAlterarComanda extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup ativaButtonGroup;
     private javax.swing.JPanel ativaPanel;
     private javax.swing.JButton btnAlterarComanda;
-    private javax.swing.JButton btnLimpar;
     private javax.swing.JLabel lblCdComanda;
     private javax.swing.JRadioButton rbtNao;
     private javax.swing.JRadioButton rbtSim;
