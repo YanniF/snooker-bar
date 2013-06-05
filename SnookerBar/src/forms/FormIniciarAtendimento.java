@@ -44,8 +44,7 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
         jTextFieldQtd = new javax.swing.JTextField();
         jButtonIncluir = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButtonSalvar = new javax.swing.JButton();
+        jButtonLimpar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jTextFieldVlUnitario = new javax.swing.JTextField();
         jComboBoxComanda = new javax.swing.JComboBox();
@@ -97,16 +96,16 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
 
         jTextFieldSomaTotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextFieldSomaTotal.setToolTipText("Valor total");
-        jTextFieldSomaTotal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldSomaTotalActionPerformed(evt);
-            }
-        });
+        jTextFieldSomaTotal.setEnabled(false);
 
         jLabel3.setText("Produto / Serviço:");
 
-        jComboBoxProdutos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxProdutos.setToolTipText("Selecione o produto ou serviço");
+        jComboBoxProdutos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxProdutosItemStateChanged(evt);
+            }
+        });
 
         jLabel4.setText("Quantidade:");
 
@@ -123,26 +122,18 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Nº Comanda:");
 
-        jButton2.setText("Limpar");
-        jButton2.setToolTipText("Clique aqui para limpar os valores");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLimpar.setText("Limpar");
+        jButtonLimpar.setToolTipText("Clique aqui para limpar os valores");
+        jButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButtonSalvar.setText("Salvar");
-        jButtonSalvar.setToolTipText("Clique aqui para salvar ");
-        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSalvarActionPerformed(evt);
+                jButtonLimparActionPerformed(evt);
             }
         });
 
         jLabel6.setText("R$ Unitário:");
 
         jTextFieldVlUnitario.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextFieldVlUnitario.setText("10");
+        jTextFieldVlUnitario.setEnabled(false);
 
         jComboBoxComanda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -153,38 +144,39 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldSomaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonIncluir)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(144, 144, 144)
-                                .addComponent(jButtonSalvar))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 159, Short.MAX_VALUE)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldSomaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBoxProdutos, 0, 145, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldVlUnitario)
-                                    .addComponent(jTextFieldQtd)
-                                    .addComponent(jComboBoxComanda, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 43, Short.MAX_VALUE)))
-                .addContainerGap())
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(36, 36, 36)
+                                        .addComponent(jLabel1))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel4))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jComboBoxProdutos, 0, 145, Short.MAX_VALUE)
+                                            .addComponent(jTextFieldVlUnitario)
+                                            .addComponent(jTextFieldQtd)
+                                            .addComponent(jComboBoxComanda, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(148, 148, 148)
+                                        .addComponent(jButtonIncluir)))
+                                .addGap(0, 43, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButtonLimpar)
+                        .addGap(173, 173, 173))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,9 +198,7 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(jTextFieldQtd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonIncluir)
-                    .addComponent(jButton2))
+                .addComponent(jButtonIncluir)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
@@ -218,7 +208,7 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2)
                     .addComponent(jTextFieldSomaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButtonSalvar)
+                .addComponent(jButtonLimpar)
                 .addContainerGap(59, Short.MAX_VALUE))
         );
 
@@ -226,12 +216,9 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
         setBounds((screenSize.width-410)/2, (screenSize.height-464)/2, 410, 464);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldSomaTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSomaTotalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldSomaTotalActionPerformed
-
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
         try {
+            //CARREGA A TABELA
             //Pega o valor unitário e guarda
             Double vlu = Double.parseDouble(jTextFieldVlUnitario.getText());
             //Calcula o valor total e guarda na variável
@@ -242,7 +229,7 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
             DefaultTableModel modelTable = (DefaultTableModel) jTable1.getModel();
             modelTable.addRow(new Object[]{
                         qtd,
-                        jComboBoxProdutos.getSelectedItem(),
+                        jComboBoxProdutos.getSelectedItem().toString(),
                         vlu,
                         vlt
                     });
@@ -253,22 +240,29 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
                 valorTotal += Double.parseDouble(modelTable.getValueAt(row, 3).toString());
             }
             jTextFieldSomaTotal.setText(valorTotal.toString());
+
+            //SALVA NO BANCO
+            String nome = jComboBoxProdutos.getSelectedItem().toString();
+            String sql = "INSERT INTO ATENDIMENTO VALUES (atendimento_seq.nextval," + qtd + ",null," + vlt + ",'" + nome + "',null," + comandas.get(jComboBoxComanda.getSelectedItem()) + " )";
+            if (Conexao.consultar(sql) == null) {
+                JOptionPane.showMessageDialog(null, "Erro no Insert");
+            }
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro:\n" + e.getMessage(), "Aviso", 2);
         }
     }//GEN-LAST:event_jButtonIncluirActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
+        limpar();
+    }//GEN-LAST:event_jButtonLimparActionPerformed
+    private HashMap<Integer, Integer> comandas = new HashMap<Integer, Integer>();
 
-    private HashMap<Integer, Integer> comandas = new HashMap<Integer, Integer>(); 
-    
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         try {
-            
+
             //Pega o código de abertura comanda na tabela Abertura Comanda
-            String sqlAbertComa = 
+            String sqlAbertComa =
                     "SELECT \"ABERTURA_COMANDA\".\"cd_abertura_comanda\", \"ABERTURA_COMANDA\".\"cd_comanda\" "
                     + "FROM snooker.\"ABERTURA_COMANDA\" "
                     + "WHERE \"ABERTURA_COMANDA\".\"dt_hora_fechar\" is null "
@@ -276,16 +270,16 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
             ResultSet rs1 = Conexao.consultar(sqlAbertComa);
             DefaultComboBoxModel model2 = (DefaultComboBoxModel) jComboBoxComanda.getModel();
             model2.removeAllElements();
-            
+
             comandas.clear();
-            while(rs1.next()){
-                comandas.put(rs1.getInt("cd_comanda"), rs1.getInt("cd_abertura_comanda")); 
+            while (rs1.next()) {
+                comandas.put(rs1.getInt("cd_comanda"), rs1.getInt("cd_abertura_comanda"));
                 model2.addElement(rs1.getInt("cd_comanda"));
             }
-            
+
             //Carrega o combo com o nome dos produtos
             DefaultComboBoxModel model = (DefaultComboBoxModel) jComboBoxProdutos.getModel();
-            model.removeAllElements();
+            // model.removeAllElements();
 
             String sql = "SELECT * FROM PRODUTO";
             ResultSet rs2 = Conexao.consultar(sql);
@@ -305,56 +299,23 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
 //        }
     }//GEN-LAST:event_formInternalFrameClosed
 
-    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        
-//        int cd_comanda = Integer.parseInt(jTextFieldNComanda.getText().toString());
-        //int cd_abertura_comanda = 0;
-        String nome= "";
-        Double vlu = 0.0;
-        Double vlt = 0.0;
-        int qtd = 0;
+    private void jComboBoxProdutosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxProdutosItemStateChanged
         try {
-
-            //Capturar os valores da tabela
-            DefaultTableModel modelTable = (DefaultTableModel) jTable1.getModel();
-
-            for (int row = 0; row < modelTable.getRowCount(); row++) {
-                for (int col = 0; col < modelTable.getColumnCount(); col++) {
-                    if (col == 0) {
-                        qtd = Integer.parseInt(modelTable.getValueAt(row, col).toString());
-                    } else if (col == 1) {
-                        nome = modelTable.getValueAt(row, col).toString();
-                    } else if (col == 2) {
-                        vlu = Double.parseDouble(modelTable.getValueAt(row, col).toString());
-                    } else if (col == 3) {
-                        vlt = Double.parseDouble(modelTable.getValueAt(row, col).toString());
-                    }
-                }
-                
-                String sql = "INSERT INTO ATENDIMENTO VALUES (atendimento_seq.nextval," + qtd + ",null," + vlt + ",'"+nome+"',null," + comandas.get(jComboBoxComanda.getSelectedItem()) + " )";
-                if(Conexao.consultar(sql)==null){
-                    JOptionPane.showMessageDialog(null, "Erro no Insert");
-                    break;
-                }
-                
+            String produto = jComboBoxProdutos.getSelectedItem().toString();
+            Double vl_produto = 0.0;
+            String sql = "SELECT * FROM PRODUTO WHERE NM_PRODUTO='" + produto + "'";
+            ResultSet rs = Conexao.consultar(sql);
+            while (rs.next()) {
+                vl_produto = rs.getDouble("VL_PRODUTO");
             }
-            jTextFieldVlUnitario.setText("");
-            jTextFieldQtd.setText("");
-            for(int i=0; i<modelTable.getRowCount();i++){
-            modelTable.removeRow(i);
-            }
-            jTextFieldSomaTotal.setText("");
-        
+            jTextFieldVlUnitario.setText(vl_produto.toString());
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Erro: \n" + e.getMessage(), "Erro!", 0);
+            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
         }
-        
-
-    }//GEN-LAST:event_jButtonSalvarActionPerformed
+    }//GEN-LAST:event_jComboBoxProdutosItemStateChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonIncluir;
-    private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JButton jButtonLimpar;
     private javax.swing.JComboBox jComboBoxComanda;
     private javax.swing.JComboBox jComboBoxProdutos;
     private javax.swing.JLabel jLabel1;
@@ -369,4 +330,15 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextFieldSomaTotal;
     private javax.swing.JTextField jTextFieldVlUnitario;
     // End of variables declaration//GEN-END:variables
+
+    private void limpar() {
+        //Zera tudo
+        jComboBoxComanda.setSelectedIndex(0);
+        jComboBoxProdutos.setSelectedIndex(0);
+        jTextFieldVlUnitario.setText("");
+        jTextFieldQtd.setText("");
+        DefaultTableModel modelTable = (DefaultTableModel) jTable1.getModel();
+        modelTable.setRowCount(0);
+        jTextFieldSomaTotal.setText("");
+    }
 }
