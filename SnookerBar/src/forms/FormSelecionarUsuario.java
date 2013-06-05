@@ -155,7 +155,7 @@ public class FormSelecionarUsuario extends javax.swing.JInternalFrame {
             }
         });
 
-        txtTermoUsuario.setToolTipText("Digite o código ou o nome para pesquisar");
+        txtTermoUsuario.setToolTipText("Digite o código, nome ou tipo (administrador ou usuário) para pesquisar.");
 
         lblTermoUsuario.setText("Pesquisar:");
 
