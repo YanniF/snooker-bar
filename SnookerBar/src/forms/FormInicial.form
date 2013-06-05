@@ -25,12 +25,6 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuAbrirComandaActionPerformed"/>
                   </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="menuConsultarAberturaComanda">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Consultar"/>
-                    <Property name="toolTipText" type="java.lang.String" value="Consultar"/>
-                  </Properties>
-                </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="menuAlterarAberturaComanda">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Alterar"/>
