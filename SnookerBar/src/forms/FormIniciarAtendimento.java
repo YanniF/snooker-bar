@@ -243,9 +243,10 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
 
             //SALVA NO BANCO
             String nome = jComboBoxProdutos.getSelectedItem().toString();
-            String sql = "INSERT INTO ATENDIMENTO VALUES (atendimento_seq.nextval," + qtd + ",null," + vlt + ",'" + nome + "',null," + comandas.get(jComboBoxComanda.getSelectedItem()) + " )";
+            int cd_abertura = comandas.get(jComboBoxComanda.getSelectedItem());
+            String sql = "INSERT INTO ATENDIMENTO VALUES (atendimento_seq.nextval," + qtd + ",null," + vlt + ",'" + nome + "',null," + cd_abertura + " )";
             if (Conexao.consultar(sql) == null) {
-                JOptionPane.showMessageDialog(null, "Erro no Insert");
+                JOptionPane.showMessageDialog(null, "Erro ao Inserir no Banco! "+Conexao.getErro());
             }
 
         } catch (Exception e) {
@@ -309,6 +310,7 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
                 vl_produto = rs.getDouble("VL_PRODUTO");
             }
             jTextFieldVlUnitario.setText(vl_produto.toString());
+            jTextFieldQtd.setText("");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
         }
