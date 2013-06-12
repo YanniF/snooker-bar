@@ -16,7 +16,7 @@ public class FormInicial extends javax.swing.JFrame {
      */
     
     public FormInicial() {
-        initComponents();          
+        initComponents();   
     }
 
     /**
