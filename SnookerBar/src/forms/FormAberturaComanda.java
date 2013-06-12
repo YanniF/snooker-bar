@@ -87,14 +87,14 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Comandas em Uso"
+                "Comandas em Uso", "Data e Hora de Abertura"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class
+                java.lang.Integer.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -113,14 +113,16 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jButtonAbrir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelComanda)
                         .addGap(8, 8, 8)
-                        .addComponent(jComboBoxComanda, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(11, Short.MAX_VALUE))
+                        .addComponent(jComboBoxComanda, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 143, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,16 +130,15 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelComanda)
-                    .addComponent(jComboBoxComanda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonAbrir)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                    .addComponent(jComboBoxComanda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonAbrir))
+                .addGap(50, 50, 50)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-180)/2, (screenSize.height-300)/2, 180, 300);
+        setBounds((screenSize.width-396)/2, (screenSize.height-307)/2, 396, 307);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbrirActionPerformed
@@ -145,11 +146,10 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
         int c = Integer.parseInt(jComboBoxComanda.getSelectedItem().toString());
         //Pega a hora do sistema para inserir no banco
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        System.out.println("Teste formato data: " + sdf.format(new Date()));
-
+        System.out.println(sdf.format(new Date()));
         try {
 
-            String sql = "INSERT INTO snooker.\"ABERTURA_COMANDA\" VALUES (abertura_comanda_seq.nextval,to_date('" + sdf.format(new Date()) + "','dd/MM/yyyy HH24:MI'),null,null," + c + ")";
+            String sql = "INSERT INTO snooker.\"ABERTURA_COMANDA\" VALUES (abertura_comanda_seq.nextval,(select to_char(sysdate, 'DD/MM/YYYY HH24:MI:SS') FROM DUAL),null,null," + c + ")";
 
             if (Conexao.atualizar(sql) != -1) {
                 //JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
@@ -211,16 +211,20 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
         tableModel.setRowCount(0);
 
         String sqlAbertComa =
-                "SELECT \"ABERTURA_COMANDA\".\"cd_abertura_comanda\", \"ABERTURA_COMANDA\".\"cd_comanda\" "
+                "SELECT * "
                 + "FROM snooker.\"ABERTURA_COMANDA\" "
                 + "WHERE \"ABERTURA_COMANDA\".\"dt_hora_fechar\" is null "
                 + "ORDER BY \"ABERTURA_COMANDA\".\"cd_comanda\"";
 
         ResultSet rs1 = Conexao.consultar(sqlAbertComa);
         int comanda = 0;
+        
+        SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        //System.out.println("Teste formato data: " + dt.format(new Date()));
         while (rs1.next()) {
             tableModel.addRow(new Object[]{
-                        comanda = rs1.getInt("cd_comanda")
+                        comanda = rs1.getInt("cd_comanda"),
+                        dt.format( rs1.getTimestamp("dt_hora_abertura"))
                     });
         }
 
