@@ -47,7 +47,7 @@
             </Menu>
             <MenuItem class="javax.swing.JMenuItem" name="menuConsultarComanda">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Consultar"/>
+                <Property name="text" type="java.lang.String" value="Acessar"/>
                 <Property name="toolTipText" type="java.lang.String" value="Consultar"/>
               </Properties>
               <Events>
@@ -131,7 +131,7 @@
             </Menu>
             <MenuItem class="javax.swing.JMenuItem" name="menuConsultarMesa">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Consultar"/>
+                <Property name="text" type="java.lang.String" value="Acessar"/>
                 <Property name="toolTipText" type="java.lang.String" value="Consultar"/>
               </Properties>
               <Events>
