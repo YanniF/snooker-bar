@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -25,12 +26,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Jonatas
  */
-public class FormAberturaComanda extends javax.swing.JInternalFrame {
+public class FormAberturaMesa extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FormAberturaComanda
      */
-    public FormAberturaComanda() {
+    public FormAberturaMesa() {
         initComponents();
     }
 
@@ -47,10 +48,12 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
         jButtonAbrir = new javax.swing.JButton();
         jComboBoxComanda = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableComanda = new javax.swing.JTable();
+        jTableMesa = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBoxMesa = new javax.swing.JComboBox();
 
         setClosable(true);
-        setTitle("Abertura de Comanda");
+        setTitle("Abertura de Mesa");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -70,7 +73,7 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabelComanda.setText("Comanda:");
+        jLabelComanda.setText("Mesa:");
 
         jButtonAbrir.setText("Abrir");
         jButtonAbrir.setToolTipText("Clique aqui para abrir");
@@ -82,19 +85,19 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
 
         jComboBoxComanda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTableComanda.setModel(new javax.swing.table.DefaultTableModel(
+        jTableMesa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Comandas em Uso", "Data e Hora de Abertura"
+                "Mesas em Uso", "Data e Hora de Abertura", "Comanda"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -105,7 +108,11 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTableComanda);
+        jScrollPane1.setViewportView(jTableMesa);
+
+        jLabel1.setText("Comanda:");
+
+        jComboBoxMesa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,14 +121,18 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelComanda)
-                        .addGap(8, 8, 8)
-                        .addComponent(jComboBoxComanda, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabelComanda))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBoxComanda, 0, 65, Short.MAX_VALUE)
+                            .addComponent(jComboBoxMesa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(27, 27, 27)
                         .addComponent(jButtonAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 143, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -130,10 +141,14 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelComanda)
-                    .addComponent(jComboBoxComanda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonAbrir))
-                .addGap(50, 50, 50)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                    .addComponent(jButtonAbrir)
+                    .addComponent(jComboBoxMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBoxComanda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -144,12 +159,13 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
     private void jButtonAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbrirActionPerformed
         //Pega o numero da comanda e converte para int
         int c = Integer.parseInt(jComboBoxComanda.getSelectedItem().toString());
+        int m = Integer.parseInt(jComboBoxMesa.getSelectedItem().toString());
         //Pega a hora do sistema para inserir no banco
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         System.out.println(sdf.format(new Date()));
         try {
 
-            String sql = "INSERT INTO snooker.\"ABERTURA_COMANDA\" VALUES (abertura_comanda_seq.nextval,sysdate,null,null," + c + ")";
+            String sql = "INSERT INTO ABERTURA_MESA VALUES (abertura_mesa_seq.nextval,sysdate,null,null," + c + "," + m + ")";
 
             if (Conexao.atualizar(sql) != -1) {
                 //JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
@@ -173,7 +189,7 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
             atualizarTabela();
 
         } catch (SQLException ex) {
-            Logger.getLogger(FormAberturaComanda.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormAberturaMesa.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formInternalFrameOpened
 
@@ -181,21 +197,39 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
     private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
         //fazia desconexão com o banco, foi removido
     }//GEN-LAST:event_formInternalFrameClosed
+    private HashMap<Integer, Integer> comandas = new HashMap<Integer, Integer>();
+
     private void pesquisarTudo() {
-        DefaultComboBoxModel modelo = (DefaultComboBoxModel) jComboBoxComanda.getModel();
-        modelo.removeAllElements();//para cada vez que executar isso, limpar as linhas da tabela
+        DefaultComboBoxModel model2 = (DefaultComboBoxModel) jComboBoxComanda.getModel();
+        model2.removeAllElements();
+        DefaultComboBoxModel modelo2 = (DefaultComboBoxModel) jComboBoxMesa.getModel();
+        modelo2.removeAllElements();//para cada vez que executar isso, limpar as linhas da tabela
+
         try {
-            //Tratar para só aparecer as que estiverem Disponíveis
-            String sql = "select * from COMANDA where \"cd_comanda\" not in(select \"cd_comanda\" from ABERTURA_COMANDA where \"dt_hora_fechar\" is null) ORDER BY \"cd_comanda\"";
-                            
-            ResultSet res = Conexao.consultar(sql);
+
+            //Pega o código de abertura comanda na tabela Abertura Comanda
+            String sqlAbertComa =
+                    "SELECT \"ABERTURA_COMANDA\".\"cd_abertura_comanda\", \"ABERTURA_COMANDA\".\"cd_comanda\" "
+                    + "FROM snooker.\"ABERTURA_COMANDA\" "
+                    + "WHERE \"ABERTURA_COMANDA\".\"dt_hora_fechar\" is null "
+                    + "ORDER BY \"ABERTURA_COMANDA\".\"cd_comanda\"";
+            ResultSet rs1 = Conexao.consultar(sqlAbertComa);
+
+            comandas.clear();
+            while (rs1.next()) {
+                comandas.put(rs1.getInt("cd_comanda"), rs1.getInt("cd_abertura_comanda"));
+                model2.addElement(rs1.getInt("cd_comanda"));
+            }
+            String sql = "select * from MESA where \"CD_MESA\" not in(select \"cd_mesa\" from ABERTURA_MESA where \"dt_hora_fechar\" is null) ORDER BY \"CD_MESA\"";
+
+            ResultSet res2 = Conexao.consultar(sql);
 
             if (Conexao.consultar(sql) == null) {
                 JOptionPane.showMessageDialog(null, "Erro na consulta:\n" + Conexao.getErro(), "Erro!", 0);
             } else {
-                while (res.next()) {
-                    modelo.addElement(
-                            res.getInt("cd_comanda"));
+                while (res2.next()) {
+                    modelo2.addElement(
+                            res2.getInt("CD_MESA"));
                 }
             }
         } catch (Exception e) {
@@ -204,24 +238,25 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
     }
 
     private void atualizarTabela() throws SQLException {
-        DefaultTableModel tableModel = (DefaultTableModel) jTableComanda.getModel();
+        DefaultTableModel tableModel = (DefaultTableModel) jTableMesa.getModel();
         tableModel.setRowCount(0);
 
-        String sqlAbertComa =
+        String sqlAbertMesa =
                 "SELECT * "
-                + "FROM snooker.\"ABERTURA_COMANDA\" "
-                + "WHERE \"ABERTURA_COMANDA\".\"dt_hora_fechar\" is null "
-                + "ORDER BY \"ABERTURA_COMANDA\".\"cd_comanda\"";
+                + "FROM \"ABERTURA_MESA\" "
+                + "WHERE \"ABERTURA_MESA\".\"dt_hora_fechar\" is null "
+                + "ORDER BY \"cd_mesa\"";
 
-        ResultSet rs1 = Conexao.consultar(sqlAbertComa);
-        int comanda = 0;
-        
+        ResultSet rs1 = Conexao.consultar(sqlAbertMesa);
+        int mesa = 0;
+
         SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         //System.out.println("Teste formato data: " + dt.format(new Date()));
         while (rs1.next()) {
             tableModel.addRow(new Object[]{
-                        comanda = rs1.getInt("cd_comanda"),
-                        dt.format( rs1.getTimestamp("dt_hora_abertura"))
+                        mesa = rs1.getInt("cd_mesa"),
+                        dt.format(rs1.getTimestamp("dt_hora_abertura")),
+                        rs1.getInt("cd_comanda")
                     });
         }
 
@@ -229,8 +264,10 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAbrir;
     private javax.swing.JComboBox jComboBoxComanda;
+    private javax.swing.JComboBox jComboBoxMesa;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelComanda;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableComanda;
+    private javax.swing.JTable jTableMesa;
     // End of variables declaration//GEN-END:variables
 }
