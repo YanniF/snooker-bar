@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /*
  * FormAberturaComanda.java
@@ -11,10 +7,9 @@
 package forms;
 
 import classes.Conexao;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,6 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class FormFecharComanda extends javax.swing.JInternalFrame {
 
+    private String textoPermitido = "01234567890";
+    
     /** Creates new form FormAberturaComanda */
     public FormFecharComanda() {
         initComponents();
@@ -35,44 +32,41 @@ public class FormFecharComanda extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jLabelComanda = new javax.swing.JLabel();
         jButtonFechar = new javax.swing.JButton();
-        jTextFieldComanda = new javax.swing.JTextField();
+        jTextFieldComanda = new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido), "", 30);
+        btnPesquisar = new javax.swing.JButton();
 
         setClosable(true);
+        setIconifiable(true);
         setTitle("Fechar Comanda");
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameClosed(evt);
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameOpened(evt);
-            }
-        });
 
         jLabelComanda.setText("Comanda:");
 
         jButtonFechar.setText("Fechar");
         jButtonFechar.setToolTipText("Clique aqui para fechar a comanda");
-        jButtonFechar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonFechar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButtonFecharActionPerformed(evt);
             }
         });
 
         jTextFieldComanda.setToolTipText("Digite o número da comanda");
+
+        btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/procurar.png"))); // NOI18N
+        btnPesquisar.setToolTipText("Clique aqui para verificar as comandas abertas.");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,77 +80,72 @@ public class FormFecharComanda extends javax.swing.JInternalFrame {
                         .addComponent(jLabelComanda)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextFieldComanda, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelComanda)
-                    .addComponent(jTextFieldComanda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelComanda)
+                        .addComponent(jTextFieldComanda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnPesquisar))
+                .addGap(20, 20, 20)
                 .addComponent(jButtonFechar)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-239)/2, (screenSize.height-163)/2, 239, 163);
+        setBounds((screenSize.width-251)/2, (screenSize.height-151)/2, 251, 151);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
-        //Pega o numero da comanda e converte para int
-        int cac = Integer.parseInt(jTextFieldComanda.getText());
-        //Pega a hora do sistema para inserir no banco
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");  
-        sdf.format(new Date());  
         try
-        {
+        {            
+            //Pega o numero da comanda e converte para int
+            int cac = Integer.parseInt(jTextFieldComanda.getText());
+            //Pega a hora do sistema para inserir no banco
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");  
+            sdf.format(new Date()); 
+        
+            //String sql = "INSERT INTO snooker.\"ABERTURA_COMANDA\" VALUES (abertura_comanda_seq.nextval,null,to_date('"+sdf.format(new Date())+"','dd/MM/yyyy HH24:MI'),null,"+cac+")";
+            String sql = "UPDATE snooker.\"ABERTURA_COMANDA\" "
+                    + "SET \"ABERTURA_COMANDA\".\"dt_hora_fechar\" = to_date('" + sdf.format(new Date()) + "', 'dd/MM/yyyy HH24:MI') "
+                    + "WHERE \"ABERTURA_COMANDA\".\"cd_comanda\" = " + cac;
             
-            String sql = "INSERT INTO snooker.\"ABERTURA_COMANDA\" VALUES (abertura_comanda_seq.nextval,null,to_date('"+sdf.format(new Date())+"','dd/MM/yyyy HH24:MI'),null,"+cac+")";
-            
-             
-            if(Conexao.atualizar(sql)!=-1) {
-                JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
-            }else{
-                JOptionPane.showMessageDialog(null, Conexao.getErro(), "Cadastro", 1);
+            if(Conexao.atualizar(sql) == 0) {
+                JOptionPane.showMessageDialog(null, "Digite um número de alguma comanda aberta.", "Aviso", 2);
+            }
+            else
+            {
+                if(Conexao.atualizar(sql) != -1) {
+                    JOptionPane.showMessageDialog(null, "Comanda " + cac + " fechada.", "Comanda", 1);
+                }else{
+                    JOptionPane.showMessageDialog(null, Conexao.getErro(), "Cadastro", 1);
+                }
             }
             //limpa o campo da comanda
             jTextFieldComanda.setText("");
+            jTextFieldComanda.requestFocus();
         }
-        catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(this, "Erro na Exceção\n" + e.getMessage(), "Erro!", 0);
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro: \n" + e.getMessage(), "Erro!", 0);
         }
     }//GEN-LAST:event_jButtonFecharActionPerformed
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarActionPerformed
+    {//GEN-HEADEREND:event_btnPesquisarActionPerformed
+        FormAberturaComanda fac = new FormAberturaComanda();
+        this.getDesktopPane().add(fac);
+        fac.setFrameIcon(new ImageIcon(getClass().getResource("/imagens/icon.png")));
+        fac.setVisible(true);
+    }//GEN-LAST:event_btnPesquisarActionPerformed
     
-    //Executa essas instruções ao abrir o internalFrame
-    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-        //Conecta com o Banco
-        try {
-            Conexao.conectar("snooker", "snooker"); 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,
-                    "Erro ao tentar conectar "+e.getMessage(),
-                    "Erro",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_formInternalFrameOpened
-
-    //Executa essas instruções ao fechar o internalFrame
-    private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
-        //Desconecta com o Banco
-        try {
-            Conexao.desconectar();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,
-                    "Erro ao tentar desconectar "+e.getMessage(),
-                    "Erro",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_formInternalFrameClosed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JLabel jLabelComanda;
     private javax.swing.JTextField jTextFieldComanda;

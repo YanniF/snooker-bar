@@ -17,6 +17,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
 
+    private String textoPermitido = "01234567890";
+    
     /**
      * Creates new form FormIniciartendimento
      */
@@ -31,7 +33,8 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -41,7 +44,7 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jComboBoxProdutos = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
-        jTextFieldQtd = new javax.swing.JTextField();
+        jTextFieldQtd = new javax.swing.JTextField(new classes.CaracteresPermitidos(textoPermitido), "", 20);
         jButtonIncluir = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jButtonLimpar = new javax.swing.JButton();
@@ -50,22 +53,30 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
         jComboBoxComanda = new javax.swing.JComboBox();
 
         setClosable(true);
+        setIconifiable(true);
         setTitle("Iniciar Atendimento");
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener()
+        {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameClosed(evt);
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt)
+            {
                 formInternalFrameOpened(evt);
             }
         });
@@ -74,18 +85,23 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
         jLabel1.setText("DESCRIÇÃO DOS PRODUTOS E SERVIÇOS");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+            new Object [][]
+            {
 
             },
-            new String [] {
+            new String []
+            {
                 "Quantidade", "Descrição", "R$ Unitário", "R$ Total"
             }
-        ) {
-            Class[] types = new Class [] {
+        )
+        {
+            Class[] types = new Class []
+            {
                 java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class
             };
 
-            public Class getColumnClass(int columnIndex) {
+            public Class getColumnClass(int columnIndex)
+            {
                 return types [columnIndex];
             }
         });
@@ -101,8 +117,10 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
         jLabel3.setText("Produto / Serviço:");
 
         jComboBoxProdutos.setToolTipText("Selecione o produto ou serviço");
-        jComboBoxProdutos.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        jComboBoxProdutos.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
                 jComboBoxProdutosItemStateChanged(evt);
             }
         });
@@ -114,8 +132,10 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
 
         jButtonIncluir.setText("Incluir");
         jButtonIncluir.setToolTipText("Clique aqui para incluir");
-        jButtonIncluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonIncluir.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButtonIncluirActionPerformed(evt);
             }
         });
@@ -124,8 +144,10 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
 
         jButtonLimpar.setText("Limpar");
         jButtonLimpar.setToolTipText("Clique aqui para limpar os valores");
-        jButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonLimpar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButtonLimparActionPerformed(evt);
             }
         });
@@ -291,14 +313,6 @@ public class FormIniciarAtendimento extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Erro:\n" + e.getMessage(), "Aviso", 2);
         }
     }//GEN-LAST:event_formInternalFrameOpened
-
-    private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
-//        try {
-//            Conexao.desconectar();
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "Erro:\n" + e.getMessage(), "Aviso", 2);
-//        }
-    }//GEN-LAST:event_formInternalFrameClosed
 
     private void jComboBoxProdutosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxProdutosItemStateChanged
         try {

@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * FormAberturaComanda.java
  *
  * Created on 05/05/2013, 23:27:14
@@ -15,8 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -41,7 +34,8 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jLabelComanda = new javax.swing.JLabel();
         jButtonAbrir = new javax.swing.JButton();
@@ -50,22 +44,31 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
         jTableComanda = new javax.swing.JTable();
 
         setClosable(true);
+        setIconifiable(true);
         setTitle("Abertura de Comanda");
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener()
+        {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)
+            {
+                formInternalFrameActivated(evt);
             }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameClosed(evt);
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt)
+            {
                 formInternalFrameOpened(evt);
             }
         });
@@ -74,8 +77,10 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
 
         jButtonAbrir.setText("Abrir");
         jButtonAbrir.setToolTipText("Clique aqui para abrir");
-        jButtonAbrir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonAbrir.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButtonAbrirActionPerformed(evt);
             }
         });
@@ -83,25 +88,32 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
         jComboBoxComanda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jTableComanda.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+            new Object [][]
+            {
 
             },
-            new String [] {
+            new String []
+            {
                 "Comandas em Uso", "Data e Hora de Abertura"
             }
-        ) {
-            Class[] types = new Class [] {
+        )
+        {
+            Class[] types = new Class []
+            {
                 java.lang.Integer.class, java.lang.Object.class
             };
-            boolean[] canEdit = new boolean [] {
+            boolean[] canEdit = new boolean []
+            {
                 false, false
             };
 
-            public Class getColumnClass(int columnIndex) {
+            public Class getColumnClass(int columnIndex)
+            {
                 return types [columnIndex];
             }
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
                 return canEdit [columnIndex];
             }
         });
@@ -114,14 +126,14 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelComanda)
                         .addGap(8, 8, 8)
-                        .addComponent(jComboBoxComanda, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxComanda, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 143, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -132,9 +144,9 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
                     .addComponent(jLabelComanda)
                     .addComponent(jComboBoxComanda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonAbrir))
-                .addGap(50, 50, 50)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5))
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -147,22 +159,21 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
         //Pega a hora do sistema para inserir no banco
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         System.out.println(sdf.format(new Date()));
+        
         try {
 
-            String sql = "INSERT INTO snooker.\"ABERTURA_COMANDA\" VALUES (abertura_comanda_seq.nextval,sysdate,null,null," + c + ")";
+            String sql = "INSERT INTO snooker.\"ABERTURA_COMANDA\" "
+                    + "VALUES (abertura_comanda_seq.nextval,sysdate,null," + c + ")";
 
-            if (Conexao.atualizar(sql) != -1) {
-                //JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
-            } else {
+            if (Conexao.atualizar(sql) == -1) {
                 JOptionPane.showMessageDialog(null, Conexao.getErro(), "Cadastro", 1);
-            }
+            } 
             pesquisarTudo();
             atualizarTabela();
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Erro na Exceção\n" + e.getMessage(), "Erro!", 0);
+            JOptionPane.showMessageDialog(this, "Erro:\n" + e.getMessage(), "Erro!", 0);
         }
-
     }//GEN-LAST:event_jButtonAbrirActionPerformed
 
     //Executa essas instruções ao abrir o internalFrame
@@ -171,34 +182,61 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
         try {
             pesquisarTudo();
             atualizarTabela();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(FormAberturaComanda.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage(), "Erro!", 0);
         }
     }//GEN-LAST:event_formInternalFrameOpened
 
-    //Executa essas instruções ao fechar o internalFrame
-    private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
-        //fazia desconexão com o banco, foi removido
-    }//GEN-LAST:event_formInternalFrameClosed
-    private void pesquisarTudo() {
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt)//GEN-FIRST:event_formInternalFrameActivated
+    {//GEN-HEADEREND:event_formInternalFrameActivated
+        try {
+            pesquisarTudo();
+            atualizarTabela();
+        }
+        catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage(), "Erro!", 0);
+        }
+    }//GEN-LAST:event_formInternalFrameActivated
+    private void pesquisarTudo()
+    {
         DefaultComboBoxModel modelo = (DefaultComboBoxModel) jComboBoxComanda.getModel();
         modelo.removeAllElements();//para cada vez que executar isso, limpar as linhas da tabela
-        try {
-            //Tratar para só aparecer as que estiverem Disponíveis
-            String sql = "select * from COMANDA where \"cd_comanda\" not in(select \"cd_comanda\" from ABERTURA_COMANDA where \"dt_hora_fechar\" is null) ORDER BY \"cd_comanda\"";
-                            
+
+        try
+        {
+            String sql = "select * from COMANDA where \"cd_comanda\" not in"
+                    + "(select \"cd_comanda\" from ABERTURA_COMANDA where \"dt_hora_fechar\" is null) "
+                    + "AND \"ic_ativa_inativa\" = 'S' ORDER BY \"cd_comanda\"";
+
             ResultSet res = Conexao.consultar(sql);
 
             if (Conexao.consultar(sql) == null) {
                 JOptionPane.showMessageDialog(null, "Erro na consulta:\n" + Conexao.getErro(), "Erro!", 0);
-            } else {
-                while (res.next()) {
-                    modelo.addElement(
-                            res.getInt("cd_comanda"));
+            }
+            else
+            {
+                if (Conexao.consultar(sql).next())
+                {
+                    while (res.next())
+                    {
+                        modelo.addElement(
+                                res.getInt("cd_comanda"));
+                    }
+                    jButtonAbrir.setEnabled(true);
+                    jComboBoxComanda.setEnabled(true);
+                    jButtonAbrir.setToolTipText("Clique aqui para abrir a comanda.");
+                }
+                else
+                {
+                    jButtonAbrir.setEnabled(false);
+                    jComboBoxComanda.setEnabled(false);
+                    jButtonAbrir.setToolTipText("Não há mais comandas cadastradas ou ativas.");
                 }
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             JOptionPane.showMessageDialog(null, "Erro na consulta: \n" + e.getMessage(), "Erro!", 0);
         }
     }
@@ -208,8 +246,7 @@ public class FormAberturaComanda extends javax.swing.JInternalFrame {
         tableModel.setRowCount(0);
 
         String sqlAbertComa =
-                "SELECT * "
-                + "FROM snooker.\"ABERTURA_COMANDA\" "
+                "SELECT * FROM snooker.\"ABERTURA_COMANDA\" "
                 + "WHERE \"ABERTURA_COMANDA\".\"dt_hora_fechar\" is null "
                 + "ORDER BY \"ABERTURA_COMANDA\".\"cd_comanda\"";
 

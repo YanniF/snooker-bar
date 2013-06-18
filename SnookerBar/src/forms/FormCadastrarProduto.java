@@ -123,14 +123,14 @@ public class FormCadastrarProduto extends javax.swing.JInternalFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCadastrarActionPerformed
     {//GEN-HEADEREND:event_btnCadastrarActionPerformed
-        int cod;
-        String nome;
-        double valor;
         
         try
         {
-            nome = txtNmProduto.getText();
-            valor = Double.parseDouble(txtVlProduto.getText());
+            
+            String nome = txtNmProduto.getText();
+            String valorString = txtVlProduto.getText();
+            valorString = valorString.replace(",", ".");//substitui a vírgula por pontos
+            double valor = Double.parseDouble(valorString);
             
             String sql = "INSERT INTO PRODUTO VALUES(PRODUTO_SEQ.NEXTVAL, UPPER('" + nome + "'), " + valor + ")";
                         

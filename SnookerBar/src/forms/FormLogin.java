@@ -60,7 +60,6 @@ public class FormLogin extends javax.swing.JFrame {
 
         lblSenha.setText("Senha:");
 
-        txtUsuario.setText("admin");
         txtUsuario.setToolTipText("Digite o usuário");
 
         btnLogin.setText("Login");
@@ -83,7 +82,6 @@ public class FormLogin extends javax.swing.JFrame {
             }
         });
 
-        txtSenha.setText("admin");
         txtSenha.setToolTipText("Digite a senha");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

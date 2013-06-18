@@ -121,14 +121,12 @@ public class FormCadastrarServico extends javax.swing.JInternalFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCadastrarActionPerformed
     {//GEN-HEADEREND:event_btnCadastrarActionPerformed
-        int cod;
-        String nome;
-        double valor;
-        
         try
         {
-            nome = txtNmServico.getText();
-            valor = Double.parseDouble(txtVlServico.getText());
+            String nome = txtNmServico.getText();
+            String valorString = txtVlServico.getText();
+            valorString = valorString.replace(",", ".");//substitui a vírgula por pontos
+            double valor = Double.parseDouble(valorString);
             
             String sql = "INSERT INTO SERVICO VALUES(SERVICO_SEQ.NEXTVAL, UPPER('" + nome + "'), " + valor + ")";
             

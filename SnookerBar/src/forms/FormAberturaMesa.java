@@ -42,7 +42,8 @@ public class FormAberturaMesa extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jLabelComanda = new javax.swing.JLabel();
         jButtonAbrir = new javax.swing.JButton();
@@ -53,22 +54,30 @@ public class FormAberturaMesa extends javax.swing.JInternalFrame {
         jComboBoxMesa = new javax.swing.JComboBox();
 
         setClosable(true);
+        setIconifiable(true);
         setTitle("Abertura de Mesa");
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener()
+        {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameClosed(evt);
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt)
+            {
                 formInternalFrameOpened(evt);
             }
         });
@@ -77,8 +86,10 @@ public class FormAberturaMesa extends javax.swing.JInternalFrame {
 
         jButtonAbrir.setText("Abrir");
         jButtonAbrir.setToolTipText("Clique aqui para abrir");
-        jButtonAbrir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonAbrir.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButtonAbrirActionPerformed(evt);
             }
         });
@@ -86,29 +97,37 @@ public class FormAberturaMesa extends javax.swing.JInternalFrame {
         jComboBoxComanda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jTableMesa.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+            new Object [][]
+            {
 
             },
-            new String [] {
+            new String []
+            {
                 "Mesas em Uso", "Data e Hora de Abertura", "Comanda"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Integer.class
+        )
+        {
+            Class[] types = new Class []
+            {
+                java.lang.String.class, java.lang.Object.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
+            boolean[] canEdit = new boolean []
+            {
                 false, false, false
             };
 
-            public Class getColumnClass(int columnIndex) {
+            public Class getColumnClass(int columnIndex)
+            {
                 return types [columnIndex];
             }
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
                 return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(jTableMesa);
+        jTableMesa.getColumnModel().getColumn(1).setPreferredWidth(100);
 
         jLabel1.setText("Comanda:");
 
@@ -163,9 +182,10 @@ public class FormAberturaMesa extends javax.swing.JInternalFrame {
         //Pega a hora do sistema para inserir no banco
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         System.out.println(sdf.format(new Date()));
-        try {
-
-            String sql = "INSERT INTO ABERTURA_MESA VALUES (abertura_mesa_seq.nextval,sysdate,null,null," + c + "," + m + ")";
+        
+        try 
+        {
+            String sql = "INSERT INTO ABERTURA_MESA VALUES (abertura_mesa_seq.nextval,sysdate,null," + c + "," + m + ")";
 
             if (Conexao.atualizar(sql) != -1) {
                 //JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
@@ -176,7 +196,7 @@ public class FormAberturaMesa extends javax.swing.JInternalFrame {
             atualizarTabela();
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Erro na Exceção\n" + e.getMessage(), "Erro!", 0);
+            JOptionPane.showMessageDialog(this, "Erro: \n" + e.getMessage(), "Erro!", 0);
         }
 
     }//GEN-LAST:event_jButtonAbrirActionPerformed
@@ -193,11 +213,7 @@ public class FormAberturaMesa extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_formInternalFrameOpened
 
-    //Executa essas instruções ao fechar o internalFrame
-    private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
-        //fazia desconexão com o banco, foi removido
-    }//GEN-LAST:event_formInternalFrameClosed
-    private HashMap<Integer, Integer> comandas = new HashMap<Integer, Integer>();
+   private HashMap<Integer, Integer> comandas = new HashMap<Integer, Integer>();
 
     private void pesquisarTudo() {
         DefaultComboBoxModel model2 = (DefaultComboBoxModel) jComboBoxComanda.getModel();

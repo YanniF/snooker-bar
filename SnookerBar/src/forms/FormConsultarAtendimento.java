@@ -15,12 +15,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Rafael
  */
-public class FormConsultarAberturaComanda extends javax.swing.JInternalFrame {
+public class FormConsultarAtendimento extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FormIniciartendimento
      */
-    public FormConsultarAberturaComanda() {
+    public FormConsultarAtendimento() {
         initComponents();
     }
 
@@ -31,7 +31,8 @@ public class FormConsultarAberturaComanda extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -44,54 +45,70 @@ public class FormConsultarAberturaComanda extends javax.swing.JInternalFrame {
         jComboBoxComanda = new javax.swing.JComboBox();
 
         setClosable(true);
+        setIconifiable(true);
         setTitle("Consultar Atendimento");
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener()
+        {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt)
+            {
                 formInternalFrameOpened(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("DESCRIÇÃO DOS PRODUTOS E SERVIÇOS");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+            new Object [][]
+            {
 
             },
-            new String [] {
+            new String []
+            {
                 "Quantidade", "Descrição", "R$ Unitário", "R$ Total"
             }
-        ) {
-            Class[] types = new Class [] {
+        )
+        {
+            Class[] types = new Class []
+            {
                 java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class
             };
 
-            public Class getColumnClass(int columnIndex) {
+            public Class getColumnClass(int columnIndex)
+            {
                 return types [columnIndex];
             }
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("VALOR TOTAL R$:");
 
-        jTextFieldSomaTotal.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jTextFieldSomaTotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextFieldSomaTotal.setToolTipText("Valor total");
         jTextFieldSomaTotal.setEnabled(false);
-        jTextFieldSomaTotal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jTextFieldSomaTotal.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jTextFieldSomaTotalActionPerformed(evt);
             }
         });
@@ -100,16 +117,20 @@ public class FormConsultarAberturaComanda extends javax.swing.JInternalFrame {
 
         jButtonPesquisar.setText("Pesquisar");
         jButtonPesquisar.setToolTipText("Clique aqui para pesquisar");
-        jButtonPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonPesquisar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButtonPesquisarActionPerformed(evt);
             }
         });
 
         jButtonLimpar.setText("Limpar");
         jButtonLimpar.setToolTipText("Clique aqui para limpar os valores");
-        jButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonLimpar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButtonLimparActionPerformed(evt);
             }
         });
@@ -229,7 +250,7 @@ public class FormConsultarAberturaComanda extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-            atualizarComboBox();
+        atualizarComboBox();
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
