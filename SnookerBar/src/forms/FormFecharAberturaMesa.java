@@ -6,9 +6,9 @@ package forms;
 
 import classes.Conexao;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -37,7 +37,7 @@ public class FormFecharAberturaMesa extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableMesa = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jTextFieldSomaTotal = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -51,37 +51,37 @@ public class FormFecharAberturaMesa extends javax.swing.JInternalFrame {
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-            }
             public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameOpened(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel1.setText("DESCRIÇÃO DOS PRODUTOS E SERVIÇOS");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableMesa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Tempo de Uso", "Mesa", "R$ Unitário", "R$ Total"
+                "Dt/h Atual", "Dt/h Início", "Tempo de Uso", "R$ Unitário", "R$ Total", "Comanda"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -92,12 +92,12 @@ public class FormFecharAberturaMesa extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableMesa);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14));
         jLabel2.setText("VALOR TOTAL R$:");
 
-        jTextFieldSomaTotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldSomaTotal.setFont(new java.awt.Font("Tahoma", 0, 14));
         jTextFieldSomaTotal.setToolTipText("Valor total");
         jTextFieldSomaTotal.setEnabled(false);
         jTextFieldSomaTotal.addActionListener(new java.awt.event.ActionListener() {
@@ -155,11 +155,11 @@ public class FormFecharAberturaMesa extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(144, 144, 144)
                         .addComponent(jButtonEncerrar)))
-                .addGap(0, 43, Short.MAX_VALUE))
+                .addGap(0, 331, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 201, Short.MAX_VALUE)
+                        .addGap(0, 489, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextFieldSomaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -191,121 +191,80 @@ public class FormFecharAberturaMesa extends javax.swing.JInternalFrame {
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-432)/2, (screenSize.height-320)/2, 432, 320);
+        setBounds((screenSize.width-720)/2, (screenSize.height-320)/2, 720, 320);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextFieldSomaTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSomaTotalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldSomaTotalActionPerformed
 
     private void jButtonEncerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEncerrarActionPerformed
         try {
-            int cd_mesa = 0;
-        //Consulta para pegar o numero do cd_abertura_comanda que está aberto
-                 String sql = "SELECT \"ABERTURA_COMANDA\".\"cd_abertura_comanda\" "
-                    + "FROM \"ABERTURA_COMANDA\" "
-                    + "WHERE \"ABERTURA_COMANDA\".\"cd_comanda\"=" + jComboBoxMesa.getSelectedItem() + " AND \"ABERTURA_COMANDA\".\"dt_hora_fechar\" is null ";
+            int cd_abertura_mesa = 0;
+            int mesa = Integer.parseInt(jComboBoxMesa.getSelectedItem().toString());
+            int qtdHoras = 0;
+            Double vlt = 0.0;
+            int cdServico = 0;
+            
+            //Consulta para pegar o numero do cd_mesa que está aberto
+            String sql = "SELECT \"cd_abertura_mesa\" FROM \"ABERTURA_MESA\" "
+                    + "WHERE \"cd_mesa\"=" + mesa + " AND \"dt_hora_fechar\" is null ";
 
             ResultSet rs = Conexao.consultar(sql);
             while (rs.next()) {
-                cd_mesa = rs.getInt("cd_abertura_comanda");
+                cd_abertura_mesa = rs.getInt("cd_abertura_mesa");
             }
-        
-        //Pega a hora do sistema para inserir no banco
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");  
-        System.out.println("Teste formato data: "+sdf.format(new Date()));
-        
-        //Coloca a hora de saída na abertura_comanda
-            String sqlUpdate = "UPDATE ABERTURA_MESA "
-                    + "set \"dt_hora_fechar\"= sysdate "
-                    + "WHERE \"cd_abertura_mesa\"="+cd_mesa+"";
+
+        //Coloca a hora de saída na abertura_mesa
+            String sqlUpdate = "UPDATE SNOOKER.ABERTURA_MESA "
+                    + "set \"dt_hora_fechar\"= (to_date(sysdate,'dd/MM/yyyy HH24:MI')) "
+                    + "WHERE \"cd_abertura_mesa\"="+cd_abertura_mesa+"";
             
             if (Conexao.atualizar(sqlUpdate) != -1) {
-                JOptionPane.showMessageDialog(null, "Mesa: "+jComboBoxMesa.getSelectedItem()+" finalizada com sucesso", "Cadastro", 1);
+                JOptionPane.showMessageDialog(null, "Mesa: "+mesa+" Encerrada!", "Cadastro", 1);
             } else {
                 JOptionPane.showMessageDialog(null, Conexao.getErro(), "Cadastro", 1);
             }
+            
+            String sqlInsert = "INSERT INTO ATENDIMENTO VALUES (atendimento_seq.nextval,null," + qtdHoras + "," + vlt + ", null, '" + cdServico + "'," + cd_abertura_mesa + " )";
+            if (Conexao.consultar(sqlInsert) == null) {
+                JOptionPane.showMessageDialog(null, "Erro ao Inserir, Tabela Atendimento! "+Conexao.getErro());
+            }
+            
             //atualiza os registros do combo
             atualizarComboBox();
             
             //Zera a tabela
-            DefaultTableModel modelTable = (DefaultTableModel) jTable1.getModel();
+            DefaultTableModel modelTable = (DefaultTableModel) jTableMesa.getModel();
             modelTable.setRowCount(0);
+            //Limpa a Label valor total
+            jTextFieldSomaTotal.setText("R$ 0.00");
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro na Exceção\n" + e.getMessage(), "Erro!", 0);
         }
-
+        
     }//GEN-LAST:event_jButtonEncerrarActionPerformed
-    private HashMap<Integer, Integer> comandas = new HashMap<Integer, Integer>();
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
         try {
-            Double vlu = 0.0;
-            Double vlt = 0.0;
-            int qtd = 0;
-            int mesa = 0;
-            Double tempo = 0.0;
-            int cd_abertura = 0;
-            
-            //Declara a tabela
-            DefaultTableModel modelTable = (DefaultTableModel) jTable1.getModel();
+            //Alimenta a tabela com os valores
+            atualizarTabela();
 
-            //Faz Consulta para Inserir os valores na tabela
-            String sql = "SELECT * "
-                    + "FROM \"ABERTURA_MESA\" "
-                    + "WHERE \"cd_mesa\"=" + jComboBoxMesa.getSelectedItem() + " AND \"dt_hora_fechar\" is null ";
-
-            ResultSet rs = Conexao.consultar(sql);
-
-            while (rs.next()) {
-                int x=1;
-//                cd_abertura = rs.getInt("cd_abertura_mesa"),
-//                tempo=rs.getTimestamp(sql)
-                
-            }
-//            atendimento;
-//calculo de horas: select "dt_hora_abertura", sysdate, 
-//to_char((cast(sysdate as timestamp)-"dt_hora_abertura"), "MI")
-//from ABERTURA_MESA
-            String sql2 = "SELECT * FROM ATENDIMENTO WHERE cd_abertura_mesa =" + cd_abertura + "";
-
-            ResultSet rs2 = Conexao.consultar(sql2);
-            while (rs2.next()) {
-                qtd = rs2.getInt("qt_produto");
-                vlt = rs2.getDouble("vl_total_atendimento");
-                vlu = vlt / qtd;
-
-                //Limpa a tabela para não agregar os valores
-                modelTable.setRowCount(0);
-                //Adiciona as linhas na tabela
-                modelTable.addRow(new Object[]{
-                            tempo,
-                            mesa,
-                            vlu,
-                            vlt
-                        });
-            }
-
-            //Varre a coluna do valor total, incrementando na variável
-            Double valorTotal = 0.00;
-            for (int row = 0; row < modelTable.getRowCount(); row++) {
-                valorTotal += Double.parseDouble(modelTable.getValueAt(row, 3).toString());
-            }
-            jTextFieldSomaTotal.setText(valorTotal.toString());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro:\n" + e.getMessage(), "Aviso", 2);
         }
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-            atualizarComboBox();
+        atualizarComboBox();
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
         limpar();
-        
+
     }//GEN-LAST:event_jButtonLimparActionPerformed
+
+    private void jTextFieldSomaTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSomaTotalActionPerformed
+    
+        // TODO add your handling code here:}//GEN-LAST:event_jTextFieldSomaTotalActionPerformed
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonEncerrar;
     private javax.swing.JButton jButtonLimpar;
@@ -315,12 +274,12 @@ public class FormFecharAberturaMesa extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableMesa;
     private javax.swing.JTextField jTextFieldSomaTotal;
     // End of variables declaration//GEN-END:variables
 
     private void atualizarComboBox() {
-                try {
+        try {
             //Pega o código de abertura comanda na tabela Abertura Comanda
             String sqlAbert =
                     "SELECT \"cd_abertura_mesa\", \"cd_mesa\""
@@ -342,8 +301,54 @@ public class FormFecharAberturaMesa extends javax.swing.JInternalFrame {
 
     private void limpar() {
         jComboBoxMesa.setSelectedIndex(0);
-        DefaultTableModel modelTable = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel modelTable = (DefaultTableModel) jTableMesa.getModel();
         modelTable.setRowCount(0);
         jTextFieldSomaTotal.setText("");
+    }
+
+    private void atualizarTabela() throws SQLException {
+        DefaultTableModel tableModel = (DefaultTableModel) jTableMesa.getModel();
+        tableModel.setRowCount(0);
+
+        int mesa = Integer.parseInt(jComboBoxMesa.getSelectedItem().toString());
+
+        //calculo de horas, retorna diferença em MINUTOS, funciona direto no banco: 
+        String sqlHoras = "select 24*60*(sysdate - \"dt_hora_abertura\") from dual, \"ABERTURA_MESA\"";
+        ResultSet rs = Conexao.consultar(sqlHoras);
+        //Tratar para aparecer esses minutos, diferença: tempo de uso em minutos
+        System.out.println(rs);
+
+        String sqlAbertMesa =
+                "SELECT * "
+                + "FROM \"ABERTURA_MESA\" "
+                + "WHERE  \"cd_mesa\"=" + mesa + " AND \"dt_hora_fechar\" is null ";
+
+        ResultSet rs1 = Conexao.consultar(sqlAbertMesa);
+
+        SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+        //Deverá ser calculado a diferença
+        double tp = 1.0;
+        //R$ Unitário - o valor unitário deverá ser colocado aqui:
+        double valorUnitario = 10.0;
+        
+        while (rs1.next()) {
+            tableModel.addRow(new Object[]{
+                        dt.format(new Date()),//Data Atual
+                        dt.format(rs1.getTimestamp("dt_hora_abertura")),//Data Início
+                        tp,//Tempo de uso (diferença acima)
+                        valorUnitario,
+                        tp*valorUnitario,
+                        rs1.getInt("cd_comanda")
+                    });
+        }
+            //Incrementa o Label valor total, se tivesse mais de uma linha somaria tudo
+            Double valorTotal = 0.00;
+            for (int row = 0; row < tableModel.getRowCount(); row++) {
+                valorTotal += Double.parseDouble(tableModel.getValueAt(row, 4).toString());
+            }
+            jTextFieldSomaTotal.setText(valorTotal.toString());
+            
+
     }
 }
