@@ -185,7 +185,7 @@ public class FormAberturaMesa extends javax.swing.JInternalFrame {
         
         try 
         {
-            String sql = "INSERT INTO ABERTURA_MESA VALUES (abertura_mesa_seq.nextval,sysdate,null," + c + "," + m + ")";
+            String sql = "INSERT INTO ABERTURA_MESA VALUES (abertura_mesa_seq.nextval,sysdate,null,null," + c + "," + m + ")";
 
             if (Conexao.atualizar(sql) != -1) {
                 //JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.", "Cadastro", 1);
@@ -223,12 +223,10 @@ public class FormAberturaMesa extends javax.swing.JInternalFrame {
 
         try {
 
-            //Pega o código de abertura comanda na tabela Abertura Comanda
-            String sqlAbertComa =
-                    "SELECT \"ABERTURA_COMANDA\".\"cd_abertura_comanda\", \"ABERTURA_COMANDA\".\"cd_comanda\" "
-                    + "FROM snooker.\"ABERTURA_COMANDA\" "
-                    + "WHERE \"ABERTURA_COMANDA\".\"dt_hora_fechar\" is null "
-                    + "ORDER BY \"ABERTURA_COMANDA\".\"cd_comanda\"";
+            //Pega o código de abertura comanda na tabela Abertura Comanda que não esteja em uso
+            String sqlAbertComa ="select * from ABERTURA_COMANDA where \"cd_comanda\" not in(select \"cd_comanda\" from "
+                    + "ABERTURA_MESA where \"dt_hora_fechar\" is null) ORDER BY \"cd_comanda\"";
+            
             ResultSet rs1 = Conexao.consultar(sqlAbertComa);
 
             comandas.clear();
