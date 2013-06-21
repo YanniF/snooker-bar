@@ -115,6 +115,9 @@
                     <Property name="text" type="java.lang.String" value="Fechar"/>
                     <Property name="toolTipText" type="java.lang.String" value="Fechar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuFecharAberturaMesaActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>

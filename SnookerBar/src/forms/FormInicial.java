@@ -158,6 +158,11 @@ public class FormInicial extends javax.swing.JFrame {
 
         menuFecharAberturaMesa.setText("Fechar");
         menuFecharAberturaMesa.setToolTipText("Fechar");
+        menuFecharAberturaMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuFecharAberturaMesaActionPerformed(evt);
+            }
+        });
         menuAberturaMesa.add(menuFecharAberturaMesa);
 
         menuMesa.add(menuAberturaMesa);
@@ -330,6 +335,11 @@ public class FormInicial extends javax.swing.JFrame {
         FormFecharAberturaComanda ffac = new FormFecharAberturaComanda();
         adicionarJInternalFrame(ffac);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void menuFecharAberturaMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFecharAberturaMesaActionPerformed
+        FormFecharAberturaMesa ffam = new FormFecharAberturaMesa();
+        adicionarJInternalFrame(ffam);
+    }//GEN-LAST:event_menuFecharAberturaMesaActionPerformed
 
     /**
      * @param args the command line arguments
