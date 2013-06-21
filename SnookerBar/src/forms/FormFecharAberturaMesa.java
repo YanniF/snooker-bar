@@ -45,10 +45,21 @@ public class FormFecharAberturaMesa extends javax.swing.JInternalFrame {
         jButtonPesquisar = new javax.swing.JButton();
         jButtonLimpar = new javax.swing.JButton();
         jComboBoxMesa = new javax.swing.JComboBox();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
 
         setClosable(true);
         setTitle("Encerrar Abertura Mesa");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
@@ -56,13 +67,6 @@ public class FormFecharAberturaMesa extends javax.swing.JInternalFrame {
             public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameOpened(evt);
             }
         });
 
@@ -78,7 +82,7 @@ public class FormFecharAberturaMesa extends javax.swing.JInternalFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
@@ -97,14 +101,9 @@ public class FormFecharAberturaMesa extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14));
         jLabel2.setText("VALOR TOTAL R$:");
 
-        jTextFieldSomaTotal.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jTextFieldSomaTotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextFieldSomaTotal.setToolTipText("Valor total");
         jTextFieldSomaTotal.setEnabled(false);
-        jTextFieldSomaTotal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldSomaTotalActionPerformed(evt);
-            }
-        });
 
         jLabel5.setText("Nº Mesa:");
 
@@ -134,6 +133,10 @@ public class FormFecharAberturaMesa extends javax.swing.JInternalFrame {
 
         jComboBoxMesa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jLabel3.setText("Valor Unitário:");
+
+        jLabel4.setText("Tempo de Uso:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -142,6 +145,19 @@ public class FormFecharAberturaMesa extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(479, 479, 479)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldSomaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(289, 289, 289)
+                                .addComponent(jButtonEncerrar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 332, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(148, 148, 148)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBoxMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -150,22 +166,17 @@ public class FormFecharAberturaMesa extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(jButtonEncerrar)))
-                .addGap(0, 331, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 489, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldSomaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addGap(196, 196, 196)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -180,6 +191,12 @@ public class FormFecharAberturaMesa extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -187,11 +204,11 @@ public class FormFecharAberturaMesa extends javax.swing.JInternalFrame {
                     .addComponent(jTextFieldSomaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButtonEncerrar)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-720)/2, (screenSize.height-320)/2, 720, 320);
+        setBounds((screenSize.width-720)/2, (screenSize.height-368)/2, 720, 368);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonEncerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEncerrarActionPerformed
@@ -258,13 +275,8 @@ public class FormFecharAberturaMesa extends javax.swing.JInternalFrame {
 
     private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
         limpar();
-
     }//GEN-LAST:event_jButtonLimparActionPerformed
-
-    private void jTextFieldSomaTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSomaTotalActionPerformed
     
-        // TODO add your handling code here:}//GEN-LAST:event_jTextFieldSomaTotalActionPerformed
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonEncerrar;
     private javax.swing.JButton jButtonLimpar;
@@ -272,9 +284,13 @@ public class FormFecharAberturaMesa extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox jComboBoxMesa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableMesa;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextFieldSomaTotal;
     // End of variables declaration//GEN-END:variables
 
@@ -309,36 +325,44 @@ public class FormFecharAberturaMesa extends javax.swing.JInternalFrame {
     private void atualizarTabela() throws SQLException {
         DefaultTableModel tableModel = (DefaultTableModel) jTableMesa.getModel();
         tableModel.setRowCount(0);
-
+        
+        //R$ Unitário - o valor unitário deverá ser colocado aqui:
+        Double valorUnitario = Double.parseDouble(jTextField2.getText());
+        Double tempoUso = Double.parseDouble(jTextField1.getText());
+        
         int mesa = Integer.parseInt(jComboBoxMesa.getSelectedItem().toString());
-
-        //calculo de horas, retorna diferença em MINUTOS, funciona direto no banco: 
-        String sqlHoras = "select 24*60*(sysdate - \"dt_hora_abertura\") from dual, \"ABERTURA_MESA\"";
+        Date tpAtual = null;
+        Date tpInicio = null;
+        Date tpUso = null;
+        long tempo;
+        
+        SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        SimpleDateFormat dt2 = new SimpleDateFormat("HH:mm");
+        
+        //calculo de horas, retorna diferença em Horas, funciona direto no banco: 
+        String sqlHoras = "select sysdate,\"dt_hora_abertura\", 24*60*(sysdate - \"dt_hora_abertura\")  from dual,ABERTURA_MESA where \"cd_mesa\"="+mesa+" and \"dt_hora_fechar\" is null";
+ 
         ResultSet rs = Conexao.consultar(sqlHoras);
         //Tratar para aparecer esses minutos, diferença: tempo de uso em minutos
-        System.out.println(rs);
+        while(rs.next()){
+            tpAtual = rs.getTimestamp("sysdate");//Data atual
+            tpInicio = rs.getTimestamp("dt_hora_abertura");//Data Inicio
+            tempo = ((tpAtual.getTime())-(tpInicio.getTime()));//Diferença
+            tpUso = (new Date(tempo));
+        }
 
-        String sqlAbertMesa =
-                "SELECT * "
-                + "FROM \"ABERTURA_MESA\" "
+        String sqlAbertMesa = "SELECT * FROM \"ABERTURA_MESA\" "
                 + "WHERE  \"cd_mesa\"=" + mesa + " AND \"dt_hora_fechar\" is null ";
 
         ResultSet rs1 = Conexao.consultar(sqlAbertMesa);
-
-        SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-
-        //Deverá ser calculado a diferença
-        double tp = 1.0;
-        //R$ Unitário - o valor unitário deverá ser colocado aqui:
-        double valorUnitario = 10.0;
         
         while (rs1.next()) {
             tableModel.addRow(new Object[]{
-                        dt.format(new Date()),//Data Atual
-                        dt.format(rs1.getTimestamp("dt_hora_abertura")),//Data Início
-                        tp,//Tempo de uso (diferença acima)
+                        dt.format(tpAtual),//Data e Hora Atual
+                        dt.format(tpInicio),//Data e Hora Início
+                        dt2.format(tpUso),//Double.parseDouble(tp)-Double.parseDouble(tpInicio),//Tempo de uso (diferença acima)
                         valorUnitario,
-                        tp*valorUnitario,
+                        valorUnitario*tempoUso,//Double.parseDouble(tp)*valorUnitario,
                         rs1.getInt("cd_comanda")
                     });
         }
@@ -348,7 +372,5 @@ public class FormFecharAberturaMesa extends javax.swing.JInternalFrame {
                 valorTotal += Double.parseDouble(tableModel.getValueAt(row, 4).toString());
             }
             jTextFieldSomaTotal.setText(valorTotal.toString());
-            
-
     }
 }
